@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aprendejugando.local/schemas/activity.schema.json",
+  "title": "AprendeJugando Level",
+  "type": "object",
+  "required": ["schemaVersion", "id", "module", "levelNumber", "title", "status", "activities"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^(math|letters|logic|art)-l[0-9]{2}$" },
+    "module": { "enum": ["MATHEMATICS", "LETTERS", "LOGIC", "ART"] },
+    "levelNumber": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string", "minLength": 3 },
+    "status": { "enum": ["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"] },
+    "activities": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "instruction", "answer", "feedback", "reward", "accessibility"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(math|letters|logic|art)-l[0-9]{2}-a[0-9]{2}$" },
+          "type": { "enum": ["multiple_choice", "visual_count", "memory_pairs", "paint_shape", "pattern_completion", "image_word_match"] },
+          "instruction": { "type": "string", "minLength": 5, "maxLength": 100 },
+          "answer": { "type": "object" },
+          "feedback": { "type": "object", "required": ["correct", "incorrect"] },
+          "reward": { "type": "object", "required": ["xp", "stars"] },
+          "accessibility": { "type": "object", "required": ["spokenInstruction"] }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

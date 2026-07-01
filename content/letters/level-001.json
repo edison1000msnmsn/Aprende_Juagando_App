@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l01",
+  "module": "LETTERS",
+  "levelNumber": 1,
+  "title": "El sonido de la M",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l01-a01",
+      "type": "image_word_match",
+      "instruction": "Elige una palabra que empiece con M",
+      "payload": { "letter": "M", "options": ["rana", "manzana", "sol", "mariposa"] },
+      "answer": { "value": "manzana" },
+      "feedback": { "correct": "Manzana empieza con M", "incorrect": "Di cada palabra lentamente" },
+      "reward": { "xp": 10, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra M mayúscula" }
+    }
+  ]
+}

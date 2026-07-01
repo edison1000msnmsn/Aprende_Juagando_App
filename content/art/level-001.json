@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l01",
+  "module": "ART",
+  "levelNumber": 1,
+  "title": "Colores brillantes",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l01-a01",
+      "type": "paint_shape",
+      "instruction": "Pinta la estrella de amarillo",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "yellow" },
+      "feedback": { "correct": "Una estrella brillante", "incorrect": "Busca el color del sol" },
+      "reward": { "xp": 10, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella de cinco puntas" }
+    }
+  ]
+}

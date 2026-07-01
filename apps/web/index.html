@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#6941c6">
+  <meta name="description" content="AprendeJugando Kids: retos educativos seguros para aprender jugando.">
+  <title>AprendeJugando Kids</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="app-shell">
+    <header class="topbar" aria-label="Cabecera principal">
+      <button class="brand" data-route="home" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">AJ</span>
+        <span><strong>AprendeJugando</strong><small>Una aventura cada día</small></span>
+      </button>
+      <div class="topbar-actions">
+        <div class="streak-pill" title="Días de práctica"><span aria-hidden="true">🔥</span><strong id="streakCount">3</strong><span class="hide-small"> días</span></div>
+        <div class="stars-pill" title="Estrellas ganadas"><span aria-hidden="true">★</span><strong id="starCount">120</strong></div>
+        <button class="avatar-button" id="profileButton" aria-label="Cambiar perfil">V</button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="screen active" data-screen="home" aria-labelledby="homeTitle">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="eyebrow">TU AVENTURA DE HOY</span>
+            <h1 id="homeTitle">¡Hola, <span data-profile-name>Valentina</span>! 👋</h1>
+            <p>Tu curiosidad es tu superpoder. ¿Qué quieres descubrir hoy?</p>
+            <button class="primary-button" data-start="mathematics">Continuar mi reto <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="mascot-scene" aria-hidden="true">
+            <div class="speech-bubble">¡Ya casi llegas<br>al nivel 4!</div>
+            <div class="mascot">🦉</div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><span class="eyebrow purple">EXPLORA Y APRENDE</span><h2>Elige una aventura</h2></div>
+          <button class="text-button" data-route="worlds">Ver todos →</button>
+        </div>
+        <div class="module-grid" id="moduleGrid"></div>
+
+        <section class="daily-card" aria-labelledby="dailyTitle">
+          <div class="daily-icon" aria-hidden="true">🎯</div>
+          <div><span class="eyebrow">RETO DIARIO</span><h2 id="dailyTitle">Completa 3 actividades</h2><p>Te falta solo una para ganar un cofre sorpresa.</p></div>
+          <div class="daily-progress" aria-label="2 de 3 actividades"><strong>2/3</strong><div><span style="width:66%"></span></div></div>
+        </section>
+      </section>
+
+      <section class="screen" data-screen="worlds" aria-labelledby="worldsTitle">
+        <div class="page-heading"><span class="eyebrow purple">MAPA DE AVENTURAS</span><h1 id="worldsTitle">¿A dónde vamos hoy?</h1><p>Cada mundo tiene nuevos retos y sorpresas.</p></div>
+        <div class="world-list" id="worldList"></div>
+      </section>
+
+      <section class="screen" data-screen="activity" aria-labelledby="activityTitle">
+        <div class="activity-top">
+          <button class="icon-button" data-route="home" aria-label="Salir de la actividad">×</button>
+          <div class="activity-progress"><span id="activityProgress"></span></div>
+          <div class="lives" aria-label="3 oportunidades">♥ ♥ ♥</div>
+        </div>
+        <div class="activity-layout">
+          <aside class="coach-card"><div class="coach" aria-hidden="true">🦉</div><p id="coachText">Mira con calma. ¡Tú puedes!</p></aside>
+          <article class="challenge-card" id="challengeCard"></article>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="progress" aria-labelledby="progressTitle">
+        <div class="page-heading"><span class="eyebrow purple">TUS SUPERPODERES</span><h1 id="progressTitle">Mira cuánto has aprendido</h1><p>Avanza a tu ritmo. Cada intento cuenta.</p></div>
+        <div class="summary-grid">
+          <article><span>★</span><strong id="summaryStars">120</strong><small>Estrellas</small></article>
+          <article><span>✓</span><strong id="summaryActivities">18</strong><small>Actividades</small></article>
+          <article><span>⏱</span><strong>12m</strong><small>Hoy</small></article>
+        </div>
+        <div class="progress-panel"><h2>Progreso por aventura</h2><div id="progressList"></div></div>
+        <div class="achievement-card"><div class="achievement-medal">🏅</div><div><span class="eyebrow">NUEVO LOGRO</span><h2>Exploradora curiosa</h2><p>Probaste actividades de tres mundos diferentes.</p></div></div>
+      </section>
+
+      <section class="screen" data-screen="profile" aria-labelledby="profileTitle">
+        <div class="page-heading"><span class="eyebrow purple">MI ESPACIO</span><h1 id="profileTitle">Perfil y familia</h1></div>
+        <div class="profile-card"><div class="profile-avatar">V</div><div><h2 data-profile-name>Valentina</h2><p>6 años · Nivel 3</p></div><button class="secondary-button" id="switchProfile">Cambiar</button></div>
+        <div class="settings-list">
+          <button id="soundToggle"><span>🔊</span><span><strong>Sonidos</strong><small>Instrucciones y efectos suaves</small></span><span class="toggle on" aria-label="Activado"></span></button>
+          <button id="motionToggle"><span>✨</span><span><strong>Animaciones</strong><small>Movimiento reducido disponible</small></span><span class="toggle on" aria-label="Activado"></span></button>
+          <button id="parentAccess"><span>👨‍👩‍👧</span><span><strong>Zona para adultos</strong><small>Progreso, privacidad y ajustes</small></span><span>›</span></button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="parent" aria-labelledby="parentTitle">
+        <div class="parent-header"><button class="icon-button light" data-route="profile" aria-label="Volver">←</button><div><span class="eyebrow">ZONA PARA ADULTOS</span><h1 id="parentTitle">Acompañamiento de <span data-profile-name>Valentina</span></h1></div></div>
+        <div class="parent-grid">
+          <article class="parent-summary"><h2>Esta semana</h2><div class="metric-row"><div><strong>42</strong><small>minutos</small></div><div><strong>18</strong><small>actividades</small></div><div><strong>78%</strong><small>precisión</small></div></div><p class="insight">💡 Avanza muy bien en Letras. Practiquen patrones durante 5 minutos esta semana.</p></article>
+          <article class="parent-summary"><h2>Bienestar digital</h2><div class="setting-row"><span>Meta diaria</span><strong>15 min</strong></div><div class="setting-row"><span>Sesión actual</span><strong>12 min</strong></div><p class="privacy-note">Sin anuncios, chat, ubicación, cámara ni compras. El progreso se guarda localmente en este prototipo.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="active" data-route="home"><span>⌂</span><small>Inicio</small></button>
+      <button data-route="worlds"><span>◇</span><small>Mundos</small></button>
+      <button data-route="progress"><span>▥</span><small>Progreso</small></button>
+      <button data-route="profile"><span>☺</span><small>Perfil</small></button>
+    </nav>
+  </div>
+
+  <dialog id="feedbackDialog" class="feedback-dialog"><div id="feedbackIcon" class="feedback-icon">🌟</div><h2 id="feedbackTitle">¡Muy bien!</h2><p id="feedbackText"></p><button class="primary-button" id="feedbackContinue">Continuar</button></dialog>
+  <dialog id="profileDialog" class="profile-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><span class="eyebrow purple">¿QUIÉN VA A JUGAR?</span><h2>Elige un perfil</h2><div class="profile-options"><button data-profile="Valentina"><span>🦊</span><strong>Valentina</strong><small>6 años</small></button><button data-profile="Mateo"><span>🐼</span><strong>Mateo</strong><small>5 años</small></button></div></dialog>
+  <dialog id="gateDialog" class="gate-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><div class="gate-icon">🔐</div><h2>Solo para adultos</h2><p>Resuelve esta suma para continuar.</p><label for="gateAnswer">¿Cuánto es 8 + 5?</label><input id="gateAnswer" inputmode="numeric" autocomplete="off"><p class="form-error" id="gateError" role="alert"></p><button class="primary-button" id="gateSubmit">Entrar</button></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js?v=3" defer></script>
+</body>
+</html>

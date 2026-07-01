@@ -1,0 +1,10 @@
+{
+  "name": "AprendeJugando Kids",
+  "short_name": "AprendeJugando",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ff",
+  "theme_color": "#6941c6",
+  "lang": "es",
+  "description": "Actividades educativas cortas, positivas y seguras para niñas y niños."
+}

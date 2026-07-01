@@ -1,0 +1,13 @@
+{
+  "name": "aprendejugando-kids",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vertical slice offline-first de AprendeJugando Kids",
+  "scripts": {
+    "dev": "node apps/web/server.js",
+    "start": "node apps/web/server.js",
+    "test": "node --test",
+    "content:validate": "node packages/content-schema/validate-content.js"
+  },
+  "engines": { "node": ">=20" }
+}

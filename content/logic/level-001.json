@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l01",
+  "module": "LOGIC",
+  "levelNumber": 1,
+  "title": "Parejas del cielo",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l01-a01",
+      "type": "memory_pairs",
+      "instruction": "Encuentra las cuatro parejas",
+      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Encontraste todas las parejas", "incorrect": "Recuerda dónde viste cada figura" },
+      "reward": { "xp": 15, "stars": 10 },
+      "accessibility": { "spokenInstruction": true }
+    }
+  ]
+}
