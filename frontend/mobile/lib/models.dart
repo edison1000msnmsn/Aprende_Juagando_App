@@ -6,18 +6,21 @@ class ChildProfile {
     required this.nickname,
     required this.age,
     required this.avatar,
+    this.grade,
   });
 
   final String id;
   final String nickname;
   final int age;
   final String avatar;
+  final String? grade;
 
   factory ChildProfile.fromJson(JsonMap json) => ChildProfile(
     id: json['id'] as String,
     nickname: json['nickname'] as String,
     age: json['age'] as int,
     avatar: (json['avatar'] as String?) ?? 'fox',
+    grade: json['grade'] as String?,
   );
 }
 

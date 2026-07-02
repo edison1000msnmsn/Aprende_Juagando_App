@@ -35,6 +35,7 @@ class _AprendeJugandoAppState extends ConsumerState<AprendeJugandoApp> {
       home: switch (state.phase) {
         SessionPhase.loading => const SplashScreen(),
         SessionPhase.signedOut => const LoginScreen(),
+        SessionPhase.needsProfile => const FirstProfileScreen(),
         SessionPhase.ready =>
           state.activity != null
               ? ActivityScreen(key: ValueKey(state.activity!.id))
@@ -125,13 +126,27 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final email = TextEditingController(text: 'familia@demo.local');
   final password = TextEditingController(text: 'DemoAprende123!');
+  final confirmPassword = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   bool obscure = true;
+  bool registering = false;
 
   @override
   void dispose() {
     email.dispose();
     password.dispose();
+    confirmPassword.dispose();
     super.dispose();
+  }
+
+  Future<void> submit() async {
+    if (!formKey.currentState!.validate()) return;
+    final controller = ref.read(appControllerProvider.notifier);
+    if (registering) {
+      await controller.register(email.text, password.text);
+    } else {
+      await controller.login(email.text, password.text);
+    }
   }
 
   @override
@@ -144,86 +159,140 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: const EdgeInsets.all(24),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 440),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Align(child: AppLogo(size: 76)),
-                  const SizedBox(height: 22),
-                  Text(
-                    'Zona familiar',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'El adulto responsable inicia sesión y luego el niño elige su perfil.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xFF716A7C), height: 1.4),
-                  ),
-                  const SizedBox(height: 30),
-                  TextField(
-                    controller: email,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints: const [AutofillHints.username],
-                    decoration: const InputDecoration(
-                      labelText: 'Correo del adulto',
-                      prefixIcon: Icon(Icons.mail_outline),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Align(child: AppLogo(size: 76)),
+                    const SizedBox(height: 22),
+                    Text(
+                      registering ? 'Crear cuenta familiar' : 'Zona familiar',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  const SizedBox(height: 14),
-                  TextField(
-                    controller: password,
-                    obscureText: obscure,
-                    autofillHints: const [AutofillHints.password],
-                    decoration: InputDecoration(
-                      labelText: 'Contraseña',
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        onPressed: () => setState(() => obscure = !obscure),
-                        icon: Icon(
-                          obscure
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
+                    const SizedBox(height: 8),
+                    Text(
+                      registering
+                          ? 'Registra al adulto responsable y luego crea el primer perfil infantil.'
+                          : 'El adulto responsable inicia sesión y luego el niño elige su perfil.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Color(0xFF716A7C), height: 1.4),
+                    ),
+                    const SizedBox(height: 30),
+                    TextFormField(
+                      controller: email,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints: const [AutofillHints.username],
+                      decoration: const InputDecoration(
+                        labelText: 'Correo del adulto',
+                        prefixIcon: Icon(Icons.mail_outline),
+                      ),
+                      validator: (value) {
+                        final text = value?.trim() ?? '';
+                        return text.contains('@') && text.contains('.')
+                            ? null
+                            : 'Ingresa un correo válido';
+                      },
+                    ),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      controller: password,
+                      obscureText: obscure,
+                      autofillHints: const [AutofillHints.password],
+                      decoration: InputDecoration(
+                        labelText: 'Contraseña',
+                        prefixIcon: const Icon(Icons.lock_outline),
+                        suffixIcon: IconButton(
+                          onPressed: () => setState(() => obscure = !obscure),
+                          icon: Icon(
+                            obscure
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                          ),
                         ),
                       ),
+                      validator: (value) => (value?.length ?? 0) < 10
+                          ? 'Usa al menos 10 caracteres'
+                          : null,
                     ),
-                  ),
-                  if (state.error != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 14),
-                      child: Text(
-                        state.error!,
-                        style: const TextStyle(
-                          color: Color(0xFFB42318),
-                          fontWeight: FontWeight.w700,
+                    if (registering) ...[
+                      const SizedBox(height: 14),
+                      TextFormField(
+                        controller: confirmPassword,
+                        obscureText: obscure,
+                        decoration: const InputDecoration(
+                          labelText: 'Confirmar contraseña',
+                          prefixIcon: Icon(Icons.verified_user_outlined),
                         ),
-                        textAlign: TextAlign.center,
+                        validator: (value) => value != password.text
+                            ? 'Las contraseñas no coinciden'
+                            : null,
                       ),
-                    ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: state.busy
-                        ? null
-                        : () => ref
-                              .read(appControllerProvider.notifier)
-                              .login(email.text, password.text),
-                    child: state.busy
-                        ? const SizedBox.square(
-                            dimension: 24,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3,
-                              color: Colors.white,
+                    ],
+                    if (state.error != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 14),
+                        child: Text(
+                          state.error!,
+                          style: const TextStyle(
+                            color: Color(0xFFB42318),
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: state.busy ? null : submit,
+                      child: state.busy
+                          ? const SizedBox.square(
+                              dimension: 24,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              registering
+                                  ? 'Crear cuenta y agregar hijo'
+                                  : 'Entrar y elegir perfil',
                             ),
-                          )
-                        : const Text('Entrar y elegir perfil'),
-                  ),
-                  const SizedBox(height: 14),
-                  const Text(
-                    'Cuenta demo incluida para desarrollo local.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12, color: Color(0xFF8A8395)),
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 8),
+                    TextButton(
+                      onPressed: state.busy
+                          ? null
+                          : () {
+                              setState(() {
+                                registering = !registering;
+                                confirmPassword.clear();
+                                if (registering) {
+                                  email.clear();
+                                  password.clear();
+                                }
+                              });
+                              ref
+                                  .read(appControllerProvider.notifier)
+                                  .clearError();
+                            },
+                      child: Text(
+                        registering
+                            ? 'Ya tengo cuenta: iniciar sesión'
+                            : 'Soy nuevo: crear una cuenta',
+                      ),
+                    ),
+                    if (!registering)
+                      const Text(
+                        'Cuenta demo incluida para desarrollo local.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFF8A8395),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -231,6 +300,275 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ),
     );
   }
+}
+
+class FirstProfileScreen extends ConsumerWidget {
+  const FirstProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
+    appBar: AppBar(
+      title: const Text(
+        'Primer perfil infantil',
+        style: TextStyle(fontWeight: FontWeight.w900),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => ref.read(appControllerProvider.notifier).logout(),
+          child: const Text('Salir'),
+        ),
+      ],
+    ),
+    body: SafeArea(
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: Card(
+              elevation: 0,
+              child: Padding(
+                padding: const EdgeInsets.all(22),
+                child: _ProfileEditor(
+                  title: '¿Quién va a aprender?',
+                  description:
+                      'Usa un apodo y evita guardar el nombre completo del niño.',
+                  submitLabel: 'Crear perfil y comenzar',
+                  onSave:
+                      ({
+                        required nickname,
+                        required age,
+                        grade,
+                        required avatar,
+                      }) => ref
+                          .read(appControllerProvider.notifier)
+                          .createProfile(
+                            nickname: nickname,
+                            age: age,
+                            grade: grade,
+                            avatar: avatar,
+                          ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+typedef ProfileSaveCallback =
+    Future<bool> Function({
+      required String nickname,
+      required int age,
+      String? grade,
+      required String avatar,
+    });
+
+class _ProfileEditor extends ConsumerStatefulWidget {
+  const _ProfileEditor({
+    required this.title,
+    required this.description,
+    required this.submitLabel,
+    required this.onSave,
+    this.initial,
+    this.closeOnSuccess = false,
+  });
+
+  final String title;
+  final String description;
+  final String submitLabel;
+  final ProfileSaveCallback onSave;
+  final ChildProfile? initial;
+  final bool closeOnSuccess;
+
+  @override
+  ConsumerState<_ProfileEditor> createState() => _ProfileEditorState();
+}
+
+class _ProfileEditorState extends ConsumerState<_ProfileEditor> {
+  static const avatars = ['fox', 'owl', 'bear', 'lion', 'panda'];
+  final formKey = GlobalKey<FormState>();
+  late final TextEditingController nickname;
+  late final TextEditingController grade;
+  late int age;
+  late String avatar;
+
+  @override
+  void initState() {
+    super.initState();
+    nickname = TextEditingController(text: widget.initial?.nickname ?? '');
+    grade = TextEditingController(text: widget.initial?.grade ?? '');
+    age = widget.initial?.age ?? 5;
+    avatar = widget.initial?.avatar ?? avatars.first;
+    if (!avatars.contains(avatar)) avatar = avatars.first;
+  }
+
+  @override
+  void dispose() {
+    nickname.dispose();
+    grade.dispose();
+    super.dispose();
+  }
+
+  Future<void> save() async {
+    if (!formKey.currentState!.validate()) return;
+    final saved = await widget.onSave(
+      nickname: nickname.text,
+      age: age,
+      grade: grade.text,
+      avatar: avatar,
+    );
+    if (saved && widget.closeOnSuccess && mounted) Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(appControllerProvider);
+    return Form(
+      key: formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(widget.title, style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 6),
+          Text(
+            widget.description,
+            style: const TextStyle(color: Color(0xFF716A7C)),
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: nickname,
+            textCapitalization: TextCapitalization.words,
+            maxLength: 40,
+            decoration: const InputDecoration(
+              labelText: 'Apodo del niño',
+              prefixIcon: Icon(Icons.badge_outlined),
+            ),
+            validator: (value) => (value?.trim().length ?? 0) < 2
+                ? 'Escribe un apodo de al menos 2 caracteres'
+                : null,
+          ),
+          const SizedBox(height: 12),
+          DropdownButtonFormField<int>(
+            initialValue: age,
+            decoration: const InputDecoration(
+              labelText: 'Edad',
+              prefixIcon: Icon(Icons.cake_outlined),
+            ),
+            items: [
+              for (var value = 4; value <= 8; value++)
+                DropdownMenuItem(value: value, child: Text('$value años')),
+            ],
+            onChanged: state.busy
+                ? null
+                : (value) => setState(() => age = value ?? age),
+          ),
+          const SizedBox(height: 12),
+          TextFormField(
+            controller: grade,
+            maxLength: 40,
+            decoration: const InputDecoration(
+              labelText: 'Grado (opcional)',
+              prefixIcon: Icon(Icons.school_outlined),
+              hintText: 'Ejemplo: 1° primaria',
+            ),
+          ),
+          const SizedBox(height: 12),
+          DropdownButtonFormField<String>(
+            initialValue: avatar,
+            decoration: const InputDecoration(
+              labelText: 'Avatar',
+              prefixIcon: Icon(Icons.face_outlined),
+            ),
+            items: [
+              for (final value in avatars)
+                DropdownMenuItem(
+                  value: value,
+                  child: Text('${_avatar(value)}  ${_avatarName(value)}'),
+                ),
+            ],
+            onChanged: state.busy
+                ? null
+                : (value) => setState(() => avatar = value ?? avatar),
+          ),
+          if (state.error != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text(
+                state.error!,
+                style: const TextStyle(
+                  color: Color(0xFFB42318),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: state.busy ? null : save,
+            child: state.busy
+                ? const SizedBox.square(
+                    dimension: 22,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 3,
+                      color: Colors.white,
+                    ),
+                  )
+                : Text(widget.submitLabel),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> _openProfileEditor(
+  BuildContext context,
+  WidgetRef ref, {
+  ChildProfile? profile,
+}) async {
+  ref.read(appControllerProvider.notifier).clearError();
+  await showDialog<void>(
+    context: context,
+    builder: (dialogContext) => Dialog(
+      insetPadding: const EdgeInsets.all(18),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(22),
+          child: _ProfileEditor(
+            initial: profile,
+            closeOnSuccess: true,
+            title: profile == null ? 'Agregar otro hijo' : 'Editar perfil',
+            description: profile == null
+                ? 'Cada hijo tendrá progreso y estrellas independientes.'
+                : 'Actualiza el apodo, edad, grado o avatar.',
+            submitLabel: profile == null ? 'Crear perfil' : 'Guardar cambios',
+            onSave:
+                ({required nickname, required age, grade, required avatar}) {
+                  final controller = ref.read(appControllerProvider.notifier);
+                  return profile == null
+                      ? controller.createProfile(
+                          nickname: nickname,
+                          age: age,
+                          grade: grade,
+                          avatar: avatar,
+                        )
+                      : controller.updateProfile(
+                          id: profile.id,
+                          nickname: nickname,
+                          age: age,
+                          grade: grade,
+                          avatar: avatar,
+                        );
+                },
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 class MainShell extends ConsumerStatefulWidget {
@@ -634,7 +972,7 @@ class ProfileView extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         Text(
-          '${selected.age} años',
+          '${selected.age} años${selected.grade == null ? '' : ' · ${selected.grade}'}',
           textAlign: TextAlign.center,
           style: const TextStyle(color: Color(0xFF716A7C)),
         ),
@@ -656,15 +994,33 @@ class ProfileView extends ConsumerWidget {
                 profile.nickname,
                 style: const TextStyle(fontWeight: FontWeight.w800),
               ),
-              subtitle: Text('${profile.age} años'),
-              trailing: profile.id == selected.id
-                  ? const Icon(Icons.check_circle, color: Color(0xFF2E9F69))
-                  : null,
+              subtitle: Text(
+                '${profile.age} años${profile.grade == null ? '' : ' · ${profile.grade}'}',
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (profile.id == selected.id)
+                    const Icon(Icons.check_circle, color: Color(0xFF2E9F69)),
+                  IconButton(
+                    tooltip: 'Editar ${profile.nickname}',
+                    onPressed: () =>
+                        _openProfileEditor(context, ref, profile: profile),
+                    icon: const Icon(Icons.edit_outlined),
+                  ),
+                ],
+              ),
               onTap: () => ref
                   .read(appControllerProvider.notifier)
                   .selectProfile(profile),
             ),
           ),
+        const SizedBox(height: 14),
+        ElevatedButton.icon(
+          onPressed: () => _openProfileEditor(context, ref),
+          icon: const Icon(Icons.person_add_alt_1_rounded),
+          label: const Text('Agregar otro hijo'),
+        ),
         const SizedBox(height: 22),
         OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
@@ -1463,5 +1819,15 @@ IconData _moduleIcon(String id) => switch (id) {
 String _avatar(String value) => switch (value) {
   'panda' => '🐼',
   'fox' => '🦊',
+  'bear' => '🐻',
+  'lion' => '🦁',
   _ => '🦉',
+};
+
+String _avatarName(String value) => switch (value) {
+  'panda' => 'Panda',
+  'fox' => 'Zorro',
+  'bear' => 'Oso',
+  'lion' => 'León',
+  _ => 'Búho',
 };

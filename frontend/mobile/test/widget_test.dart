@@ -1,6 +1,7 @@
 import 'package:aprendejugando_mobile/main.dart';
 import 'package:aprendejugando_mobile/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -42,5 +43,28 @@ void main() {
     await tester.tap(find.text('4'));
 
     expect(answer, {'value': 4});
+  });
+
+  testWidgets('permite cambiar de inicio de sesión a registro', (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: LoginScreen())),
+    );
+
+    await tester.tap(find.text('Soy nuevo: crear una cuenta'));
+    await tester.pump();
+
+    expect(find.text('Crear cuenta familiar'), findsOneWidget);
+    expect(find.text('Confirmar contraseña'), findsOneWidget);
+    expect(find.text('Crear cuenta y agregar hijo'), findsOneWidget);
+  });
+
+  testWidgets('solicita los datos del primer perfil infantil', (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: FirstProfileScreen())),
+    );
+
+    expect(find.text('¿Quién va a aprender?'), findsOneWidget);
+    expect(find.text('Apodo del niño'), findsOneWidget);
+    expect(find.text('Crear perfil y comenzar'), findsOneWidget);
   });
 }

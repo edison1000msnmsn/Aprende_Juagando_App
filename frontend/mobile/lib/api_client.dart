@@ -40,9 +40,57 @@ class ApiClient {
     );
   }
 
+  Future<JsonMap> register(String email, String password) async {
+    return _map(
+      await _dio.post(
+        '/auth/register',
+        data: {'email': email.trim(), 'password': password},
+      ),
+    );
+  }
+
   Future<List<ChildProfile>> profiles() async {
     final data = _list(await _dio.get('/profiles', options: _authorized));
     return data.map(ChildProfile.fromJson).toList();
+  }
+
+  Future<ChildProfile> createProfile({
+    required String nickname,
+    required int age,
+    String? grade,
+    required String avatar,
+  }) async {
+    final response = await _dio.post(
+      '/profiles',
+      data: {
+        'nickname': nickname.trim(),
+        'age': age,
+        if (grade != null && grade.trim().isNotEmpty) 'grade': grade.trim(),
+        'avatar': avatar,
+      },
+      options: _authorized,
+    );
+    return ChildProfile.fromJson(_map(response));
+  }
+
+  Future<ChildProfile> updateProfile(
+    String id, {
+    required String nickname,
+    required int age,
+    String? grade,
+    required String avatar,
+  }) async {
+    final response = await _dio.patch(
+      '/profiles/$id',
+      data: {
+        'nickname': nickname.trim(),
+        'age': age,
+        'grade': grade?.trim().isEmpty == true ? null : grade?.trim(),
+        'avatar': avatar,
+      },
+      options: _authorized,
+    );
+    return ChildProfile.fromJson(_map(response));
   }
 
   Future<List<LearningModule>> modules(String profileId) async {

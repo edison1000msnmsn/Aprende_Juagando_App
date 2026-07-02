@@ -65,8 +65,8 @@ Swagger está disponible en `http://127.0.0.1:3000/docs` y el health check en `h
 
 ## Funcionalidad
 
-- Inicio de sesión adulto y almacenamiento seguro de sesión.
-- Selección de perfiles infantiles.
+- Registro e inicio de sesión del adulto con almacenamiento seguro de sesión.
+- Creación, edición y selección de varios perfiles infantiles por familia.
 - Cuatro mundos servidos desde PostgreSQL.
 - Mapa de niveles con desbloqueo progresivo y múltiples actividades por nivel.
 - Actividades nativas de conteo, palabras, memoria y pintura.

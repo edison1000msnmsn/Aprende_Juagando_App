@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 import 'api_client.dart';
 import 'models.dart';
 
-enum SessionPhase { loading, signedOut, ready }
+enum SessionPhase { loading, signedOut, needsProfile, ready }
 
 class AppState {
   const AppState({
@@ -109,11 +109,7 @@ class AppController extends Notifier<AppState> {
     state = state.copyWith(busy: true, clearError: true);
     try {
       final session = await _api.login(email, password);
-      final accessToken = session['accessToken'] as String;
-      final refreshToken = session['refreshToken'] as String;
-      await _storage.write(key: 'access_token', value: accessToken);
-      await _storage.write(key: 'refresh_token', value: refreshToken);
-      _api.useToken(accessToken);
+      await _saveSession(session);
       await _loadWorkspace();
     } catch (error) {
       state = state.copyWith(
@@ -124,10 +120,34 @@ class AppController extends Notifier<AppState> {
     }
   }
 
+  Future<void> register(String email, String password) async {
+    state = state.copyWith(busy: true, clearError: true);
+    try {
+      final session = await _api.register(email, password);
+      await _saveSession(session);
+      await _loadWorkspace();
+    } catch (error) {
+      state = state.copyWith(
+        phase: SessionPhase.signedOut,
+        busy: false,
+        error: friendlyApiError(error),
+      );
+    }
+  }
+
+  Future<void> _saveSession(JsonMap session) async {
+    final accessToken = session['accessToken'] as String;
+    final refreshToken = session['refreshToken'] as String;
+    await _storage.write(key: 'access_token', value: accessToken);
+    await _storage.write(key: 'refresh_token', value: refreshToken);
+    _api.useToken(accessToken);
+  }
+
   Future<void> _loadWorkspace() async {
     final profiles = await _api.profiles();
     if (profiles.isEmpty) {
-      throw const ApiException('La cuenta no tiene perfiles infantiles.');
+      state = const AppState(phase: SessionPhase.needsProfile);
+      return;
     }
     final savedId = await _storage.read(key: 'profile_id');
     final selected =
@@ -142,6 +162,70 @@ class AppController extends Notifier<AppState> {
       modules: modules,
       stars: modules.fold<int>(0, (total, module) => total + module.stars),
     );
+  }
+
+  Future<bool> createProfile({
+    required String nickname,
+    required int age,
+    String? grade,
+    required String avatar,
+  }) async {
+    state = state.copyWith(busy: true, clearError: true);
+    try {
+      final created = await _api.createProfile(
+        nickname: nickname,
+        age: age,
+        grade: grade,
+        avatar: avatar,
+      );
+      final profiles = await _api.profiles();
+      await _storage.write(key: 'profile_id', value: created.id);
+      final modules = await _api.modules(created.id);
+      state = AppState(
+        phase: SessionPhase.ready,
+        profiles: profiles,
+        selectedProfile: created,
+        modules: modules,
+        stars: modules.fold<int>(0, (total, module) => total + module.stars),
+      );
+      return true;
+    } catch (error) {
+      state = state.copyWith(busy: false, error: friendlyApiError(error));
+      return false;
+    }
+  }
+
+  Future<bool> updateProfile({
+    required String id,
+    required String nickname,
+    required int age,
+    String? grade,
+    required String avatar,
+  }) async {
+    state = state.copyWith(busy: true, clearError: true);
+    try {
+      final updated = await _api.updateProfile(
+        id,
+        nickname: nickname,
+        age: age,
+        grade: grade,
+        avatar: avatar,
+      );
+      final profiles = state.profiles
+          .map((profile) => profile.id == id ? updated : profile)
+          .toList();
+      state = state.copyWith(
+        busy: false,
+        profiles: profiles,
+        selectedProfile: state.selectedProfile?.id == id
+            ? updated
+            : state.selectedProfile,
+      );
+      return true;
+    } catch (error) {
+      state = state.copyWith(busy: false, error: friendlyApiError(error));
+      return false;
+    }
   }
 
   Future<void> selectProfile(ChildProfile profile) async {
