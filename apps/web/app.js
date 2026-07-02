@@ -5,9 +5,12 @@ const MODULES = [
   { id: 'art', name: 'Arte', tagline: 'Colores y creatividad', icon: '🎨', className: 'art', color: '#d9478d', progress: 45 }
 ];
 
+const API_BASE = 'http://127.0.0.1:3000/api/v1';
+const ICONS = { apple: '🍎', moon: '🌙', sun: '☀️', rainbow: '🌈', star: '⭐' };
+
 const ACTIVITIES = {
   mathematics: [
-    { type: 'count', instruction: '¿Cuántas manzanas hay?', hint: 'Puedes señalarlas una por una.', items: ['🍎','🍎','🍎','🍎'], options: [3,4,5,6], answer: 4, correct: '¡Exacto! Hay cuatro manzanas.', incorrect: 'Casi. Señala cada manzana y cuenta otra vez.' },
+    { id: 'math-l01-a01', type: 'count', instruction: '¿Cuántas manzanas hay?', hint: 'Puedes señalarlas una por una.', items: ['🍎','🍎','🍎','🍎'], options: [3,4,5,6], answer: 4, correct: '¡Exacto! Hay cuatro manzanas.', incorrect: 'Casi. Señala cada manzana y cuenta otra vez.' },
     { type: 'choice', instruction: '¿Qué número completa la serie?', hint: '2, 4, 6, ...', visual: '2　4　6　❓', options: [7,8,9,10], answer: 8, correct: '¡Muy bien! La serie avanza de dos en dos.', incorrect: 'Observa cuánto aumenta cada número.' }
   ],
   letters: [
@@ -26,8 +29,11 @@ const defaultState = { profile: 'Valentina', stars: 120, completed: 18, streak: 
 let state = loadState();
 let currentModule = 'mathematics';
 let activityIndex = 0;
+let activeActivities = ACTIVITIES.mathematics;
 let nextFeedbackAction = null;
 let memoryState = null;
+let apiSession = { accessToken: sessionStorage.getItem('aj-access-token'), profileId: sessionStorage.getItem('aj-profile-id'), profiles: [] };
+let pendingEarned = null;
 
 function loadState() {
   try { return { ...defaultState, ...JSON.parse(localStorage.getItem('aj-state') || '{}') }; }
@@ -48,6 +54,7 @@ function renderApp() {
   renderWorlds();
   renderProgress();
   syncToggles();
+  syncApiStatus();
 }
 
 function renderModules() {
@@ -82,15 +89,21 @@ function navigate(route) {
   document.querySelector(`[data-screen="${route}"]`)?.focus({ preventScroll: true });
 }
 
-function startModule(moduleId) {
+async function startModule(moduleId) {
   currentModule = moduleId;
   activityIndex = 0;
+  activeActivities = ACTIVITIES[moduleId];
   navigate('activity');
+  document.querySelector('#challengeCard').innerHTML = '<span class="challenge-number">PREPARANDO RETO</span><h1 id="activityTitle">Cargando tu aventura…</h1><p class="challenge-hint">Un momento, por favor.</p>';
+  if (apiSession.accessToken && apiSession.profileId) {
+    try { activeActivities = [await loadRemoteActivity(moduleId)]; }
+    catch { showToast('Usando actividades descargadas en este dispositivo.'); }
+  }
   renderActivity();
 }
 
 function renderActivity() {
-  const activities = ACTIVITIES[currentModule];
+  const activities = activeActivities;
   const activity = activities[activityIndex % activities.length];
   const progress = ((activityIndex + 1) / activities.length) * 100;
   document.querySelector('#activityProgress').style.width = `${progress}%`;
@@ -114,8 +127,16 @@ function renderMemory(activity) {
   return `<div class="memory-grid">${cards.map(card => `<button class="memory-card" data-card="${card.id}" aria-label="Carta oculta"></button>`).join('')}</div>`;
 }
 
-function handleAnswer(rawAnswer) {
-  const activity = ACTIVITIES[currentModule][activityIndex % ACTIVITIES[currentModule].length];
+async function handleAnswer(rawAnswer) {
+  const activity = activeActivities[activityIndex % activeActivities.length];
+  if (activity.remote) {
+    const answer = activity.type === 'count' ? { value: Number(rawAnswer) } : activity.type === 'letter' ? { value: String(rawAnswer).toLowerCase() } : { value: rawAnswer };
+    const result = await submitRemoteAttempt(activity, answer);
+    if (!result) return;
+    pendingEarned = result.earned;
+    showFeedback(result.correct, result.feedback, result.correct ? continueActivity : null);
+    return;
+  }
   const expected = String(activity.answer);
   const correct = String(rawAnswer) === expected;
   showFeedback(correct, correct ? activity.correct : activity.incorrect, correct ? continueActivity : null);
@@ -133,7 +154,7 @@ function handleMemory(cardId, button) {
   if (first.card.value === second.card.value) {
     first.button.classList.add('matched'); second.button.classList.add('matched');
     memoryState.matches += 1; memoryState.open = [];
-    if (memoryState.matches === 4) setTimeout(() => showFeedback(true, '¡Memoria increíble! Encontraste todas las parejas.', continueActivity), 300);
+    if (memoryState.matches === 4) setTimeout(() => finishInteractive({ pairs: 4 }, '¡Memoria increíble! Encontraste todas las parejas.'), 300);
     return;
   }
   memoryState.locked = true;
@@ -143,10 +164,27 @@ function handleMemory(cardId, button) {
   }, 700);
 }
 
-function handlePaint(color) {
+async function handlePaint(color) {
   document.querySelector('#paintShape').style.background = color;
-  const activity = ACTIVITIES.art[activityIndex];
+  const activity = activeActivities[activityIndex];
+  if (activity.remote) {
+    const answerColor = activity.colorAnswers[color];
+    const result = await submitRemoteAttempt(activity, { color: answerColor });
+    if (!result) return;
+    pendingEarned = result.earned;
+    setTimeout(() => showFeedback(result.correct, result.feedback, result.correct ? continueActivity : null), 180);
+    return;
+  }
   setTimeout(() => showFeedback(color === activity.answer, color === activity.answer ? activity.correct : activity.incorrect, color === activity.answer ? continueActivity : null), 180);
+}
+
+async function finishInteractive(answer, localMessage) {
+  const activity = activeActivities[activityIndex];
+  if (!activity.remote) { showFeedback(true, localMessage, continueActivity); return; }
+  const result = await submitRemoteAttempt(activity, answer);
+  if (!result) return;
+  pendingEarned = result.earned;
+  showFeedback(result.correct, result.feedback, result.correct ? continueActivity : null);
 }
 
 function showFeedback(correct, message, action) {
@@ -160,13 +198,82 @@ function showFeedback(correct, message, action) {
 }
 
 function continueActivity() {
-  state.stars += 10; state.completed += 1;
-  state.moduleProgress[currentModule] = Math.min(100, state.moduleProgress[currentModule] + 4);
+  const awardedStars = pendingEarned?.stars ?? 10;
+  const newlyCompleted = pendingEarned === null || awardedStars > 0;
+  state.stars += awardedStars;
+  if (newlyCompleted) {
+    state.completed += 1;
+    state.moduleProgress[currentModule] = Math.min(100, state.moduleProgress[currentModule] + 4);
+  }
+  pendingEarned = null;
   saveState(); renderApp();
-  if (activityIndex + 1 >= ACTIVITIES[currentModule].length) {
-    showToast('¡Aventura completada! Ganaste 10 estrellas.');
+  if (activityIndex + 1 >= activeActivities.length) {
+    showToast(awardedStars > 0 ? `¡Aventura completada! Ganaste ${awardedStars} estrellas.` : 'Actividad completada. Tu progreso ya estaba guardado.');
     navigate('home');
   } else { activityIndex += 1; renderActivity(); }
+}
+
+async function apiFetch(path, options = {}) {
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers: { 'Content-Type': 'application/json', ...(apiSession.accessToken ? { Authorization: `Bearer ${apiSession.accessToken}` } : {}), ...options.headers },
+  });
+  if (!response.ok) throw new Error((await response.json().catch(() => ({}))).message || 'No se pudo conectar');
+  return response.json();
+}
+
+async function loadRemoteActivity(moduleId) {
+  const data = await apiFetch(`/modules/${moduleId}/levels?profileId=${apiSession.profileId}`);
+  const level = data.levels.find(item => item.unlocked && item.activities.length) || data.levels.find(item => item.activities.length);
+  if (!level) throw new Error('No hay contenido publicado');
+  const raw = await apiFetch(`/activities/${level.activities[0].id}?profileId=${apiSession.profileId}`);
+  return adaptRemoteActivity(raw);
+}
+
+function adaptRemoteActivity(raw) {
+  const base = { id: raw.id, remote: true, instruction: raw.instruction, hint: 'Responde con calma. Tu progreso se guardará.', remoteType: raw.type };
+  if (raw.type === 'visual_count') {
+    const item = raw.payload.items[0];
+    return { ...base, type: 'count', items: Array(item.count).fill(ICONS[item.value] || '●'), options: raw.payload.options };
+  }
+  if (raw.type === 'image_word_match') return { ...base, type: 'letter', letter: raw.payload.letter, options: raw.payload.options.map(word => word[0].toUpperCase() + word.slice(1)) };
+  if (raw.type === 'memory_pairs') return { ...base, type: 'memory', pairs: raw.payload.pairs.map(item => ICONS[item] || '◆') };
+  if (raw.type === 'paint_shape') {
+    const palette = { red: '#ef5350', yellow: '#ffd028', blue: '#3b82f6', green: '#36a269' };
+    const colors = raw.payload.colors.map(name => ({ name, value: palette[name] || name }));
+    return { ...base, type: 'paint', colors, colorAnswers: Object.fromEntries(colors.map(color => [color.value, color.name])) };
+  }
+  return { ...base, type: 'choice', visual: raw.payload.prompt || 'Elige una opción', options: raw.payload.options || [] };
+}
+
+async function submitRemoteAttempt(activity, answer) {
+  const payload = { profileId: apiSession.profileId, clientAttemptId: crypto.randomUUID(), answer, elapsedMs: 2000 };
+  try { return await apiFetch(`/activities/${activity.id}/attempts`, { method: 'POST', body: JSON.stringify(payload) }); }
+  catch {
+    const queue = JSON.parse(localStorage.getItem('aj-pending-attempts') || '[]');
+    queue.push({ activityId: activity.id, ...payload });
+    localStorage.setItem('aj-pending-attempts', JSON.stringify(queue));
+    showToast('Intento guardado. Se validará cuando vuelva la conexión.');
+    return null;
+  }
+}
+
+async function flushPendingAttempts() {
+  const queue = JSON.parse(localStorage.getItem('aj-pending-attempts') || '[]');
+  const remaining = [];
+  for (const item of queue) {
+    try { await apiFetch(`/activities/${item.activityId}/attempts`, { method: 'POST', body: JSON.stringify(item) }); }
+    catch { remaining.push(item); }
+  }
+  localStorage.setItem('aj-pending-attempts', JSON.stringify(remaining));
+}
+
+function syncApiStatus() {
+  const connected = Boolean(apiSession.accessToken && apiSession.profileId);
+  const status = document.querySelector('#syncStatus');
+  status.classList.toggle('offline', !connected);
+  status.querySelector('strong').textContent = connected ? 'Sincronizado' : 'Modo local';
+  document.querySelector('#apiAccessHint').textContent = connected ? `Conectado como ${state.profile}` : 'Sincroniza perfiles y progreso';
 }
 
 function showToast(message) {
@@ -194,7 +301,12 @@ document.addEventListener('click', event => {
   const colorButton = event.target.closest('[data-color]');
   if (colorButton) handlePaint(colorButton.dataset.color);
   const profileOption = event.target.closest('[data-profile]');
-  if (profileOption) { state.profile = profileOption.dataset.profile; saveState(); renderApp(); document.querySelector('#profileDialog').close(); showToast(`Perfil de ${state.profile} activo`); }
+  if (profileOption) {
+    state.profile = profileOption.dataset.profile;
+    const remoteProfile = apiSession.profiles.find(profile => profile.nickname === state.profile);
+    if (remoteProfile) { apiSession.profileId = remoteProfile.id; sessionStorage.setItem('aj-profile-id', remoteProfile.id); }
+    saveState(); renderApp(); document.querySelector('#profileDialog').close(); showToast(`Perfil de ${state.profile} activo`);
+  }
   if (event.target.closest('.dialog-close')) event.target.closest('dialog').close();
 });
 
@@ -203,6 +315,31 @@ document.querySelector('#switchProfile').addEventListener('click', () => documen
 document.querySelector('#soundToggle').addEventListener('click', () => { state.sound = !state.sound; saveState(); syncToggles(); showToast(state.sound ? 'Sonidos activados' : 'Sonidos desactivados'); });
 document.querySelector('#motionToggle').addEventListener('click', () => { state.motion = !state.motion; saveState(); syncToggles(); document.documentElement.classList.toggle('reduce-motion', !state.motion); });
 document.querySelector('#parentAccess').addEventListener('click', () => { document.querySelector('#gateAnswer').value = ''; document.querySelector('#gateError').textContent = ''; document.querySelector('#gateDialog').showModal(); });
+document.querySelector('#apiAccess').addEventListener('click', () => {
+  document.querySelector('#loginError').textContent = '';
+  document.querySelector('#loginPassword').value = '';
+  document.querySelector('#loginDialog').showModal();
+});
+document.querySelector('#loginSubmit').addEventListener('click', async () => {
+  const error = document.querySelector('#loginError');
+  const button = document.querySelector('#loginSubmit');
+  error.textContent = ''; button.disabled = true; button.textContent = 'Conectando…';
+  try {
+    const session = await apiFetch('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email: document.querySelector('#loginEmail').value, password: document.querySelector('#loginPassword').value }),
+    });
+    apiSession.accessToken = session.accessToken;
+    sessionStorage.setItem('aj-access-token', session.accessToken);
+    apiSession.profiles = await apiFetch('/profiles');
+    const profile = apiSession.profiles.find(item => item.nickname === state.profile) || apiSession.profiles[0];
+    if (!profile) throw new Error('La cuenta todavía no tiene perfiles infantiles');
+    apiSession.profileId = profile.id; state.profile = profile.nickname;
+    sessionStorage.setItem('aj-profile-id', profile.id); saveState();
+    await flushPendingAttempts(); renderApp(); document.querySelector('#loginDialog').close(); showToast('Progreso conectado de forma segura.');
+  } catch (loginError) { error.textContent = loginError.message || 'No se pudo iniciar sesión.'; }
+  finally { button.disabled = false; button.textContent = 'Conectar'; }
+});
 document.querySelector('#gateSubmit').addEventListener('click', () => {
   if (document.querySelector('#gateAnswer').value.trim() === '13') { document.querySelector('#gateDialog').close(); navigate('parent'); }
   else document.querySelector('#gateError').textContent = 'Revisa la suma e inténtalo otra vez.';
@@ -213,4 +350,5 @@ document.querySelector('#feedbackContinue').addEventListener('click', () => {
 });
 
 renderApp();
+if (apiSession.accessToken) apiFetch('/profiles').then(profiles => { apiSession.profiles = profiles; renderApp(); flushPendingAttempts(); }).catch(() => { apiSession = { accessToken: null, profileId: null, profiles: [] }; sessionStorage.removeItem('aj-access-token'); sessionStorage.removeItem('aj-profile-id'); renderApp(); });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));

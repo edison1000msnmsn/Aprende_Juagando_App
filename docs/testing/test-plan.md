@@ -5,6 +5,10 @@
 - Validación de JSON, módulos, secuencia de niveles, tipos, feedback, recompensas, accesibilidad e IDs únicos.
 - Presencia de cabeceras de seguridad y tipos MIME del servidor.
 - Comprobación sintáctica de JavaScript durante CI.
+- Compilación TypeScript del backend y pruebas Jest.
+- Migración Prisma aplicada sobre PostgreSQL 16 y seed idempotente.
+- Smoke test real: login → perfil → nivel → actividad → intento → progreso.
+- Auditoría de dependencias de producción sin vulnerabilidades reportadas.
 
 ## Exploratorias requeridas
 

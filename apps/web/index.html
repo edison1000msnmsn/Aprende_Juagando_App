@@ -7,7 +7,7 @@
   <meta name="description" content="AprendeJugando Kids: retos educativos seguros para aprender jugando.">
   <title>AprendeJugando Kids</title>
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/styles.css?v=5">
 </head>
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -18,6 +18,7 @@
         <span><strong>AprendeJugando</strong><small>Una aventura cada día</small></span>
       </button>
       <div class="topbar-actions">
+        <div class="sync-pill offline" id="syncStatus" title="Estado del servidor"><span></span><strong class="hide-small">Modo local</strong></div>
         <div class="streak-pill" title="Días de práctica"><span aria-hidden="true">🔥</span><strong id="streakCount">3</strong><span class="hide-small"> días</span></div>
         <div class="stars-pill" title="Estrellas ganadas"><span aria-hidden="true">★</span><strong id="starCount">120</strong></div>
         <button class="avatar-button" id="profileButton" aria-label="Cambiar perfil">V</button>
@@ -87,6 +88,7 @@
           <button id="soundToggle"><span>🔊</span><span><strong>Sonidos</strong><small>Instrucciones y efectos suaves</small></span><span class="toggle on" aria-label="Activado"></span></button>
           <button id="motionToggle"><span>✨</span><span><strong>Animaciones</strong><small>Movimiento reducido disponible</small></span><span class="toggle on" aria-label="Activado"></span></button>
           <button id="parentAccess"><span>👨‍👩‍👧</span><span><strong>Zona para adultos</strong><small>Progreso, privacidad y ajustes</small></span><span>›</span></button>
+          <button id="apiAccess"><span>☁️</span><span><strong>Conectar con la familia</strong><small id="apiAccessHint">Sincroniza perfiles y progreso</small></span><span>›</span></button>
         </div>
       </section>
 
@@ -110,7 +112,8 @@
   <dialog id="feedbackDialog" class="feedback-dialog"><div id="feedbackIcon" class="feedback-icon">🌟</div><h2 id="feedbackTitle">¡Muy bien!</h2><p id="feedbackText"></p><button class="primary-button" id="feedbackContinue">Continuar</button></dialog>
   <dialog id="profileDialog" class="profile-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><span class="eyebrow purple">¿QUIÉN VA A JUGAR?</span><h2>Elige un perfil</h2><div class="profile-options"><button data-profile="Valentina"><span>🦊</span><strong>Valentina</strong><small>6 años</small></button><button data-profile="Mateo"><span>🐼</span><strong>Mateo</strong><small>5 años</small></button></div></dialog>
   <dialog id="gateDialog" class="gate-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><div class="gate-icon">🔐</div><h2>Solo para adultos</h2><p>Resuelve esta suma para continuar.</p><label for="gateAnswer">¿Cuánto es 8 + 5?</label><input id="gateAnswer" inputmode="numeric" autocomplete="off"><p class="form-error" id="gateError" role="alert"></p><button class="primary-button" id="gateSubmit">Entrar</button></dialog>
+  <dialog id="loginDialog" class="gate-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><div class="gate-icon">☁️</div><h2>Conectar progreso</h2><p>La cuenta pertenece al adulto responsable.</p><label for="loginEmail">Correo del adulto</label><input id="loginEmail" type="email" autocomplete="username" value="familia@demo.local"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password"><p class="form-error" id="loginError" role="alert"></p><button class="primary-button" id="loginSubmit">Conectar</button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="/app.js?v=3" defer></script>
+  <script src="/app.js?v=5" defer></script>
 </body>
 </html>

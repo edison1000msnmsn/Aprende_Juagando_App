@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "description": "Vertical slice offline-first de AprendeJugando Kids",
+  "workspaces": ["apps/api"],
   "scripts": {
     "dev": "node apps/web/server.js",
+    "dev:api": "npm --workspace apps/api run start:dev",
+    "build:api": "npm --workspace apps/api run build",
+    "db:generate": "npm --workspace apps/api run prisma:generate",
+    "db:migrate": "npm --workspace apps/api run prisma:migrate",
+    "db:seed": "npm --workspace apps/api run prisma:seed",
     "start": "node apps/web/server.js",
-    "test": "node --test",
+    "test": "node --test && npm --workspace apps/api test",
     "content:validate": "node packages/content-schema/validate-content.js"
   },
+  "dependencies": { "ajv": "8.18.0" },
   "engines": { "node": ">=20" }
 }

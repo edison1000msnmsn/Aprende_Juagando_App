@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  TEACHER
+  PARENT
+}
+
+enum EditorialStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  role          UserRole       @default(PARENT)
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  profiles      ChildProfile[]
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id         String    @id
+  tokenHash  String
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model ChildProfile {
+  id           String               @id @default(uuid())
+  nickname     String
+  age          Int
+  grade        String?
+  avatar       String               @default("owl")
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  ownerUserId  String
+  owner        User                 @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  attempts     ActivityAttempt[]
+  completions  ProfileActivityCompletion[]
+  progress     ModuleProgress[]
+  achievements ProfileAchievement[]
+
+  @@index([ownerUserId])
+}
+
+model LearningModule {
+  id          String           @id
+  slug        String           @unique
+  name        String
+  description String
+  color       String
+  icon        String
+  sortOrder   Int              @unique
+  levels      Level[]
+  progress    ModuleProgress[]
+}
+
+model Level {
+  id            String          @id
+  number        Int
+  title         String
+  difficulty    Difficulty      @default(BEGINNER)
+  status        EditorialStatus @default(DRAFT)
+  schemaVersion Int             @default(1)
+  version       Int             @default(1)
+  moduleId      String
+  module        LearningModule  @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  activities    Activity[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([moduleId, number])
+  @@index([moduleId, status])
+}
+
+model Activity {
+  id            String            @id
+  type          String
+  instruction   String
+  payload       Json
+  correctAnswer Json
+  feedback      Json
+  rewardXp      Int               @default(10)
+  rewardStars   Int               @default(10)
+  accessibility Json
+  sortOrder     Int
+  levelId       String
+  level         Level             @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  attempts      ActivityAttempt[]
+  completions   ProfileActivityCompletion[]
+
+  @@unique([levelId, sortOrder])
+  @@index([levelId])
+}
+
+model ActivityAttempt {
+  id              String       @id @default(uuid())
+  clientAttemptId String       @unique
+  answer          Json
+  correct         Boolean
+  elapsedMs       Int
+  createdAt       DateTime     @default(now())
+  profileId       String
+  activityId      String
+  profile         ChildProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  activity        Activity     @relation(fields: [activityId], references: [id], onDelete: Restrict)
+
+  @@index([profileId, activityId])
+}
+
+model ProfileActivityCompletion {
+  id          String       @id @default(uuid())
+  completedAt DateTime     @default(now())
+  profileId   String
+  activityId  String
+  profile     ChildProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  activity    Activity     @relation(fields: [activityId], references: [id], onDelete: Restrict)
+
+  @@unique([profileId, activityId])
+}
+
+model ModuleProgress {
+  id                  String         @id @default(uuid())
+  xp                  Int            @default(0)
+  stars               Int            @default(0)
+  correctCount        Int            @default(0)
+  incorrectCount      Int            @default(0)
+  completedActivities Int            @default(0)
+  currentLevel        Int            @default(1)
+  updatedAt           DateTime       @updatedAt
+  profileId           String
+  moduleId            String
+  profile             ChildProfile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  module              LearningModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, moduleId])
+}
+
+model Achievement {
+  id          String               @id
+  name        String
+  description String
+  icon        String
+  profiles    ProfileAchievement[]
+}
+
+model ProfileAchievement {
+  id            String       @id @default(uuid())
+  earnedAt      DateTime     @default(now())
+  profileId     String
+  achievementId String
+  profile       ChildProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  achievement   Achievement  @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, achievementId])
+}

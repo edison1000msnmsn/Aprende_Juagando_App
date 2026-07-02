@@ -31,6 +31,10 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 4
 .brand small { display: block; color: var(--muted); font-size: 11px; font-weight: 700; }
 .topbar-actions { display: flex; align-items: center; gap: 10px; }
 .streak-pill, .stars-pill { min-height: 44px; padding: 0 14px; display: flex; align-items: center; gap: 6px; border-radius: 16px; background: #fff6e5; color: #a34b00; }
+.sync-pill { min-height: 38px; padding: 0 12px; display: flex; align-items: center; gap: 7px; border-radius: 14px; color: #25744d; background: #e8f7ef; font-size: 12px; }
+.sync-pill span { width: 8px; height: 8px; border-radius: 50%; background: #2e9f69; box-shadow: 0 0 0 4px rgba(46,159,105,.13); }
+.sync-pill.offline { color: #766b82; background: #f1eef5; }
+.sync-pill.offline span { background: #958c9f; box-shadow: none; }
 .stars-pill { background: #fff8cc; color: #735500; }
 .stars-pill span { color: #f5ad00; }
 .avatar-button { width: 46px; height: 46px; border: 3px solid white; border-radius: 50%; background: linear-gradient(145deg, #ffd34f, #ff8b2d); box-shadow: 0 0 0 2px var(--purple); font-weight: 900; cursor: pointer; }
@@ -179,7 +183,7 @@ dialog .primary-button { width: 100%; margin-top: 16px; }
 .profile-options strong { margin: 5px 0; }
 .profile-options small { color: var(--muted); }
 .gate-dialog label { display: block; margin: 14px 0 7px; font-weight: 900; }
-.gate-dialog input { width: 100%; height: 58px; border: 3px solid #ddd5e8; border-radius: 16px; text-align: center; font-size: 24px; font-weight: 900; }
+.gate-dialog input { width: 100%; height: 58px; border: 3px solid #ddd5e8; border-radius: 16px; padding: 0 14px; text-align: center; font-size: 18px; font-weight: 800; }
 .form-error { min-height: 20px; color: #b42318; font-size: 13px; }
 .toast { position: fixed; left: 50%; bottom: 98px; z-index: 80; transform: translate(-50%, 20px); padding: 12px 18px; border-radius: 14px; color: white; background: #292236; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .25s; }
 .toast.show { opacity: 1; transform: translate(-50%,0); }
@@ -227,6 +231,11 @@ dialog .primary-button { width: 100%; margin-top: 16px; }
   .metric-row { grid-template-columns: 1fr; }
   .bottom-nav { bottom: 8px; height: 68px; }
   .bottom-nav button { min-width: 60px; }
+}
+@media (max-width: 400px) {
+  .brand > span:last-child { display: none; }
+  .topbar-actions { gap: 7px; }
+  .stars-pill { padding: 0 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

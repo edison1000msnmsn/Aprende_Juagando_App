@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aprende
+      POSTGRES_PASSWORD: aprende
+      POSTGRES_DB: aprendejugando
+    ports:
+      - "55432:5432"
+    volumes:
+      - aprende_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aprende -d aprendejugando"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://aprende:aprende@postgres:5432/aprendejugando?schema=public
+      JWT_ACCESS_SECRET: desarrollo-access-cambiar-en-produccion
+      JWT_REFRESH_SECRET: desarrollo-refresh-cambiar-en-produccion
+      ACCESS_TOKEN_TTL: 15m
+      REFRESH_TOKEN_TTL: 7d
+      CORS_ORIGINS: http://127.0.0.1:4173,http://localhost:4173,http://127.0.0.1:8080,http://localhost:8080
+      API_PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "-c", "npx prisma migrate deploy --schema apps/api/prisma/schema.prisma && npx tsx apps/api/prisma/seed.ts && node apps/api/dist/main.js"]
+
+volumes:
+  aprende_postgres:
