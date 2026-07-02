@@ -14,6 +14,18 @@ packages/content-schema/     Contrato y validador de contenido
 docs/                        Arquitectura, pruebas y seguridad
 ```
 
+## Guía interactiva del proyecto
+
+Abre [docs/guia-interactiva-arquitectura.html](docs/guia-interactiva-arquitectura.html) para estudiar o exponer la arquitectura completa, los flujos entre Flutter, NestJS, Prisma y PostgreSQL, y el proceso para agregar niveles.
+
+Para verla desde un servidor local, ejecuta desde la raíz:
+
+```powershell
+python -m http.server 8091
+```
+
+Luego visita `http://127.0.0.1:8091/docs/guia-interactiva-arquitectura.html`.
+
 ## Ejecutar en Android Studio
 
 Requisitos: Flutter 3.41 o superior, Android Studio, Android SDK, Node.js 20 y Docker Desktop.
