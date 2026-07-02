@@ -4,20 +4,19 @@
 
 ```mermaid
 flowchart LR
-  Kid["Experiencia infantil"] --> PWA["PWA AprendeJugando"]
-  Adult["Zona adulta"] --> PWA
-  PWA --> API["NestJS / Fastify"]
+  Kid["Experiencia infantil"] --> Flutter["App Flutter Android"]
+  Adult["Zona adulta"] --> Flutter
+  Flutter --> API["NestJS / Fastify"]
   API --> Prisma["Prisma ORM"]
   Prisma --> DB["PostgreSQL"]
-  PWA --> Local["Caché y cola offline"]
-  PWA --> Cache["Service Worker / offline"]
+  Flutter --> Secure["Almacenamiento seguro"]
   Author["Equipo de contenido"] --> JSON["Niveles JSON v1"]
   JSON --> Validator["Validador de contenido"]
 ```
 
-El vertical slice valida el flujo adulto → perfil → contenido → intento → progreso. La API es autoridad de respuestas y recompensas; la PWA usa almacenamiento local solo para preferencias y cola offline.
+El vertical slice valida el flujo adulto → perfil → contenido → intento → progreso. La API es autoridad de respuestas y recompensas; Flutter almacena la sesión mediante el almacén seguro del sistema.
 
-## Arquitectura móvil objetivo
+## Próxima fase offline
 
 ```mermaid
 flowchart LR

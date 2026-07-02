@@ -18,7 +18,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: backend/Dockerfile
     environment:
       DATABASE_URL: postgresql://aprende:aprende@postgres:5432/aprendejugando?schema=public
       JWT_ACCESS_SECRET: desarrollo-access-cambiar-en-produccion
@@ -32,7 +32,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: ["sh", "-c", "npx prisma migrate deploy --schema apps/api/prisma/schema.prisma && npx tsx apps/api/prisma/seed.ts && node apps/api/dist/main.js"]
+    command: ["sh", "-c", "npx prisma migrate deploy --schema database/prisma/schema.prisma && npx tsx database/prisma/seed.ts && node backend/dist/main.js"]
 
 volumes:
   aprende_postgres:

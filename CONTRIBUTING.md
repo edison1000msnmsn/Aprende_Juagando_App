@@ -5,6 +5,9 @@ Usa ramas `content/<area>-levels`, `feature/<alcance>` o `fix/<alcance>`. Manté
 ```bash
 npm run content:validate
 npm test
+cd frontend/mobile
+flutter analyze
+flutter test
 ```
 
 Los PR de contenido deben indicar objetivo pedagógico, rango de edad, nivel, capturas, resultado del validador y fuentes/licencias de medios. No modifiques el motor al agregar un nivel. Evita nombres completos, fotos, ubicaciones o cualquier dato real de menores.

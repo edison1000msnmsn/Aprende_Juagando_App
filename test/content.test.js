@@ -10,7 +10,7 @@ test('el contenido demo cumple el contrato y no repite IDs', () => {
 });
 
 test('el servidor declara cabeceras de seguridad y tipos estáticos', () => {
-  const source = require('node:fs').readFileSync(path.resolve('apps/web/server.js'), 'utf8');
+  const source = require('node:fs').readFileSync(path.resolve('frontend/web-preview/server.js'), 'utf8');
   assert.match(source, /X-Content-Type-Options/);
   assert.match(source, /X-Frame-Options/);
   assert.match(source, /application\/manifest\+json/);

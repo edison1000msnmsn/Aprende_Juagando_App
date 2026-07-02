@@ -1,75 +1,78 @@
 # AprendeJugando Kids
 
-Base full-stack instalable y offline-first para una experiencia educativa dirigida a niñas y niños de 4 a 8 años. Incluye PWA responsive, API NestJS/Fastify, PostgreSQL, Prisma y contenido educativo versionado.
+Aplicación móvil educativa para niñas y niños de 4 a 8 años. El producto está dividido en cliente Flutter, API NestJS y PostgreSQL/Prisma.
 
-## Inicio rápido
-
-Requisitos: Node.js 20 o superior y Docker Desktop.
-
-```bash
-npm install
-docker compose up -d postgres
-npm run db:generate
-npm run db:migrate
-npm run db:seed
-npm run dev:api
-```
-
-En otra terminal:
-
-```bash
-npm start
-```
-
-Abre `http://127.0.0.1:8080` (o el puerto indicado por la terminal). Swagger está en `http://127.0.0.1:3000/docs`.
-
-También puedes levantar PostgreSQL + API en contenedores con `docker compose up --build`. Para validar:
-
-```bash
-npm run content:validate
-npm test
-```
-
-## Funcionalidad disponible
-
-- Home responsive con cuatro mundos y reto diario.
-- Actividades interactivas de conteo, opción, letras, memoria y pintura.
-- Feedback positivo, pistas y objetivos de 3 a 5 minutos.
-- Progreso, estrellas, perfil y preferencias persistentes en el dispositivo.
-- Zona adulta con desafío cognitivo, métricas, recomendación y privacidad.
-- PWA instalable con caché offline de la interfaz.
-- Registro/login adulto, JWT de acceso y refresh token rotativo hasheado.
-- Perfiles infantiles subordinados a la cuenta adulta y autorización por propietario.
-- Módulos/niveles publicados servidos dinámicamente desde PostgreSQL.
-- Intentos idempotentes, respuestas ocultas, XP/estrellas calculados por el backend.
-- Cola local de intentos cuando se pierde la conexión.
-- Contrato de contenido v1 y validador sin dependencias.
-- Accesibilidad: navegación por teclado, objetivos táctiles grandes, contraste, semántica y movimiento reducido.
-
-## Arquitectura y alcance
-
-La carpeta de trabajo estaba vacía y el SDK de Flutter local no consiguió inicializarse. Esta entrega implementa el cliente como PWA y completa el vertical slice de backend y base de datos. Flutter + Riverpod permanece como cliente móvil futuro; la API y los contratos ya son reutilizables por ese cliente.
+## Estructura
 
 ```text
-apps/web/                    PWA y servidor estático local
-apps/api/                    NestJS + Fastify + Prisma
+frontend/mobile/             Aplicación Flutter para Android
+frontend/web-preview/        Referencia visual web
+backend/                     API NestJS + Fastify
+database/prisma/             Esquema, migraciones y seed PostgreSQL
 content/<area>/              Niveles versionados por integrante
-packages/content-schema/     Contrato JSON y validador
-docs/                        Arquitectura, producto, pruebas y seguridad
-.github/workflows/           Validación continua
+packages/content-schema/     Contrato y validador de contenido
+docs/                        Arquitectura, pruebas y seguridad
 ```
 
-## Contenido colaborativo
+## Ejecutar en Android Studio
 
-Cada integrante trabaja únicamente en `content/<area>`. Los IDs siguen `area-lNN-aNN`; antes de abrir un PR se ejecuta `npm run content:validate`. No se deben incluir datos reales de menores ni medios sin licencia y texto alternativo.
+Requisitos: Flutter 3.41 o superior, Android Studio, Android SDK, Node.js 20 y Docker Desktop.
 
-## Cuenta demo local
+1. Inicia el backend y PostgreSQL desde la raíz:
 
-`familia@demo.local` / `DemoAprende123!`. Solo para desarrollo local.
+```powershell
+npm install
+docker compose up -d --build
+```
 
-## Próximos incrementos
+2. Abre `frontend/mobile` en Android Studio.
+3. Inicia un emulador Android.
+4. En una terminal dentro de `frontend/mobile` ejecuta:
 
-1. Portar la PWA a Flutter cuando el SDK local responda.
-2. Agregar panel editorial DRAFT → REVIEW → PUBLISHED.
-3. Incorporar almacenamiento multimedia S3-compatible.
-4. Añadir recuperación de contraseña, verificación de email y cierre global de sesiones.
+```powershell
+flutter pub get
+flutter run
+```
+
+El emulador usa por defecto `http://10.0.2.2:3000/api/v1`. Para un teléfono físico conectado a la misma red, usa la IP local de la computadora:
+
+```powershell
+flutter run --dart-define=API_BASE_URL=http://192.168.1.50:3000/api/v1
+```
+
+Reemplaza `192.168.1.50` por la IP real de la computadora y permite el puerto 3000 en el firewall.
+
+## Cuenta demo
+
+```text
+Correo: familia@demo.local
+Contraseña: DemoAprende123!
+```
+
+Swagger está disponible en `http://127.0.0.1:3000/docs` y el health check en `http://127.0.0.1:3000/api/v1/health`.
+
+## Funcionalidad
+
+- Inicio de sesión adulto y almacenamiento seguro de sesión.
+- Selección de perfiles infantiles.
+- Cuatro mundos servidos desde PostgreSQL.
+- Actividades nativas de conteo, palabras, memoria y pintura.
+- Respuestas y recompensas validadas exclusivamente por el backend.
+- Intentos idempotentes, estrellas y progreso por perfil.
+- Interfaz adaptable con objetivos táctiles grandes y feedback positivo.
+
+## Validación
+
+```powershell
+npm run build:api
+npm test
+npm run content:validate
+cd frontend/mobile
+flutter analyze
+flutter test
+flutter build apk --debug
+```
+
+## Trabajo colaborativo de niveles
+
+Cada integrante modifica únicamente `content/<area>`. Los IDs siguen `area-lNN-aNN`. Antes de abrir un PR se ejecutan `npm run content:validate` y `npm run db:seed`.

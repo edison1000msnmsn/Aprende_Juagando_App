@@ -9,15 +9,18 @@
 - Migración Prisma aplicada sobre PostgreSQL 16 y seed idempotente.
 - Smoke test real: login → perfil → nivel → actividad → intento → progreso.
 - Auditoría de dependencias de producción sin vulnerabilidades reportadas.
+- `flutter analyze` sin observaciones y widget tests del cliente móvil.
+- Compilación e instalación de APK debug en emulador Android 17.
+- Flujo real en Android: login → home → actividad remota → feedback correcto.
 
 ## Exploratorias requeridas
 
-1. Home en 320, 390, 768 y 1280 px.
+1. Home en teléfonos Android pequeños, medianos y tablet.
 2. Completar un reto en cada mundo.
 3. Fallar una opción y confirmar que permite reintento sin perder progreso.
 4. Recargar y confirmar estrellas/perfil/progreso persistentes.
-5. Desconectar red tras la primera carga y confirmar navegación base.
-6. Navegar solo con teclado y con movimiento reducido.
-7. Verificar que la zona adulta rechaza respuestas distintas de 13.
+5. Cambiar entre perfiles y confirmar que el progreso no se mezcla.
+6. Probar TalkBack, tamaño de fuente grande y orientación horizontal.
+7. Confirmar la dirección API mediante `--dart-define` en un teléfono físico.
 
-Cuando existan Flutter/API se agregarán widget tests, integración login-perfil-actividad-progreso, autorización cruzada e idempotencia de intentos.
+Siguientes pruebas: integración automatizada login-perfil-actividad-progreso, autorización cruzada y cola offline.

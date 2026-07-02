@@ -4,7 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const prisma = new PrismaClient();
-const root = resolve(__dirname, '../../..');
+const root = resolve(__dirname, '../..');
 const moduleDefinitions = [
   { id: 'mathematics', slug: 'mathematics', name: 'Matemáticas', description: 'Números y formas', color: '#2878E8', icon: 'calculate', sortOrder: 1, folder: 'mathematics' },
   { id: 'letters', slug: 'letters', name: 'Letras', description: 'Palabras e historias', color: '#2E9F69', icon: 'menu_book', sortOrder: 2, folder: 'letters' },
