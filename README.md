@@ -56,6 +56,7 @@ Swagger está disponible en `http://127.0.0.1:3000/docs` y el health check en `h
 - Inicio de sesión adulto y almacenamiento seguro de sesión.
 - Selección de perfiles infantiles.
 - Cuatro mundos servidos desde PostgreSQL.
+- Mapa de niveles con desbloqueo progresivo y múltiples actividades por nivel.
 - Actividades nativas de conteo, palabras, memoria y pintura.
 - Respuestas y recompensas validadas exclusivamente por el backend.
 - Intentos idempotentes, estrellas y progreso por perfil.

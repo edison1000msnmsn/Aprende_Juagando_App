@@ -36,7 +36,11 @@ class _AprendeJugandoAppState extends ConsumerState<AprendeJugandoApp> {
         SessionPhase.loading => const SplashScreen(),
         SessionPhase.signedOut => const LoginScreen(),
         SessionPhase.ready =>
-          state.activity == null ? const MainShell() : const ActivityScreen(),
+          state.activity != null
+              ? ActivityScreen(key: ValueKey(state.activity!.id))
+              : state.activeModule != null
+              ? const LevelMapScreen()
+              : const MainShell(),
       },
     );
   }
@@ -678,6 +682,207 @@ class ProfileView extends ConsumerWidget {
   }
 }
 
+class LevelMapScreen extends ConsumerWidget {
+  const LevelMapScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(appControllerProvider);
+    final module = state.activeModule!;
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: state.busy
+              ? null
+              : () => ref.read(appControllerProvider.notifier).closeModule(),
+          icon: const Icon(Icons.arrow_back_rounded),
+        ),
+        title: Text(
+          module.name,
+          style: const TextStyle(fontWeight: FontWeight.w900),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: _Pill(
+              icon: Icons.star_rounded,
+              text: '${state.stars}',
+              color: const Color(0xFFFFB000),
+            ),
+          ),
+        ],
+      ),
+      body: Stack(
+        children: [
+          ListView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 36),
+            children: [
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  color: _hex(module.color).withValues(alpha: .12),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: _hex(module.color),
+                      child: Icon(
+                        _moduleIcon(module.id),
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Mapa de ${module.name}',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            module.description,
+                            style: const TextStyle(color: Color(0xFF716A7C)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 26),
+              if (state.levels.isEmpty)
+                const _EmptyLevels()
+              else
+                for (var index = 0; index < state.levels.length; index++)
+                  _LevelNode(
+                    level: state.levels[index],
+                    isLast: index == state.levels.length - 1,
+                  ),
+            ],
+          ),
+          if (state.busy) const Positioned.fill(child: _LoadingOverlay()),
+        ],
+      ),
+    );
+  }
+}
+
+class _LevelNode extends ConsumerWidget {
+  const _LevelNode({required this.level, required this.isLast});
+  final LevelModel level;
+  final bool isLast;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final available = level.unlocked && level.activities.isNotEmpty;
+    return Column(
+      children: [
+        Semantics(
+          button: available,
+          label: available
+              ? 'Abrir nivel ${level.number}, ${level.title}'
+              : 'Nivel ${level.number} bloqueado',
+          child: InkWell(
+            onTap: available
+                ? () =>
+                      ref.read(appControllerProvider.notifier).openLevel(level)
+                : null,
+            borderRadius: BorderRadius.circular(22),
+            child: Ink(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: available ? Colors.white : const Color(0xFFEDEAF1),
+                borderRadius: BorderRadius.circular(22),
+                border: Border.all(
+                  color: available
+                      ? const Color(0xFFD8CCF3)
+                      : const Color(0xFFE0DCE5),
+                  width: 2,
+                ),
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: available
+                        ? const Color(0xFF6941C6)
+                        : const Color(0xFFAAA3B3),
+                    child: available
+                        ? Text(
+                            '${level.number}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          )
+                        : const Icon(Icons.lock_rounded, color: Colors.white),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          level.title,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${level.activities.length} actividades',
+                          style: const TextStyle(color: Color(0xFF716A7C)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    available
+                        ? Icons.play_circle_fill_rounded
+                        : Icons.lock_outline_rounded,
+                    color: available
+                        ? const Color(0xFF6941C6)
+                        : const Color(0xFF9992A2),
+                    size: 34,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        if (!isLast)
+          Container(width: 4, height: 28, color: const Color(0xFFD8CCF3)),
+      ],
+    );
+  }
+}
+
+class _EmptyLevels extends StatelessWidget {
+  const _EmptyLevels();
+  @override
+  Widget build(BuildContext context) => const Padding(
+    padding: EdgeInsets.symmetric(vertical: 60),
+    child: Column(
+      children: [
+        Text('🛠️', style: TextStyle(fontSize: 62)),
+        SizedBox(height: 14),
+        Text(
+          'Este mundo está preparando nuevas aventuras.',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
+        ),
+      ],
+    ),
+  );
+}
+
 class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});
   @override
@@ -729,7 +934,7 @@ class _ActivityScreenState extends ConsumerState<ActivityScreen> {
         leading: IconButton(
           onPressed: state.busy
               ? null
-              : () => ref.read(appControllerProvider.notifier).finishActivity(),
+              : () => ref.read(appControllerProvider.notifier).exitActivity(),
           icon: const Icon(Icons.close_rounded),
         ),
         title: Text(
@@ -774,8 +979,8 @@ class _ActivityScreenState extends ConsumerState<ActivityScreen> {
                   ),
                   child: Column(
                     children: [
-                      const Text(
-                        'RETO 1 DE 1',
+                      Text(
+                        'RETO ${state.activityPosition + 1} DE ${state.activeLevel?.activities.length ?? 1}',
                         style: TextStyle(
                           color: Color(0xFF6941C6),
                           fontWeight: FontWeight.w900,

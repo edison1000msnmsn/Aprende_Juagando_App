@@ -66,6 +66,17 @@ export class LearningService {
         ? await tx.profileActivityCompletion.createMany({ data: [{ profileId: dto.profileId, activityId }], skipDuplicates: true })
         : { count: 0 };
       const firstCompletion = completion.count === 1;
+      let unlockedLevel: number | undefined;
+      if (correct) {
+        const [activityCount, completionCount, currentProgress] = await Promise.all([
+          tx.activity.count({ where: { levelId: activity.levelId } }),
+          tx.profileActivityCompletion.count({ where: { profileId: dto.profileId, activity: { levelId: activity.levelId } } }),
+          tx.moduleProgress.findUnique({ where: { profileId_moduleId: { profileId: dto.profileId, moduleId: activity.level.moduleId } } }),
+        ]);
+        if (activityCount > 0 && completionCount >= activityCount) {
+          unlockedLevel = Math.max(currentProgress?.currentLevel ?? 1, activity.level.number + 1);
+        }
+      }
       const progress = await tx.moduleProgress.upsert({
         where: { profileId_moduleId: { profileId: dto.profileId, moduleId: activity.level.moduleId } },
         create: {
@@ -73,11 +84,13 @@ export class LearningService {
           xp: firstCompletion ? activity.rewardXp : 0, stars: firstCompletion ? activity.rewardStars : 0,
           correctCount: correct ? 1 : 0, incorrectCount: correct ? 0 : 1,
           completedActivities: firstCompletion ? 1 : 0,
+          currentLevel: unlockedLevel ?? 1,
         },
         update: {
           xp: { increment: firstCompletion ? activity.rewardXp : 0 }, stars: { increment: firstCompletion ? activity.rewardStars : 0 },
           correctCount: { increment: correct ? 1 : 0 }, incorrectCount: { increment: correct ? 0 : 1 },
           completedActivities: { increment: firstCompletion ? 1 : 0 },
+          ...(unlockedLevel ? { currentLevel: unlockedLevel } : {}),
         },
       });
       return { attempt, progress, firstCompletion };

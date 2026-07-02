@@ -12,6 +12,7 @@
 - `flutter analyze` sin observaciones y widget tests del cliente móvil.
 - Compilación e instalación de APK debug en emulador Android 17.
 - Flujo real en Android: login → home → actividad remota → feedback correcto.
+- Mapa de niveles: disponibles, bloqueados y avance secuencial entre actividades.
 
 ## Exploratorias requeridas
 

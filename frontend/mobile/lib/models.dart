@@ -49,6 +49,47 @@ class LearningModule {
   );
 }
 
+class LevelModel {
+  const LevelModel({
+    required this.id,
+    required this.number,
+    required this.title,
+    required this.unlocked,
+    required this.activities,
+  });
+
+  final String id;
+  final int number;
+  final String title;
+  final bool unlocked;
+  final List<ActivitySummary> activities;
+
+  factory LevelModel.fromJson(JsonMap json) => LevelModel(
+    id: json['id'] as String,
+    number: json['number'] as int,
+    title: json['title'] as String,
+    unlocked: json['unlocked'] as bool,
+    activities: (json['activities'] as List)
+        .map(
+          (item) =>
+              ActivitySummary.fromJson((item as Map).cast<String, dynamic>()),
+        )
+        .toList(),
+  );
+}
+
+class ActivitySummary {
+  const ActivitySummary({required this.id, required this.instruction});
+
+  final String id;
+  final String instruction;
+
+  factory ActivitySummary.fromJson(JsonMap json) => ActivitySummary(
+    id: json['id'] as String,
+    instruction: json['instruction'] as String,
+  );
+}
+
 class ActivityModel {
   const ActivityModel({
     required this.id,

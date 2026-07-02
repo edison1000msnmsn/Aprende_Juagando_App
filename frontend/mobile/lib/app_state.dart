@@ -15,8 +15,11 @@ class AppState {
     this.profiles = const [],
     this.selectedProfile,
     this.modules = const [],
+    this.levels = const [],
     this.activity,
     this.activeModule,
+    this.activeLevel,
+    this.activityPosition = 0,
     this.stars = 0,
   });
 
@@ -26,8 +29,11 @@ class AppState {
   final List<ChildProfile> profiles;
   final ChildProfile? selectedProfile;
   final List<LearningModule> modules;
+  final List<LevelModel> levels;
   final ActivityModel? activity;
   final LearningModule? activeModule;
+  final LevelModel? activeLevel;
+  final int activityPosition;
   final int stars;
 
   AppState copyWith({
@@ -38,9 +44,14 @@ class AppState {
     List<ChildProfile>? profiles,
     ChildProfile? selectedProfile,
     List<LearningModule>? modules,
+    List<LevelModel>? levels,
     ActivityModel? activity,
     bool clearActivity = false,
     LearningModule? activeModule,
+    bool clearModule = false,
+    LevelModel? activeLevel,
+    bool clearLevel = false,
+    int? activityPosition,
     int? stars,
   }) {
     return AppState(
@@ -50,8 +61,15 @@ class AppState {
       profiles: profiles ?? this.profiles,
       selectedProfile: selectedProfile ?? this.selectedProfile,
       modules: modules ?? this.modules,
+      levels: clearModule ? const [] : levels ?? this.levels,
       activity: clearActivity ? null : activity ?? this.activity,
-      activeModule: clearActivity ? null : activeModule ?? this.activeModule,
+      activeModule: clearModule ? null : activeModule ?? this.activeModule,
+      activeLevel: clearLevel || clearModule
+          ? null
+          : activeLevel ?? this.activeLevel,
+      activityPosition: clearLevel || clearModule
+          ? 0
+          : activityPosition ?? this.activityPosition,
       stars: stars ?? this.stars,
     );
   }
@@ -149,18 +167,51 @@ class AppController extends Notifier<AppState> {
   Future<void> openModule(LearningModule module) async {
     final profile = state.selectedProfile;
     if (profile == null) return;
-    state = state.copyWith(busy: true, activeModule: module, clearError: true);
+    state = state.copyWith(
+      busy: true,
+      activeModule: module,
+      clearLevel: true,
+      clearActivity: true,
+      clearError: true,
+    );
     try {
-      final activity = await _api.firstActivity(module.id, profile.id);
+      final levels = await _api.levels(module.id, profile.id);
+      state = state.copyWith(busy: false, levels: levels, activeModule: module);
+    } catch (error) {
+      state = state.copyWith(
+        busy: false,
+        error: friendlyApiError(error),
+        clearModule: true,
+        clearActivity: true,
+      );
+    }
+  }
+
+  Future<void> openLevel(LevelModel level) async {
+    final profile = state.selectedProfile;
+    if (profile == null || !level.unlocked || level.activities.isEmpty) return;
+    state = state.copyWith(
+      busy: true,
+      activeLevel: level,
+      activityPosition: 0,
+      clearError: true,
+    );
+    try {
+      final activity = await _api.activity(
+        level.activities.first.id,
+        profile.id,
+      );
       state = state.copyWith(
         busy: false,
         activity: activity,
-        activeModule: module,
+        activeLevel: level,
+        activityPosition: 0,
       );
     } catch (error) {
       state = state.copyWith(
         busy: false,
         error: friendlyApiError(error),
+        clearLevel: true,
         clearActivity: true,
       );
     }
@@ -188,14 +239,44 @@ class AppController extends Notifier<AppState> {
 
   Future<void> finishActivity() async {
     final profile = state.selectedProfile;
-    if (profile == null) return;
+    final level = state.activeLevel;
+    if (profile == null || level == null) return;
+    final nextPosition = state.activityPosition + 1;
+    if (nextPosition < level.activities.length) {
+      state = state.copyWith(busy: true);
+      try {
+        final activity = await _api.activity(
+          level.activities[nextPosition].id,
+          profile.id,
+        );
+        state = state.copyWith(
+          busy: false,
+          activity: activity,
+          activityPosition: nextPosition,
+        );
+      } catch (error) {
+        state = state.copyWith(busy: false, error: friendlyApiError(error));
+      }
+      return;
+    }
     final modules = await _api.modules(profile.id);
+    final levels = state.activeModule == null
+        ? state.levels
+        : await _api.levels(state.activeModule!.id, profile.id);
     state = state.copyWith(
       modules: modules,
+      levels: levels,
       stars: modules.fold<int>(0, (total, module) => total + module.stars),
       clearActivity: true,
+      clearLevel: true,
     );
   }
+
+  void exitActivity() =>
+      state = state.copyWith(clearActivity: true, clearLevel: true);
+
+  void closeModule() =>
+      state = state.copyWith(clearActivity: true, clearModule: true);
 
   Future<void> logout() async {
     await _storage.deleteAll();

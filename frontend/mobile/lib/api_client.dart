@@ -56,7 +56,7 @@ class ApiClient {
     return data.map(LearningModule.fromJson).toList();
   }
 
-  Future<ActivityModel> firstActivity(String moduleId, String profileId) async {
+  Future<List<LevelModel>> levels(String moduleId, String profileId) async {
     final response = _map(
       await _dio.get(
         '/modules/$moduleId/levels',
@@ -64,19 +64,14 @@ class ApiClient {
         options: _authorized,
       ),
     );
-    final levels = (response['levels'] as List).cast<JsonMap>();
-    final level = levels.cast<JsonMap?>().firstWhere(
-      (item) =>
-          item?['unlocked'] == true && (item?['activities'] as List).isNotEmpty,
-      orElse: () => null,
-    );
-    if (level == null) {
-      throw const ApiException(
-        'Este mundo todavía no tiene actividades disponibles.',
-      );
-    }
-    final activityId =
-        ((level['activities'] as List).first as JsonMap)['id'] as String;
+    return (response['levels'] as List)
+        .map(
+          (item) => LevelModel.fromJson((item as Map).cast<String, dynamic>()),
+        )
+        .toList();
+  }
+
+  Future<ActivityModel> activity(String activityId, String profileId) async {
     return ActivityModel.fromJson(
       _map(
         await _dio.get(
