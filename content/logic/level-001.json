@@ -3,18 +3,70 @@
   "id": "logic-l01",
   "module": "LOGIC",
   "levelNumber": 1,
-  "title": "Parejas del cielo",
+  "title": "Tiko recibe su lupa de detective",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "logic-l01-a01",
       "type": "memory_pairs",
-      "instruction": "Encuentra las cuatro parejas",
-      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Encontraste todas las parejas", "incorrect": "Recuerda dónde viste cada figura" },
-      "reward": { "xp": 15, "stars": 10 },
-      "accessibility": { "spokenInstruction": true }
+      "instruction": "Encuentra los dos pares iniciales de Tiko.",
+      "payload": {
+        "scene": "Tiko el zorro practica memoria con senales simples.",
+        "pairs": [
+          "sun",
+          "moon"
+        ],
+        "symbols": {
+          "sun": "??",
+          "moon": "??"
+        }
+      },
+      "answer": {
+        "pairs": 2
+      },
+      "feedback": {
+        "correct": "Encontraste todos los pares.",
+        "incorrect": "Memoriza posicion y simbolo antes de tocar otra carta."
+      },
+      "reward": {
+        "xp": 17,
+        "stars": 14
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Memoria de pares"
+      }
+    },
+    {
+      "id": "logic-l01-a02",
+      "type": "multiple_choice",
+      "instruction": "Elige que objeto no pertenece.",
+      "payload": {
+        "scene": "Tres objetos son del cielo y uno es de cocina.",
+        "question": "Cual es intruso?",
+        "hint": "Busca el objeto de otra categoria.",
+        "options": [
+          "sol",
+          "luna",
+          "estrella",
+          "cuchara"
+        ]
+      },
+      "answer": {
+        "value": "cuchara"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual es intruso?"
+      }
     }
   ]
 }

@@ -3,38 +3,238 @@
   "id": "letters-l06",
   "module": "LETTERS",
   "levelNumber": 6,
-  "title": "Biblioteca encantada",
+  "title": "Cuento final de Lila",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l06-a01",
-      "type": "image_word_match",
-      "instruction": "El libro azul quiere una palabra que empiece con N.",
-      "payload": { "letter": "N", "options": ["nube", "pato", "casa", "sol"] },
-      "answer": { "value": "nube" },
-      "feedback": { "correct": "Nube empieza con N.", "incorrect": "Escucha el primer sonido de nube." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra N mayúscula" }
+      "type": "multiple_choice",
+      "instruction": "Elige un buen inicio de cuento.",
+      "payload": {
+        "scene": "Queremos presentar al personaje.",
+        "question": "Que frase funciona como inicio?",
+        "hint": "Un cuento suele presentar alguien.",
+        "options": [
+          "Habia una vez una libelula",
+          "Fin",
+          "Color rojo",
+          "Tres ruedas"
+        ]
+      },
+      "answer": {
+        "value": "Habia una vez una libelula"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que frase funciona como inicio?"
+      }
     },
     {
       "id": "letters-l06-a02",
-      "type": "image_word_match",
-      "instruction": "El libro verde pide una palabra que empiece con G.",
-      "payload": { "letter": "G", "options": ["mesa", "gato", "isla", "flor"] },
-      "answer": { "value": "gato" },
-      "feedback": { "correct": "Gato empieza con G.", "incorrect": "Di g, g, gato y compara." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra G mayúscula" }
+      "type": "pattern_completion",
+      "instruction": "Completa el canto final de vocales.",
+      "payload": {
+        "scene": "Lila mezcla vocales en espejo.",
+        "sequence": [
+          "A",
+          "E",
+          "I",
+          "E",
+          "?"
+        ],
+        "options": [
+          "A",
+          "E",
+          "I",
+          "O"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "La secuencia vuelve hacia atras."
+      },
+      "answer": {
+        "value": "A"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "letters-l06-a03",
       "type": "image_word_match",
-      "instruction": "El libro dorado necesita una palabra que empiece con V.",
-      "payload": { "letter": "V", "options": ["vaca", "tren", "oso", "dado"] },
-      "answer": { "value": "vaca" },
-      "feedback": { "correct": "Vaca empieza con V.", "incorrect": "Busca la palabra que inicia como viento." },
-      "reward": { "xp": 22, "stars": 18 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra V mayúscula" }
+      "instruction": "Encuentra una palabra que empiece con C.",
+      "payload": {
+        "scene": "La casa guarda el cuento.",
+        "letter": "C",
+        "question": "Que palabra empieza con C?",
+        "options": [
+          "casa",
+          "tren",
+          "luna",
+          "pez"
+        ]
+      },
+      "answer": {
+        "value": "casa"
+      },
+      "feedback": {
+        "correct": "casa empieza con C.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra C"
+      }
+    },
+    {
+      "id": "letters-l06-a04",
+      "type": "multiple_choice",
+      "instruction": "Selecciona la emocion del cuento.",
+      "payload": {
+        "scene": "Kiko sonrio al ver su dibujo.",
+        "question": "Como se siente Kiko?",
+        "hint": "La sonrisa da la pista.",
+        "options": [
+          "feliz",
+          "dormido",
+          "perdido",
+          "enojado"
+        ]
+      },
+      "answer": {
+        "value": "feliz"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Como se siente Kiko?"
+      }
+    },
+    {
+      "id": "letters-l06-a05",
+      "type": "multiple_choice",
+      "instruction": "Ordena mentalmente la frase.",
+      "payload": {
+        "scene": "Palabras: lee / Lila / un libro.",
+        "question": "Cual orden suena mejor?",
+        "hint": "Primero quien, luego accion, luego objeto.",
+        "options": [
+          "Lila lee un libro",
+          "Libro un lee Lila",
+          "Lee Lila libro un",
+          "Un Lila libro lee"
+        ]
+      },
+      "answer": {
+        "value": "Lila lee un libro"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual orden suena mejor?"
+      }
+    },
+    {
+      "id": "letters-l06-a06",
+      "type": "image_word_match",
+      "instruction": "Cierra la biblioteca con la primera vocal.",
+      "payload": {
+        "scene": "Regresa el primer sonido de Lila.",
+        "letter": "A",
+        "question": "Que palabra empieza con A?",
+        "options": [
+          "abeja",
+          "pez",
+          "tren",
+          "luna"
+        ]
+      },
+      "answer": {
+        "value": "abeja"
+      },
+      "feedback": {
+        "correct": "abeja empieza con A.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra A"
+      }
     }
   ]
 }

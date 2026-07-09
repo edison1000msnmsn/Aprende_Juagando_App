@@ -335,8 +335,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final email = TextEditingController(text: 'familia@demo.local');
-  final password = TextEditingController(text: 'DemoAprende123!');
+  final email = TextEditingController();
+  final password = TextEditingController();
   final confirmPassword = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool obscure = true;
@@ -550,7 +550,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ),
                               if (!registering)
                                 const Text(
-                                  'Cuenta demo incluida para desarrollo local.',
+                                  'Ingresa con tu cuenta familiar o crea una nueva cuenta si es tu primera vez.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 12,
@@ -1036,151 +1036,272 @@ class _HomeViewState extends ConsumerState<HomeView>
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(appControllerProvider);
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(18, 18, 18, 36),
+    return Stack(
       children: [
-        // ── Banner de bienvenida ──────────────────────────────────────────────
-        Container(
-          padding: const EdgeInsets.all(26),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF4A1A9E), Color(0xFF6941C6), Color(0xFF9B6BE8)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(34),
-            boxShadow: [
-              BoxShadow(
-                color: _C.primary.withValues(alpha: .38),
-                blurRadius: 30,
-                offset: const Offset(0, 14),
+        const Positioned.fill(child: _AnimatedHomeBackground()),
+        ListView(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 36),
+          children: [
+            // ── Banner de bienvenida ──────────────────────────────────────────────
+            Container(
+              padding: const EdgeInsets.all(26),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [
+                    Color(0xFF4A1A9E),
+                    Color(0xFF6941C6),
+                    Color(0xFF9B6BE8),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(34),
+                boxShadow: [
+                  BoxShadow(
+                    color: _C.primary.withValues(alpha: .38),
+                    blurRadius: 30,
+                    offset: const Offset(0, 14),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '¡HOLA DE NUEVO!',
-                      style: TextStyle(
-                        color: Colors.yellow.shade200,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 12,
-                        letterSpacing: 2,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${state.selectedProfile?.nickname ?? ''}! 👋',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 30,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    const Text(
-                      '¿Listo para una nueva aventura?',
-                      style: TextStyle(color: Colors.white70, fontSize: 15),
-                    ),
-                    const SizedBox(height: 16),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 6,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _Pill(
-                          icon: Icons.star_rounded,
-                          text: '${state.stars} estrellas',
-                          color: _C.yellow,
+                        Text(
+                          '¡HOLA DE NUEVO!',
+                          style: TextStyle(
+                            color: Colors.yellow.shade200,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 12,
+                            letterSpacing: 2,
+                          ),
                         ),
-                        _Pill(
-                          icon: Icons.local_fire_department_rounded,
-                          text: '¡Racha activa!',
-                          color: _C.orange,
+                        const SizedBox(height: 8),
+                        Text(
+                          '${state.selectedProfile?.nickname ?? ''}! 👋',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 30,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          '¿Listo para una nueva aventura?',
+                          style: TextStyle(color: Colors.white70, fontSize: 15),
+                        ),
+                        const SizedBox(height: 16),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 6,
+                          children: [
+                            _Pill(
+                              icon: Icons.star_rounded,
+                              text: '${state.stars} estrellas',
+                              color: _C.yellow,
+                            ),
+                            _Pill(
+                              icon: Icons.local_fire_department_rounded,
+                              text: '¡Racha activa!',
+                              color: _C.orange,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 14),
-              // Avatar animado flotante
-              AnimatedBuilder(
-                animation: _floatCtrl,
-                builder: (_, child) => Transform.translate(
-                  offset: Offset(0, -7 * _floatCtrl.value),
-                  child: child,
-                ),
-                child: Container(
-                  width: 82,
-                  height: 82,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: .18),
-                    shape: BoxShape.circle,
                   ),
-                  child: Center(
-                    child: Text(
-                      _avatar(state.selectedProfile?.avatar ?? 'owl'),
-                      style: const TextStyle(fontSize: 50),
+                  const SizedBox(width: 14),
+                  // Avatar animado flotante
+                  AnimatedBuilder(
+                    animation: _floatCtrl,
+                    builder: (_, child) => Transform.translate(
+                      offset: Offset(0, -7 * _floatCtrl.value),
+                      child: child,
+                    ),
+                    child: Container(
+                      width: 82,
+                      height: 82,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: .18),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          _avatar(state.selectedProfile?.avatar ?? 'owl'),
+                          style: const TextStyle(fontSize: 50),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 28),
+
+            // ── Módulos de aprendizaje ────────────────────────────────────────────
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '¡Elige una aventura! 🚀',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: _C.primaryXlt,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    '${state.modules.length} mundos',
+                    style: const TextStyle(
+                      color: _C.primary,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 13,
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-
-        const SizedBox(height: 28),
-
-        // ── Módulos de aprendizaje ────────────────────────────────────────────
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '¡Elige una aventura! 🚀',
-              style: Theme.of(context).textTheme.titleLarge,
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: _C.primaryXlt,
-                borderRadius: BorderRadius.circular(12),
+            const SizedBox(height: 14),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: .88,
+                crossAxisSpacing: 14,
+                mainAxisSpacing: 14,
               ),
-              child: Text(
-                '${state.modules.length} mundos',
-                style: const TextStyle(
-                  color: _C.primary,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 13,
-                ),
-              ),
+              itemCount: state.modules.length,
+              itemBuilder: (context, i) => ModuleCard(module: state.modules[i]),
             ),
+
+            const SizedBox(height: 22),
+
+            // ── Reto diario ───────────────────────────────────────────────────────
+            _DailyChallengeCard(stars: state.stars),
           ],
         ),
-        const SizedBox(height: 14),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: .88,
-            crossAxisSpacing: 14,
-            mainAxisSpacing: 14,
-          ),
-          itemCount: state.modules.length,
-          itemBuilder: (context, i) => ModuleCard(module: state.modules[i]),
-        ),
-
-        const SizedBox(height: 22),
-
-        // ── Reto diario ───────────────────────────────────────────────────────
-        _DailyChallengeCard(stars: state.stars),
       ],
     );
   }
+}
+
+class _AnimatedHomeBackground extends StatefulWidget {
+  const _AnimatedHomeBackground();
+
+  @override
+  State<_AnimatedHomeBackground> createState() =>
+      _AnimatedHomeBackgroundState();
+}
+
+class _AnimatedHomeBackgroundState extends State<_AnimatedHomeBackground>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 5200),
+  )..repeat(reverse: true);
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: _ctrl,
+    builder: (context, child) {
+      final t = _ctrl.value;
+      return DecoratedBox(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFFFFBFF), Color(0xFFF4EDFF), Color(0xFFEAF7FF)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Stack(
+          children: [
+            _FloatingBlob(
+              top: 24 + (18 * t),
+              left: -32,
+              size: 132,
+              color: _C.primary.withValues(alpha: .12),
+            ),
+            _FloatingBlob(
+              top: 170 - (22 * t),
+              right: -44,
+              size: 156,
+              color: _C.green.withValues(alpha: .10),
+            ),
+            _FloatingBlob(
+              bottom: 96 + (18 * t),
+              left: 28,
+              size: 92,
+              color: _C.yellow.withValues(alpha: .16),
+            ),
+            _FloatingBlob(
+              bottom: 18 - (12 * t),
+              right: 36,
+              size: 118,
+              color: const Color(0xFFEC4899).withValues(alpha: .10),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+class _FloatingBlob extends StatelessWidget {
+  const _FloatingBlob({
+    this.top,
+    this.left,
+    this.right,
+    this.bottom,
+    required this.size,
+    required this.color,
+  });
+  final double? top;
+  final double? left;
+  final double? right;
+  final double? bottom;
+  final double size;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Positioned(
+    top: top,
+    left: left,
+    right: right,
+    bottom: bottom,
+    child: IgnorePointer(
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: .30),
+              blurRadius: 36,
+              spreadRadius: 8,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
@@ -1203,9 +1324,24 @@ class ModuleCard extends ConsumerWidget {
         child: Container(
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: color.withValues(alpha: .09),
-            borderRadius: BorderRadius.circular(26),
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withValues(alpha: .92),
+                color.withValues(alpha: .13),
+                color.withValues(alpha: .06),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(34),
             border: Border.all(color: color.withValues(alpha: .22), width: 2),
+            boxShadow: [
+              BoxShadow(
+                color: color.withValues(alpha: .16),
+                blurRadius: 22,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2189,6 +2325,14 @@ class ActivityInteraction extends StatelessWidget {
       payload: activity.payload,
       onAnswer: onAnswer,
     ),
+    'multiple_choice' => _ChoiceActivity(
+      payload: activity.payload,
+      onAnswer: onAnswer,
+    ),
+    'pattern_completion' => _PatternActivity(
+      payload: activity.payload,
+      onAnswer: onAnswer,
+    ),
     _ => Center(
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -2210,6 +2354,218 @@ class ActivityInteraction extends StatelessWidget {
 //  ACTIVIDAD: CONTAR ELEMENTOS
 // ════════════════════════════════════════════════════════════════════════════════
 
+String _payloadText(JsonMap payload, String key, [String fallback = '']) {
+  final value = payload[key];
+  return value == null ? fallback : value.toString();
+}
+
+List<dynamic> _payloadList(JsonMap payload, String key) {
+  final value = payload[key];
+  return value is List ? value : const [];
+}
+
+String _displayValue(dynamic value, [Map<String, dynamic>? display]) {
+  final key = value.toString();
+  final mapped = display?[key];
+  return mapped == null ? key : mapped.toString();
+}
+
+class _ActivityHint extends StatelessWidget {
+  const _ActivityHint(this.text, {this.icon = Icons.auto_awesome_rounded});
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    if (text.trim().isEmpty) return const SizedBox.shrink();
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: _C.primaryXlt,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: _C.primary.withValues(alpha: .12)),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: _C.primary, size: 20),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                color: _C.primary,
+                fontWeight: FontWeight.w700,
+                height: 1.25,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ChoiceActivity extends StatelessWidget {
+  const _ChoiceActivity({required this.payload, required this.onAnswer});
+  final JsonMap payload;
+  final ValueChanged<JsonMap> onAnswer;
+
+  @override
+  Widget build(BuildContext context) {
+    final options = _payloadList(payload, 'options');
+    final scene = _payloadText(payload, 'scene');
+    final question = _payloadText(
+      payload,
+      'question',
+      'Elige la mejor respuesta',
+    );
+    final hint = _payloadText(payload, 'hint');
+    return Column(
+      children: [
+        _ActivityHint(scene, icon: Icons.travel_explore_rounded),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: _C.primary.withValues(alpha: .14)),
+            boxShadow: [
+              BoxShadow(
+                color: _C.primary.withValues(alpha: .08),
+                blurRadius: 18,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Text('🧠', style: TextStyle(fontSize: 46)),
+              const SizedBox(height: 10),
+              Text(
+                question,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: _C.dark,
+                ),
+              ),
+              if (hint.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Text(
+                  hint,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: _C.muted, height: 1.35),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 18),
+        _AnswerGrid(
+          options: options,
+          onSelected: (v) => onAnswer({'value': v}),
+        ),
+      ],
+    );
+  }
+}
+
+class _PatternActivity extends StatelessWidget {
+  const _PatternActivity({required this.payload, required this.onAnswer});
+  final JsonMap payload;
+  final ValueChanged<JsonMap> onAnswer;
+
+  @override
+  Widget build(BuildContext context) {
+    final sequence = _payloadList(payload, 'sequence');
+    final options = _payloadList(payload, 'options');
+    final display = payload['display'] is Map
+        ? Map<String, dynamic>.from(payload['display'] as Map)
+        : <String, dynamic>{};
+    final scene = _payloadText(payload, 'scene');
+    final hint = _payloadText(
+      payload,
+      'hint',
+      'Mira el orden y completa el hueco.',
+    );
+    return Column(
+      children: [
+        _ActivityHint(scene, icon: Icons.route_rounded),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFFFBEB), Color(0xFFFFF7ED)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: _C.yellow.withValues(alpha: .20)),
+          ),
+          child: Column(
+            children: [
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (final item in sequence)
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 260),
+                      width: 58,
+                      height: 58,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: item.toString() == '?'
+                            ? Colors.white
+                            : _C.yellowLt,
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(
+                          color: item.toString() == '?'
+                              ? _C.primary
+                              : _C.yellow.withValues(alpha: .45),
+                          width: item.toString() == '?' ? 3 : 1.5,
+                        ),
+                      ),
+                      child: Text(
+                        item.toString() == '?'
+                            ? '?'
+                            : _displayValue(item, display),
+                        style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              Text(
+                hint,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: _C.muted,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 18),
+        _AnswerGrid(
+          options: options,
+          display: display,
+          onSelected: (v) => onAnswer({'value': v}),
+        ),
+      ],
+    );
+  }
+}
+
 class _CountActivity extends StatelessWidget {
   const _CountActivity({required this.payload, required this.onAnswer});
   final JsonMap payload;
@@ -2217,10 +2573,17 @@ class _CountActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = (payload['items'] as List).first as JsonMap;
-    final count = items['count'] as int;
-    final emoji = items['emoji'] as String? ?? '🍎';
-    final options = payload['options'] as List;
+    final rawItems = _payloadList(payload, 'items');
+    final items = rawItems.isNotEmpty && rawItems.first is Map
+        ? JsonMap.from(rawItems.first as Map)
+        : <String, dynamic>{};
+    final count = items['count'] is int ? items['count'] as int : 0;
+    final emoji =
+        items['emoji']?.toString() ??
+        items['display']?.toString() ??
+        _emojiForKey(items['value']?.toString() ?? items['kind']?.toString());
+    final options = _payloadList(payload, 'options');
+    final question = _payloadText(payload, 'question', '¿Cuántos hay?');
     return Column(
       children: [
         // Mostrar elementos a contar en cuadrícula
@@ -2242,7 +2605,7 @@ class _CountActivity extends StatelessWidget {
         ),
         const SizedBox(height: 22),
         Text(
-          '¿Cuántos hay?',
+          question,
           style: const TextStyle(
             fontWeight: FontWeight.w800,
             fontSize: 17,
@@ -2263,6 +2626,32 @@ class _CountActivity extends StatelessWidget {
 //  ACTIVIDAD: LETRA / PALABRA
 // ════════════════════════════════════════════════════════════════════════════════
 
+String _emojiForKey(String? key) {
+  const icons = {
+    'apple': '🍎',
+    'banana': '🍌',
+    'orange': '🍊',
+    'star': '⭐',
+    'rocket': '🚀',
+    'book': '📘',
+    'bee': '🐝',
+    'frog': '🐸',
+    'fish': '🐟',
+    'flower': '🌸',
+    'tree': '🌳',
+    'moon': '🌙',
+    'sun': '☀️',
+    'rainbow': '🌈',
+    'heart': '❤️',
+    'key': '🔑',
+    'shell': '🐚',
+    'drum': '🥁',
+    'brush': '🖌️',
+    'gem': '💎',
+  };
+  return icons[key] ?? '🍎';
+}
+
 class _WordActivity extends StatelessWidget {
   const _WordActivity({required this.payload, required this.onAnswer});
   final JsonMap payload;
@@ -2270,10 +2659,17 @@ class _WordActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = payload['options'] as List;
+    final options = _payloadList(payload, 'options');
     final letter = payload['letter'].toString();
+    final question = _payloadText(
+      payload,
+      'question',
+      '¿Qué empieza con "$letter"?',
+    );
+    final scene = _payloadText(payload, 'scene');
     return Column(
       children: [
+        _ActivityHint(scene, icon: Icons.menu_book_rounded),
         Container(
           width: 120,
           height: 120,
@@ -2304,7 +2700,7 @@ class _WordActivity extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          '¿Qué empieza con "$letter"?',
+          question,
           style: const TextStyle(
             fontWeight: FontWeight.w800,
             fontSize: 17,
@@ -2358,17 +2754,25 @@ class _PaintActivityState extends State<_PaintActivity> {
 
   @override
   Widget build(BuildContext context) {
-    final options = (widget.payload['colors'] as List).cast<String>();
+    final options = _payloadList(
+      widget.payload,
+      'colors',
+    ).map((v) => v.toString()).toList();
+    final shape = _payloadText(widget.payload, 'shape', 'star');
+    final scene = _payloadText(widget.payload, 'scene');
+    final clue = _payloadText(widget.payload, 'clue');
     final activeColor = selected == null
         ? const Color(0xFFE6E1EC)
         : _colorMap[selected]!;
     return Column(
       children: [
+        _ActivityHint(scene, icon: Icons.palette_rounded),
+        _ActivityHint(clue, icon: Icons.lightbulb_outline_rounded),
         // Figura a colorear
         AnimatedContainer(
           duration: const Duration(milliseconds: 350),
           curve: Curves.easeOut,
-          child: Icon(Icons.star_rounded, size: 140, color: activeColor),
+          child: Icon(_shapeIcon(shape), size: 140, color: activeColor),
         ),
         if (selected != null) ...[
           const SizedBox(height: 8),
@@ -2442,6 +2846,20 @@ class _PaintActivityState extends State<_PaintActivity> {
 //  ACTIVIDAD: MEMORIA DE PARES
 // ════════════════════════════════════════════════════════════════════════════════
 
+IconData _shapeIcon(String shape) => switch (shape) {
+  'heart' => Icons.favorite_rounded,
+  'circle' => Icons.circle_rounded,
+  'square' => Icons.square_rounded,
+  'flower' => Icons.local_florist_rounded,
+  'brush' => Icons.brush_rounded,
+  'shield' => Icons.shield_rounded,
+  'bolt' => Icons.bolt_rounded,
+  'rocket' => Icons.rocket_launch_rounded,
+  'water' => Icons.water_drop_rounded,
+  'leaf' => Icons.eco_rounded,
+  _ => Icons.star_rounded,
+};
+
 class _MemoryActivity extends StatelessWidget {
   const _MemoryActivity({required this.payload, required this.onAnswer});
   final JsonMap payload;
@@ -2449,9 +2867,17 @@ class _MemoryActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pairs = (payload['pairs'] as List).cast<String>();
+    final pairs = _payloadList(
+      payload,
+      'pairs',
+    ).map((v) => v.toString()).toList();
+    final symbols = payload['symbols'] is Map
+        ? Map<String, dynamic>.from(payload['symbols'] as Map)
+        : <String, dynamic>{};
+    final scene = _payloadText(payload, 'scene');
     return Column(
       children: [
+        _ActivityHint(scene, icon: Icons.psychology_rounded),
         const Text(
           'Encuentra los pares iguales 🔍',
           style: TextStyle(
@@ -2461,15 +2887,20 @@ class _MemoryActivity extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _MemoryGrid(pairs: pairs, onAnswer: onAnswer),
+        _MemoryGrid(pairs: pairs, symbols: symbols, onAnswer: onAnswer),
       ],
     );
   }
 }
 
 class _MemoryGrid extends StatefulWidget {
-  const _MemoryGrid({required this.pairs, required this.onAnswer});
+  const _MemoryGrid({
+    required this.pairs,
+    required this.symbols,
+    required this.onAnswer,
+  });
   final List<String> pairs;
+  final Map<String, dynamic> symbols;
   final ValueChanged<JsonMap> onAnswer;
   @override
   State<_MemoryGrid> createState() => _MemoryGridState();
@@ -2534,7 +2965,10 @@ class _MemoryGridState extends State<_MemoryGrid> {
       return _FlipCard(
         isRevealed: isRevealed,
         isMatched: isMatched,
-        emoji: _icons[cards[i]] ?? cards[i],
+        emoji:
+            widget.symbols[cards[i]]?.toString() ??
+            _icons[cards[i]] ??
+            _emojiForKey(cards[i]),
         onTap: () => reveal(i),
       );
     },
@@ -2655,9 +3089,14 @@ class _FlipCardState extends State<_FlipCard>
 // ════════════════════════════════════════════════════════════════════════════════
 
 class _AnswerGrid extends StatelessWidget {
-  const _AnswerGrid({required this.options, required this.onSelected});
+  const _AnswerGrid({
+    required this.options,
+    required this.onSelected,
+    this.display = const {},
+  });
   final List<dynamic> options;
   final ValueChanged<dynamic> onSelected;
+  final Map<String, dynamic> display;
 
   @override
   Widget build(BuildContext context) => GridView.builder(
@@ -2690,7 +3129,7 @@ class _AnswerGrid extends StatelessWidget {
           ],
         ),
         child: Text(
-          options[i].toString(),
+          _displayValue(options[i], display),
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w900,

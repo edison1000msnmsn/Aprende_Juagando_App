@@ -3,38 +3,176 @@
   "id": "letters-l03",
   "module": "LETTERS",
   "levelNumber": 3,
-  "title": "Tren de sonidos",
+  "title": "Palabras escondidas en el jardin",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l03-a01",
       "type": "image_word_match",
-      "instruction": "Sube al tren la palabra que empieza con S.",
-      "payload": { "letter": "S", "options": ["sapo", "taza", "mono", "avión"] },
-      "answer": { "value": "sapo" },
-      "feedback": { "correct": "Sapo sube al vagón de la S.", "incorrect": "Haz el sonido sss y vuelve a elegir." },
-      "reward": { "xp": 14, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra S mayúscula" }
+      "instruction": "Elige quien empieza con G.",
+      "payload": {
+        "scene": "Un gato se esconde entre flores.",
+        "letter": "G",
+        "question": "Que palabra empieza con G?",
+        "options": [
+          "gato",
+          "luna",
+          "pez",
+          "casa"
+        ]
+      },
+      "answer": {
+        "value": "gato"
+      },
+      "feedback": {
+        "correct": "gato empieza con G.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra G"
+      }
     },
     {
       "id": "letters-l03-a02",
-      "type": "image_word_match",
-      "instruction": "El tren necesita una palabra que empiece con T.",
-      "payload": { "letter": "T", "options": ["lago", "tigre", "uva", "rey"] },
-      "answer": { "value": "tigre" },
-      "feedback": { "correct": "Tigre empieza con T.", "incorrect": "Toca tu lengua y di: t, t, tigre." },
-      "reward": { "xp": 14, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra T mayúscula" }
+      "type": "multiple_choice",
+      "instruction": "Busca una palabra que rime.",
+      "payload": {
+        "scene": "Rima con casa.",
+        "question": "Que palabra suena parecida al final?",
+        "hint": "Escucha el final de las palabras.",
+        "options": [
+          "taza",
+          "libro",
+          "sol",
+          "tren"
+        ]
+      },
+      "answer": {
+        "value": "taza"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que palabra suena parecida al final?"
+      }
     },
     {
       "id": "letters-l03-a03",
+      "type": "pattern_completion",
+      "instruction": "Completa el camino de silabas.",
+      "payload": {
+        "scene": "El camino repite MA - PA.",
+        "sequence": [
+          "ma",
+          "pa",
+          "ma",
+          "pa",
+          "?"
+        ],
+        "options": [
+          "ma",
+          "pa",
+          "la",
+          "sa"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "El patron es ma-pa."
+      },
+      "answer": {
+        "value": "ma"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "letters-l03-a04",
       "type": "image_word_match",
-      "instruction": "Encuentra la palabra que empieza con P para el vagón rosa.",
-      "payload": { "letter": "P", "options": ["pato", "silla", "nido", "foca"] },
-      "answer": { "value": "pato" },
-      "feedback": { "correct": "Pato empieza con P.", "incorrect": "Escucha el inicio: p, p, pato." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra P mayúscula" }
+      "instruction": "Encuentra una palabra con R inicial.",
+      "payload": {
+        "scene": "La rana salta sobre letras.",
+        "letter": "R",
+        "question": "Que palabra empieza con R?",
+        "options": [
+          "rana",
+          "abeja",
+          "mesa",
+          "sol"
+        ]
+      },
+      "answer": {
+        "value": "rana"
+      },
+      "feedback": {
+        "correct": "rana empieza con R.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra R"
+      }
     }
   ]
 }

@@ -3,38 +3,223 @@
   "id": "logic-l03",
   "module": "LOGIC",
   "levelNumber": 3,
-  "title": "Bosque de pistas brillantes",
+  "title": "La cueva de patrones rotos",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "logic-l03-a01",
-      "type": "memory_pairs",
-      "instruction": "El búho escondió 3 parejas. Encuentra sus pistas brillantes.",
-      "payload": { "pairs": ["star", "moon", "sun"] },
-      "answer": { "pairs": 3 },
-      "feedback": { "correct": "El búho celebra tu memoria.", "incorrect": "Mira una carta y di su nombre antes de tocar otra." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con estrella, luna y sol" }
+      "type": "pattern_completion",
+      "instruction": "Completa las antorchas de la cueva.",
+      "payload": {
+        "scene": "El patron es fuego, agua, fuego, agua.",
+        "sequence": [
+          "fire",
+          "water",
+          "fire",
+          "water",
+          "?"
+        ],
+        "options": [
+          "fire",
+          "water",
+          "earth",
+          "air"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Identifica el bloque que se repite."
+      },
+      "answer": {
+        "value": "fire"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "logic-l03-a02",
       "type": "memory_pairs",
-      "instruction": "La ardilla mezcló las cartas. Encuentra las 4 parejas del bosque.",
-      "payload": { "pairs": ["rainbow", "star", "moon", "sun"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Ordenaste el bosque con memoria.", "incorrect": "Recuerda qué carta apareció en cada esquina." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con cuatro símbolos" }
+      "instruction": "Recuerda gemas iguales en la oscuridad.",
+      "payload": {
+        "scene": "Las gemas brillan por un segundo.",
+        "pairs": [
+          "gem",
+          "star",
+          "heart"
+        ],
+        "symbols": {
+          "gem": "??",
+          "star": "?",
+          "heart": "??"
+        }
+      },
+      "answer": {
+        "pairs": 3
+      },
+      "feedback": {
+        "correct": "Encontraste todos los pares.",
+        "incorrect": "Memoriza posicion y simbolo antes de tocar otra carta."
+      },
+      "reward": {
+        "xp": 18,
+        "stars": 15
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Memoria de pares"
+      }
     },
     {
       "id": "logic-l03-a03",
-      "type": "memory_pairs",
-      "instruction": "Reto relámpago: encuentra solo las parejas de sol y estrella.",
-      "payload": { "pairs": ["sun", "star"] },
-      "answer": { "pairs": 2 },
-      "feedback": { "correct": "Reto relámpago superado.", "incorrect": "Concéntrate en dos figuras: sol y estrella." },
-      "reward": { "xp": 14, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con sol y estrella" }
+      "type": "multiple_choice",
+      "instruction": "Elige la conclusion correcta.",
+      "payload": {
+        "scene": "Todos los buhos vuelan. Oli es un buho.",
+        "question": "Que puede hacer Oli?",
+        "hint": "Une buho con vuelan.",
+        "options": [
+          "volar",
+          "nadar",
+          "pintar",
+          "cocinar"
+        ]
+      },
+      "answer": {
+        "value": "volar"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que puede hacer Oli?"
+      }
+    },
+    {
+      "id": "logic-l03-a04",
+      "type": "pattern_completion",
+      "instruction": "Completa la serie de tamanos.",
+      "payload": {
+        "scene": "La serie crece y vuelve a empezar.",
+        "sequence": [
+          "small",
+          "medium",
+          "large",
+          "small",
+          "?"
+        ],
+        "options": [
+          "small",
+          "medium",
+          "large",
+          "huge"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??",
+          "huge": "XL"
+        },
+        "hint": "Mira el ciclo S-M-L."
+      },
+      "answer": {
+        "value": "medium"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     }
   ]
 }

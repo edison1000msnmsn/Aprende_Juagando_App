@@ -3,38 +3,183 @@
   "id": "math-l03",
   "module": "MATHEMATICS",
   "levelNumber": 3,
-  "title": "Cohete cuentaestrellas",
+  "title": "Puentes de formas y decisiones",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l03-a01",
-      "type": "visual_count",
-      "instruction": "Para encender el cohete necesitas contar 8 manzanas-combustible.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 8 }], "options": [6, 7, 8, 9] },
-      "answer": { "value": 8 },
-      "feedback": { "correct": "Despegue listo: contaste 8.", "incorrect": "Cuenta cada manzana antes del despegue." },
-      "reward": { "xp": 15, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Ocho manzanas como combustible de cohete" }
+      "type": "multiple_choice",
+      "instruction": "Elige la forma segura para cruzar.",
+      "payload": {
+        "scene": "El puente pide una figura con 3 lados.",
+        "question": "Cual figura tiene 3 lados?",
+        "hint": "Cuenta lados, no colores.",
+        "options": [
+          "circulo",
+          "triangulo",
+          "cuadrado",
+          "estrella"
+        ]
+      },
+      "answer": {
+        "value": "triangulo"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual figura tiene 3 lados?"
+      }
     },
     {
       "id": "math-l03-a02",
-      "type": "visual_count",
-      "instruction": "El robot de la luna encontró 9 manzanas espaciales. ¿Cuál número es?",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 9 }], "options": [7, 8, 9, 10] },
-      "answer": { "value": 9 },
-      "feedback": { "correct": "Correcto, son 9 manzanas espaciales.", "incorrect": "Cuenta en voz alta hasta llegar al final." },
-      "reward": { "xp": 15, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Nueve manzanas espaciales" }
+      "type": "pattern_completion",
+      "instruction": "Repara las luces del puente.",
+      "payload": {
+        "scene": "Las luces repiten dos colores.",
+        "sequence": [
+          "red",
+          "blue",
+          "red",
+          "blue",
+          "?"
+        ],
+        "options": [
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "El par rojo-azul se repite."
+      },
+      "answer": {
+        "value": "red"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "math-l03-a03",
+      "type": "multiple_choice",
+      "instruction": "Nico ordena paquetes por tamano.",
+      "payload": {
+        "scene": "Un paquete tiene 7 piezas y otro 5.",
+        "question": "Cual numero es menor?",
+        "hint": "Menor significa menos piezas.",
+        "options": [
+          7,
+          5,
+          9,
+          6
+        ]
+      },
+      "answer": {
+        "value": 5
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual numero es menor?"
+      }
+    },
+    {
+      "id": "math-l03-a04",
       "type": "visual_count",
-      "instruction": "La nave necesita 10 manzanas para volver a casa. Encuentra el 10.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 10 }], "options": [8, 9, 10, 11] },
-      "answer": { "value": 10 },
-      "feedback": { "correct": "Perfecto, 10 completa la misión.", "incorrect": "Haz grupos pequeños y vuelve a contar." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Diez manzanas para una nave" }
+      "instruction": "Cuenta los tornillos brillantes del puente.",
+      "payload": {
+        "scene": "Los tornillos estan en grupos desordenados.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "star",
+            "emoji": "?",
+            "count": 7
+          }
+        ],
+        "options": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "answer": {
+        "value": 7
+      },
+      "feedback": {
+        "correct": "Correcto: hay 7.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 17,
+        "stars": 15
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "7 elementos"
+      }
     }
   ]
 }

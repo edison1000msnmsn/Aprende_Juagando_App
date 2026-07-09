@@ -3,18 +3,70 @@
   "id": "letters-l01",
   "module": "LETTERS",
   "levelNumber": 1,
-  "title": "El sonido de la M",
+  "title": "Lila abre la biblioteca viva",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l01-a01",
       "type": "image_word_match",
-      "instruction": "Elige una palabra que empiece con M",
-      "payload": { "letter": "M", "options": ["rana", "manzana", "sol", "mariposa"] },
-      "answer": { "value": "manzana" },
-      "feedback": { "correct": "Manzana empieza con M", "incorrect": "Di cada palabra lentamente" },
-      "reward": { "xp": 10, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra M mayúscula" }
+      "instruction": "Lila encontro una letra A gigante.",
+      "payload": {
+        "scene": "Lila la libelula despierta libros con sonidos iniciales.",
+        "letter": "A",
+        "question": "Que palabra empieza con A?",
+        "options": [
+          "abeja",
+          "mesa",
+          "sol",
+          "luna"
+        ]
+      },
+      "answer": {
+        "value": "abeja"
+      },
+      "feedback": {
+        "correct": "abeja empieza con A.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra A"
+      }
+    },
+    {
+      "id": "letters-l01-a02",
+      "type": "multiple_choice",
+      "instruction": "Elige la palabra del estante pequeno.",
+      "payload": {
+        "scene": "El estante solo acepta palabras de 3 letras.",
+        "question": "Cual palabra tiene 3 letras?",
+        "hint": "Cuenta letras, no silabas.",
+        "options": [
+          "sol",
+          "mariposa",
+          "camaleon",
+          "biblioteca"
+        ]
+      },
+      "answer": {
+        "value": "sol"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual palabra tiene 3 letras?"
+      }
     }
   ]
 }

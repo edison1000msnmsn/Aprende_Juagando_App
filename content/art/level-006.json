@@ -3,38 +3,239 @@
   "id": "art-l06",
   "module": "ART",
   "levelNumber": 6,
-  "title": "Gran misión del artista",
+  "title": "Mision final: Kiko domina su paleta",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "art-l06-a01",
       "type": "paint_shape",
-      "instruction": "Misión uno: pinta la estrella de azul para guardar la calma.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "blue" },
-      "feedback": { "correct": "Azul tranquilo, misión uno completa.", "incorrect": "Busca el color del cielo." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella azul de misión" }
+      "instruction": "Pinta el corazon de Kiko.",
+      "payload": {
+        "scene": "Kiko recuerda cuando dudaba al elegir colores.",
+        "shape": "heart",
+        "clue": "Pista doble: amor y fresas.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "red"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura heart"
+      }
     },
     {
       "id": "art-l06-a02",
-      "type": "paint_shape",
-      "instruction": "Misión dos: pinta la estrella de verde para dar vida.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "green" },
-      "feedback": { "correct": "Verde vivo, misión dos completa.", "incorrect": "Elige el color de las hojas." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella verde de misión" }
+      "type": "pattern_completion",
+      "instruction": "Completa la melodia de colores.",
+      "payload": {
+        "scene": "La paleta canta amarillo, azul, verde.",
+        "sequence": [
+          "yellow",
+          "blue",
+          "green",
+          "yellow",
+          "blue",
+          "?"
+        ],
+        "options": [
+          "green",
+          "yellow",
+          "red",
+          "blue"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Repite el bloque de tres colores."
+      },
+      "answer": {
+        "value": "green"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "art-l06-a03",
+      "type": "multiple_choice",
+      "instruction": "Elige el color de una sombra fria.",
+      "payload": {
+        "scene": "Kiko pinta una cueva con agua y noche.",
+        "question": "Que color ayuda mas a sentir frio?",
+        "hint": "Cielo nocturno y agua dan la pista.",
+        "options": [
+          "blue",
+          "yellow",
+          "red",
+          "green"
+        ]
+      },
+      "answer": {
+        "value": "blue"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que color ayuda mas a sentir frio?"
+      }
+    },
+    {
+      "id": "art-l06-a04",
       "type": "paint_shape",
-      "instruction": "Misión final: pinta la estrella de amarillo para celebrar.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "yellow" },
-      "feedback": { "correct": "Celebración amarilla lograda.", "incorrect": "Busca el color más brillante." },
-      "reward": { "xp": 24, "stars": 20 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella amarilla de celebración" }
+      "instruction": "Pinta la hoja del mural final.",
+      "payload": {
+        "scene": "La hoja une naturaleza y crecimiento.",
+        "shape": "leaf",
+        "clue": "Pista: pasto, arboles y ranas.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "green"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura leaf"
+      }
+    },
+    {
+      "id": "art-l06-a05",
+      "type": "multiple_choice",
+      "instruction": "Detecta el mejor contraste.",
+      "payload": {
+        "scene": "El fondo es azul oscuro y Kiko quiere una estrella visible.",
+        "question": "Que color resalta mas?",
+        "hint": "Luz contra noche.",
+        "options": [
+          "yellow",
+          "blue",
+          "green",
+          "red"
+        ]
+      },
+      "answer": {
+        "value": "yellow"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que color resalta mas?"
+      }
+    },
+    {
+      "id": "art-l06-a06",
+      "type": "paint_shape",
+      "instruction": "Cierra la historia pintando la estrella del primer dia.",
+      "payload": {
+        "scene": "Kiko vuelve al taller donde aprendio su primer color.",
+        "shape": "star",
+        "clue": "Callback: color del sol que abrio la aventura.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "yellow"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura star"
+      }
     }
   ]
 }

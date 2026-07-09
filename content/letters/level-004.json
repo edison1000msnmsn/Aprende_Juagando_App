@@ -3,38 +3,176 @@
   "id": "letters-l04",
   "module": "LETTERS",
   "levelNumber": 4,
-  "title": "Castillo de palabras",
+  "title": "El teatro de frases",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l04-a01",
-      "type": "image_word_match",
-      "instruction": "La puerta del castillo se abre con una palabra que empieza con C.",
-      "payload": { "letter": "C", "options": ["casa", "mesa", "oso", "rana"] },
-      "answer": { "value": "casa" },
-      "feedback": { "correct": "Casa abrió la puerta de la C.", "incorrect": "Busca una palabra que empiece como castillo." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra C mayúscula" }
+      "type": "multiple_choice",
+      "instruction": "Identifica quien hace la accion.",
+      "payload": {
+        "scene": "El pez nada.",
+        "question": "Quien nada?",
+        "hint": "Pregunta quien realiza la accion.",
+        "options": [
+          "pez",
+          "mesa",
+          "libro",
+          "tren"
+        ]
+      },
+      "answer": {
+        "value": "pez"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Quien nada?"
+      }
     },
     {
       "id": "letters-l04-a02",
       "type": "image_word_match",
-      "instruction": "El dragón pide una palabra que empiece con D.",
-      "payload": { "letter": "D", "options": ["barco", "dado", "sol", "lápiz"] },
-      "answer": { "value": "dado" },
-      "feedback": { "correct": "Dado empieza con D.", "incorrect": "Di: d, d, dado." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra D mayúscula" }
+      "instruction": "Busca la palabra que empieza con T.",
+      "payload": {
+        "scene": "El tren entra al escenario.",
+        "letter": "T",
+        "question": "Que palabra empieza con T?",
+        "options": [
+          "tren",
+          "oso",
+          "casa",
+          "luna"
+        ]
+      },
+      "answer": {
+        "value": "tren"
+      },
+      "feedback": {
+        "correct": "tren empieza con T.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra T"
+      }
     },
     {
       "id": "letters-l04-a03",
-      "type": "image_word_match",
-      "instruction": "La reina guarda una palabra que empieza con R.",
-      "payload": { "letter": "R", "options": ["reina", "gato", "flor", "taza"] },
-      "answer": { "value": "reina" },
-      "feedback": { "correct": "Reina empieza con R.", "incorrect": "Busca la palabra que suena como rrr al inicio." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra R mayúscula" }
+      "type": "pattern_completion",
+      "instruction": "Completa el telon de letras.",
+      "payload": {
+        "scene": "Las letras alternan.",
+        "sequence": [
+          "A",
+          "B",
+          "A",
+          "B",
+          "?"
+        ],
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Se repite A-B."
+      },
+      "answer": {
+        "value": "A"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "letters-l04-a04",
+      "type": "multiple_choice",
+      "instruction": "Elige la frase con sentido.",
+      "payload": {
+        "scene": "Lila revisa carteles del teatro.",
+        "question": "Cual frase se entiende mejor?",
+        "hint": "Busca una idea que puedas imaginar.",
+        "options": [
+          "El sol brilla",
+          "Brilla el mesa",
+          "Azul corre lapiz",
+          "Casa pez salta"
+        ]
+      },
+      "answer": {
+        "value": "El sol brilla"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual frase se entiende mejor?"
+      }
     }
   ]
 }

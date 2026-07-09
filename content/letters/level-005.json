@@ -3,38 +3,207 @@
   "id": "letters-l05",
   "module": "LETTERS",
   "levelNumber": 5,
-  "title": "Laboratorio de sílabas",
+  "title": "La imprenta de pistas",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l05-a01",
-      "type": "image_word_match",
-      "instruction": "El robot dice LA. Elige una palabra que empiece con L.",
-      "payload": { "letter": "L", "options": ["luna", "perro", "cama", "sapo"] },
-      "answer": { "value": "luna" },
-      "feedback": { "correct": "Luna empieza con L.", "incorrect": "Escucha: llluna." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra L mayúscula" }
+      "type": "multiple_choice",
+      "instruction": "Descubre la palabra por dos pistas.",
+      "payload": {
+        "scene": "Tiene paginas y se lee en silencio.",
+        "question": "Que es?",
+        "hint": "Las paginas son la pista clave.",
+        "options": [
+          "libro",
+          "pez",
+          "sol",
+          "tren"
+        ]
+      },
+      "answer": {
+        "value": "libro"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que es?"
+      }
     },
     {
       "id": "letters-l05-a02",
       "type": "image_word_match",
-      "instruction": "El robot dice FO. Encuentra una palabra que empiece con F.",
-      "payload": { "letter": "F", "options": ["foca", "nube", "dado", "tren"] },
-      "answer": { "value": "foca" },
-      "feedback": { "correct": "Foca empieza con F.", "incorrect": "Haz aire suave: fffoca." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra F mayúscula" }
+      "instruction": "Encuentra la palabra que empieza con L.",
+      "payload": {
+        "scene": "La luna cuida la biblioteca.",
+        "letter": "L",
+        "question": "Que palabra empieza con L?",
+        "options": [
+          "luna",
+          "gato",
+          "rana",
+          "oso"
+        ]
+      },
+      "answer": {
+        "value": "luna"
+      },
+      "feedback": {
+        "correct": "luna empieza con L.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra L"
+      }
     },
     {
       "id": "letters-l05-a03",
+      "type": "pattern_completion",
+      "instruction": "Completa la escalera de vocales.",
+      "payload": {
+        "scene": "La escalera alterna dos vocales.",
+        "sequence": [
+          "E",
+          "I",
+          "E",
+          "I",
+          "?"
+        ],
+        "options": [
+          "A",
+          "E",
+          "I",
+          "O"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Repite E-I."
+      },
+      "answer": {
+        "value": "E"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "letters-l05-a04",
+      "type": "multiple_choice",
+      "instruction": "Elige la palabra intrusa.",
+      "payload": {
+        "scene": "Tres palabras son animales y una no.",
+        "question": "Cual no es animal?",
+        "hint": "Busca la que no vive.",
+        "options": [
+          "gato",
+          "pez",
+          "rana",
+          "mesa"
+        ]
+      },
+      "answer": {
+        "value": "mesa"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual no es animal?"
+      }
+    },
+    {
+      "id": "letters-l05-a05",
       "type": "image_word_match",
-      "instruction": "El robot dice BA. Busca una palabra que empiece con B.",
-      "payload": { "letter": "B", "options": ["sol", "barco", "uva", "rana"] },
-      "answer": { "value": "barco" },
-      "feedback": { "correct": "Barco empieza con B.", "incorrect": "Junta los labios y di b, b, barco." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra B mayúscula" }
+      "instruction": "Abre la puerta con la letra P.",
+      "payload": {
+        "scene": "El pez trae la llave.",
+        "letter": "P",
+        "question": "Que palabra empieza con P?",
+        "options": [
+          "pez",
+          "luna",
+          "casa",
+          "oso"
+        ]
+      },
+      "answer": {
+        "value": "pez"
+      },
+      "feedback": {
+        "correct": "pez empieza con P.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra P"
+      }
     }
   ]
 }

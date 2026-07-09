@@ -3,38 +3,189 @@
   "id": "math-l02",
   "module": "MATHEMATICS",
   "levelNumber": 2,
-  "title": "Mercado de manzanas mágicas",
+  "title": "Mercado espacial de cantidades",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l02-a01",
       "type": "visual_count",
-      "instruction": "El duende vendedor puso 5 manzanas en la canasta. Cuenta y elige 5.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 5 }], "options": [4, 5, 6, 7] },
-      "answer": { "value": 5 },
-      "feedback": { "correct": "Exacto, hay 5 manzanas mágicas.", "incorrect": "Toca cada manzana con tu dedo y cuenta despacio." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Cinco manzanas en una canasta imaginaria" }
+      "instruction": "Cuenta las bananas de la lonchera espacial.",
+      "payload": {
+        "scene": "El vendedor mezcla frutas antes del viaje.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "banana",
+            "emoji": "??",
+            "count": 5
+          }
+        ],
+        "options": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "answer": {
+        "value": 5
+      },
+      "feedback": {
+        "correct": "Correcto: hay 5.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 15,
+        "stars": 13
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "5 elementos"
+      }
     },
     {
       "id": "math-l02-a02",
-      "type": "visual_count",
-      "instruction": "El conejo saltarín dejó 6 manzanas para compartir. ¿Cuántas ves?",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 6 }], "options": [3, 5, 6, 8] },
-      "answer": { "value": 6 },
-      "feedback": { "correct": "Muy bien, el conejo dejó 6.", "incorrect": "Cuenta una por una: 1, 2, 3..." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Seis manzanas rojas" }
+      "type": "multiple_choice",
+      "instruction": "Compara dos puestos del mercado.",
+      "payload": {
+        "scene": "Puesto A tiene 3 manzanas. Puesto B tiene 6.",
+        "question": "Que puesto tiene mas?",
+        "hint": "Mas significa mayor cantidad.",
+        "options": [
+          "A",
+          "B",
+          "igual"
+        ]
+      },
+      "answer": {
+        "value": "B"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que puesto tiene mas?"
+      }
     },
     {
       "id": "math-l02-a03",
+      "type": "pattern_completion",
+      "instruction": "Completa la cinta numerica del vendedor.",
+      "payload": {
+        "scene": "La cinta avanza de uno en uno.",
+        "sequence": [
+          "1",
+          "2",
+          "3",
+          "?",
+          "5"
+        ],
+        "options": [
+          "2",
+          "3",
+          "4",
+          "6"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Cuenta 1, 2, 3 y sigue."
+      },
+      "answer": {
+        "value": "4"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "math-l02-a04",
       "type": "visual_count",
-      "instruction": "La caja sorpresa se abrió y aparecieron 7 manzanas. Marca el número correcto.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 7 }], "options": [5, 6, 7, 9] },
-      "answer": { "value": 7 },
-      "feedback": { "correct": "Sí, la caja tenía 7 manzanas.", "incorrect": "Vuelve a contar sin saltarte ninguna." },
-      "reward": { "xp": 14, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Siete manzanas en una caja sorpresa" }
+      "instruction": "Cuenta las llaves que abren el almacen.",
+      "payload": {
+        "scene": "Nico debe abrir cajas en orden.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "key",
+            "emoji": "??",
+            "count": 6
+          }
+        ],
+        "options": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "answer": {
+        "value": 6
+      },
+      "feedback": {
+        "correct": "Correcto: hay 6.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 16,
+        "stars": 14
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "6 elementos"
+      }
     }
   ]
 }

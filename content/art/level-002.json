@@ -3,38 +3,176 @@
   "id": "art-l02",
   "module": "ART",
   "levelNumber": 2,
-  "title": "Taller de estrellas viajeras",
+  "title": "Museo de manchas vivas",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "art-l02-a01",
       "type": "paint_shape",
-      "instruction": "Pinta la estrella viajera de azul para que cruce el cielo.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "blue" },
-      "feedback": { "correct": "La estrella azul viaja por el cielo.", "incorrect": "Busca el color del cielo despejado." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de azul" }
+      "instruction": "Pinta el corazon de valentia.",
+      "payload": {
+        "scene": "Una sala pide color de fuego y fresas.",
+        "shape": "heart",
+        "clue": "Dos pistas: fuego y fresas.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "red"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura heart"
+      }
     },
     {
       "id": "art-l02-a02",
       "type": "paint_shape",
-      "instruction": "Pinta la estrella del jardín de verde.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "green" },
-      "feedback": { "correct": "Verde como las hojas del jardín.", "incorrect": "Busca el color de las plantas." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de verde" }
+      "instruction": "Pinta la hoja guia de Kiko.",
+      "payload": {
+        "scene": "Una planta quiere recuperar su color.",
+        "shape": "leaf",
+        "clue": "Pista: hojas sanas y pasto fresco.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "green"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura leaf"
+      }
     },
     {
       "id": "art-l02-a03",
+      "type": "pattern_completion",
+      "instruction": "Completa la guirnalda del museo.",
+      "payload": {
+        "scene": "La guirnalda alterna dos colores.",
+        "sequence": [
+          "red",
+          "blue",
+          "red",
+          "blue",
+          "?"
+        ],
+        "options": [
+          "red",
+          "blue",
+          "yellow",
+          "green"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Observa rojo-azul."
+      },
+      "answer": {
+        "value": "red"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "art-l02-a04",
       "type": "paint_shape",
-      "instruction": "Pinta la estrella del atardecer de rojo.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "red" },
-      "feedback": { "correct": "Rojo intenso de atardecer.", "incorrect": "Busca el color parecido a una manzana roja." },
-      "reward": { "xp": 14, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de rojo" }
+      "instruction": "Pinta la gota del mural marino.",
+      "payload": {
+        "scene": "La sala de agua necesita una gota tranquila.",
+        "shape": "water",
+        "clue": "Pista: mar profundo y cielo.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "blue"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura water"
+      }
     }
   ]
 }

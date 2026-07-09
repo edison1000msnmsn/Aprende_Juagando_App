@@ -3,38 +3,176 @@
   "id": "art-l04",
   "module": "ART",
   "levelNumber": 4,
-  "title": "Carnaval de pintura",
+  "title": "Galeria de emociones",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "art-l04-a01",
       "type": "paint_shape",
-      "instruction": "Para iniciar el carnaval, pinta la estrella de rojo.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "red" },
-      "feedback": { "correct": "El carnaval empieza con rojo.", "incorrect": "Busca el color más parecido al corazón." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella roja de carnaval" }
+      "instruction": "Pinta una figura que exprese calma.",
+      "payload": {
+        "scene": "Kiko entra a una sala de cielo y agua.",
+        "shape": "circle",
+        "clue": "Pista: calma de cielo y agua.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "blue"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura circle"
+      }
     },
     {
       "id": "art-l04-a02",
-      "type": "paint_shape",
-      "instruction": "Ahora pinta la estrella de amarillo para encender las luces.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "yellow" },
-      "feedback": { "correct": "Luces amarillas encendidas.", "incorrect": "Elige el color del sol." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella amarilla de luces" }
+      "type": "multiple_choice",
+      "instruction": "Elige el color de naturaleza.",
+      "payload": {
+        "scene": "Hay arboles, pasto y una rana escondida.",
+        "question": "Que color domina la escena?",
+        "hint": "Busca el color que aparece mas.",
+        "options": [
+          "green",
+          "red",
+          "blue",
+          "yellow"
+        ]
+      },
+      "answer": {
+        "value": "green"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que color domina la escena?"
+      }
     },
     {
       "id": "art-l04-a03",
+      "type": "pattern_completion",
+      "instruction": "Completa el marco de la galeria.",
+      "payload": {
+        "scene": "El marco usa contraste calido-frio.",
+        "sequence": [
+          "red",
+          "blue",
+          "red",
+          "blue",
+          "?"
+        ],
+        "options": [
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Calido, frio, calido, frio."
+      },
+      "answer": {
+        "value": "red"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "art-l04-a04",
       "type": "paint_shape",
-      "instruction": "Cierra el desfile con una estrella azul.",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "blue" },
-      "feedback": { "correct": "Azul perfecto para cerrar el desfile.", "incorrect": "Busca el color del cielo." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella azul de desfile" }
+      "instruction": "Pinta la flor que anima a Kiko.",
+      "payload": {
+        "scene": "Kiko regala una flor alegre.",
+        "shape": "flower",
+        "clue": "Pista: fresas y corazones.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "red"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura flower"
+      }
     }
   ]
 }

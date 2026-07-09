@@ -3,18 +3,77 @@
   "id": "math-l01",
   "module": "MATHEMATICS",
   "levelNumber": 1,
-  "title": "Contamos juntos",
+  "title": "Nico abre el puerto de numeros",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l01-a01",
       "type": "visual_count",
-      "instruction": "Cuenta las cuatro manzanas",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 4 }], "options": [3, 4, 5, 6] },
-      "answer": { "value": 4 },
-      "feedback": { "correct": "Hay cuatro manzanas", "incorrect": "Señala cada manzana y cuenta otra vez" },
-      "reward": { "xp": 10, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Cuatro manzanas rojas" }
+      "instruction": "Ayuda a Nico a contar los cohetes del puerto.",
+      "payload": {
+        "scene": "Nico el robot prepara un despegue y perdio la cuenta.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "rocket",
+            "emoji": "??",
+            "count": 4
+          }
+        ],
+        "options": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "answer": {
+        "value": 4
+      },
+      "feedback": {
+        "correct": "Correcto: hay 4.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "4 elementos"
+      }
+    },
+    {
+      "id": "math-l01-a02",
+      "type": "multiple_choice",
+      "instruction": "Completa el equipo de cascos de Nico.",
+      "payload": {
+        "scene": "Hay 2 cascos y llega 1 casco mas.",
+        "question": "Si juntamos 2 + 1, cuantos cascos hay?",
+        "hint": "Sumar es juntar grupos pequenos.",
+        "options": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "answer": {
+        "value": 3
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Si juntamos 2 + 1, cuantos cascos hay?"
+      }
     }
   ]
 }

@@ -3,38 +3,183 @@
   "id": "logic-l04",
   "module": "LOGIC",
   "levelNumber": 4,
-  "title": "Laboratorio de robots gemelos",
+  "title": "Carnaval de decisiones",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "logic-l04-a01",
-      "type": "memory_pairs",
-      "instruction": "Los robots gemelos buscan 4 parejas para activar el laboratorio.",
-      "payload": { "pairs": ["sun", "moon", "star", "rainbow"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Laboratorio activado.", "incorrect": "Abre pocas cartas y memoriza su posición." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria de cuatro parejas para robots" }
+      "type": "multiple_choice",
+      "instruction": "Elige el disfraz correcto por dos pistas.",
+      "payload": {
+        "scene": "Tiene alas y sale de noche.",
+        "question": "Quien es?",
+        "hint": "Usa las dos pistas juntas.",
+        "options": [
+          "murcielago",
+          "pez",
+          "arbol",
+          "tren"
+        ]
+      },
+      "answer": {
+        "value": "murcielago"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Quien es?"
+      }
     },
     {
       "id": "logic-l04-a02",
-      "type": "memory_pairs",
-      "instruction": "Modo entrenamiento: encuentra 3 parejas sin perder la pista.",
-      "payload": { "pairs": ["rainbow", "moon", "star"] },
-      "answer": { "pairs": 3 },
-      "feedback": { "correct": "Entrenamiento lógico completo.", "incorrect": "Piensa: ¿en qué lugar viste esa figura?" },
-      "reward": { "xp": 18, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con tres parejas" }
+      "type": "pattern_completion",
+      "instruction": "Completa el ritmo del tambor.",
+      "payload": {
+        "scene": "El tambor hace fuerte, suave, suave.",
+        "sequence": [
+          "strong",
+          "soft",
+          "soft",
+          "strong",
+          "soft",
+          "?"
+        ],
+        "options": [
+          "strong",
+          "soft",
+          "silence",
+          "fast"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??",
+          "silence": "??",
+          "fast": "?"
+        },
+        "hint": "El bloque es fuerte-suave-suave."
+      },
+      "answer": {
+        "value": "soft"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "logic-l04-a03",
       "type": "memory_pairs",
-      "instruction": "Último circuito: sol y luna deben encontrar a sus gemelos.",
-      "payload": { "pairs": ["sun", "moon"] },
-      "answer": { "pairs": 2 },
-      "feedback": { "correct": "Circuito completado.", "incorrect": "Recuerda dónde estaba cada gemelo." },
-      "reward": { "xp": 16, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con sol y luna" }
+      "instruction": "Encuentra mascaras iguales.",
+      "payload": {
+        "scene": "Las mascaras se mezclaron en el carnaval.",
+        "pairs": [
+          "mask",
+          "drum",
+          "flag",
+          "bell"
+        ],
+        "symbols": {
+          "mask": "??",
+          "drum": "??",
+          "flag": "??",
+          "bell": "??"
+        }
+      },
+      "answer": {
+        "pairs": 4
+      },
+      "feedback": {
+        "correct": "Encontraste todos los pares.",
+        "incorrect": "Memoriza posicion y simbolo antes de tocar otra carta."
+      },
+      "reward": {
+        "xp": 19,
+        "stars": 16
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Memoria de pares"
+      }
+    },
+    {
+      "id": "logic-l04-a04",
+      "type": "multiple_choice",
+      "instruction": "Detecta la contradiccion.",
+      "payload": {
+        "scene": "La regla dice: solo animales.",
+        "question": "Cual NO debe entrar?",
+        "hint": "Busca lo que no vive.",
+        "options": [
+          "gato",
+          "rana",
+          "silla",
+          "pez"
+        ]
+      },
+      "answer": {
+        "value": "silla"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual NO debe entrar?"
+      }
     }
   ]
 }

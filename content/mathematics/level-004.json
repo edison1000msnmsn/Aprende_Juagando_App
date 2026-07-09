@@ -3,38 +3,228 @@
   "id": "math-l04",
   "module": "MATHEMATICS",
   "levelNumber": 4,
-  "title": "Detectives del número escondido",
+  "title": "La fabrica de patrones",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l04-a01",
-      "type": "visual_count",
-      "instruction": "El detective ve 3 manzanas pequeñas. Encuentra la pista correcta.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 3 }], "options": [2, 3, 4, 5] },
-      "answer": { "value": 3 },
-      "feedback": { "correct": "Pista resuelta: eran 3.", "incorrect": "Mira con calma y cuenta cada pista." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Tres manzanas como pistas" }
+      "type": "pattern_completion",
+      "instruction": "Completa la maquina que salta de dos en dos.",
+      "payload": {
+        "scene": "La maquina agrega 2 cada vez.",
+        "sequence": [
+          "2",
+          "4",
+          "6",
+          "?",
+          "10"
+        ],
+        "options": [
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Suma dos al numero anterior."
+      },
+      "answer": {
+        "value": "8"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "math-l04-a02",
-      "type": "visual_count",
-      "instruction": "Hay 8 huellas de manzana en el camino. ¿Cuántas son?",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 8 }], "options": [6, 8, 9, 10] },
-      "answer": { "value": 8 },
-      "feedback": { "correct": "Sí, seguiste 8 huellas.", "incorrect": "Vuelve al inicio del camino y cuenta otra vez." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Ocho huellas de manzana" }
+      "type": "multiple_choice",
+      "instruction": "Decide cuantas ruedas faltan.",
+      "payload": {
+        "scene": "El robot necesita 4 ruedas y ya tiene 1.",
+        "question": "Cuantas faltan?",
+        "hint": "Cuenta los espacios vacios.",
+        "options": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "answer": {
+        "value": 3
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cuantas faltan?"
+      }
     },
     {
       "id": "math-l04-a03",
+      "type": "pattern_completion",
+      "instruction": "Arma el codigo de colores de la puerta.",
+      "payload": {
+        "scene": "La puerta repite tres pasos.",
+        "sequence": [
+          "green",
+          "green",
+          "blue",
+          "green",
+          "green",
+          "?"
+        ],
+        "options": [
+          "blue",
+          "green",
+          "red",
+          "yellow"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "El grupo es verde, verde, azul."
+      },
+      "answer": {
+        "value": "blue"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "math-l04-a04",
       "type": "visual_count",
-      "instruction": "El cofre del detective guarda 11 manzanas. Marca 11.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 11 }], "options": [9, 10, 11, 12] },
-      "answer": { "value": 11 },
-      "feedback": { "correct": "Caso cerrado: son 11.", "incorrect": "Cuenta en dos partes: primero 5, luego las demás." },
-      "reward": { "xp": 20, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Once manzanas dentro de un cofre" }
+      "instruction": "Cuenta las baterias cargadas.",
+      "payload": {
+        "scene": "La fabrica necesita energia exacta.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "battery",
+            "emoji": "??",
+            "count": 8
+          }
+        ],
+        "options": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "answer": {
+        "value": 8
+      },
+      "feedback": {
+        "correct": "Correcto: hay 8.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 18,
+        "stars": 16
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "8 elementos"
+      }
     }
   ]
 }

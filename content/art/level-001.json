@@ -3,18 +3,70 @@
   "id": "art-l01",
   "module": "ART",
   "levelNumber": 1,
-  "title": "Colores brillantes",
+  "title": "Kiko descubre el taller de colores",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "art-l01-a01",
       "type": "paint_shape",
-      "instruction": "Pinta la estrella de amarillo",
-      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
-      "answer": { "color": "yellow" },
-      "feedback": { "correct": "Una estrella brillante", "incorrect": "Busca el color del sol" },
-      "reward": { "xp": 10, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Estrella de cinco puntas" }
+      "instruction": "Pinta la estrella del primer recuerdo.",
+      "payload": {
+        "scene": "Kiko el camaleon confunde los colores del sol.",
+        "shape": "star",
+        "clue": "Pista: color del sol de la manana.",
+        "colors": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "color": "yellow"
+      },
+      "feedback": {
+        "correct": "Color correcto para la pista.",
+        "incorrect": "No elijas por ubicacion; piensa en la pista del mundo."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Figura star"
+      }
+    },
+    {
+      "id": "art-l01-a02",
+      "type": "multiple_choice",
+      "instruction": "Elige el color que calma a Kiko.",
+      "payload": {
+        "scene": "Kiko mira el cielo despejado sobre el taller.",
+        "question": "Que color representa mejor el cielo claro?",
+        "hint": "Usa una pista visual, no la posicion del boton.",
+        "options": [
+          "red",
+          "yellow",
+          "blue",
+          "green"
+        ]
+      },
+      "answer": {
+        "value": "blue"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que color representa mejor el cielo claro?"
+      }
     }
   ]
 }

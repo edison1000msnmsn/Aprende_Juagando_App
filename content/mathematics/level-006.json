@@ -3,38 +3,289 @@
   "id": "math-l06",
   "module": "MATHEMATICS",
   "levelNumber": 6,
-  "title": "Tesoro del contador experto",
+  "title": "Despegue final de Nico",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l06-a01",
-      "type": "visual_count",
-      "instruction": "El mapa del tesoro muestra 15 manzanas doradas.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 15 }], "options": [13, 14, 15, 16] },
-      "answer": { "value": 15 },
-      "feedback": { "correct": "Tesoro encontrado: 15.", "incorrect": "Cuenta 5, 10 y luego las últimas." },
-      "reward": { "xp": 25, "stars": 18 },
-      "accessibility": { "spokenInstruction": true, "altText": "Quince manzanas doradas" }
+      "type": "multiple_choice",
+      "instruction": "Calcula las piezas que faltan.",
+      "payload": {
+        "scene": "Nico tiene 7 piezas y necesita 10.",
+        "question": "Cuantas faltan?",
+        "hint": "Cuenta de 7 hasta 10.",
+        "options": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "answer": {
+        "value": 3
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cuantas faltan?"
+      }
     },
     {
       "id": "math-l06-a02",
-      "type": "visual_count",
-      "instruction": "La puerta secreta se abre con 16 manzanas contadas.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 16 }], "options": [14, 15, 16, 17] },
-      "answer": { "value": 16 },
-      "feedback": { "correct": "La puerta se abrió con 16.", "incorrect": "Divide en grupos de cuatro y suma." },
-      "reward": { "xp": 26, "stars": 18 },
-      "accessibility": { "spokenInstruction": true, "altText": "Dieciséis manzanas para una puerta secreta" }
+      "type": "pattern_completion",
+      "instruction": "Completa la cuenta regresiva.",
+      "payload": {
+        "scene": "La nave baja de uno en uno.",
+        "sequence": [
+          "5",
+          "4",
+          "3",
+          "?",
+          "1"
+        ],
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Es una cuenta hacia atras."
+      },
+      "answer": {
+        "value": "2"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "math-l06-a03",
       "type": "visual_count",
-      "instruction": "El contador experto encontró 18 manzanas en la cueva. Marca 18.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 18 }], "options": [16, 17, 18, 19] },
-      "answer": { "value": 18 },
-      "feedback": { "correct": "Excelente, contaste 18 como experto.", "incorrect": "Cuenta por grupos para llegar sin apuro." },
-      "reward": { "xp": 30, "stars": 20 },
-      "accessibility": { "spokenInstruction": true, "altText": "Dieciocho manzanas dentro de una cueva" }
+      "instruction": "Cuenta los pasajeros de la nave.",
+      "payload": {
+        "scene": "La nave no despega si falta alguien.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "astronaut",
+            "emoji": "?????",
+            "count": 10
+          }
+        ],
+        "options": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "answer": {
+        "value": 10
+      },
+      "feedback": {
+        "correct": "Correcto: hay 10.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 20,
+        "stars": 18
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "10 elementos"
+      }
+    },
+    {
+      "id": "math-l06-a04",
+      "type": "multiple_choice",
+      "instruction": "Selecciona la suma que da 8.",
+      "payload": {
+        "scene": "La consola acepta solo una suma correcta.",
+        "question": "Cual suma forma 8?",
+        "hint": "Suma ambos lados.",
+        "options": [
+          "3+3",
+          "4+4",
+          "5+4",
+          "2+3"
+        ]
+      },
+      "answer": {
+        "value": "4+4"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual suma forma 8?"
+      }
+    },
+    {
+      "id": "math-l06-a05",
+      "type": "pattern_completion",
+      "instruction": "Activa el patron de escudos.",
+      "payload": {
+        "scene": "El escudo repite amarillo, azul, azul.",
+        "sequence": [
+          "yellow",
+          "blue",
+          "blue",
+          "yellow",
+          "blue",
+          "?"
+        ],
+        "options": [
+          "blue",
+          "yellow",
+          "green",
+          "red"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "El bloque es amarillo-azul-azul."
+      },
+      "answer": {
+        "value": "blue"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "math-l06-a06",
+      "type": "multiple_choice",
+      "instruction": "Decide la ruta mas corta.",
+      "payload": {
+        "scene": "Ruta A tiene 6 pasos. Ruta B tiene 9 pasos.",
+        "question": "Que ruta conviene?",
+        "hint": "Menos pasos significa ruta mas corta.",
+        "options": [
+          "A",
+          "B",
+          "igual"
+        ]
+      },
+      "answer": {
+        "value": "A"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que ruta conviene?"
+      }
     }
   ]
 }

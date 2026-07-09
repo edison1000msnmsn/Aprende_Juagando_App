@@ -3,38 +3,290 @@
   "id": "logic-l06",
   "module": "LOGIC",
   "levelNumber": 6,
-  "title": "Gran torneo de memoria",
+  "title": "Caso final: el mapa perdido",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "logic-l06-a01",
-      "type": "memory_pairs",
-      "instruction": "Ronda uno: encuentra 3 parejas para entrar al torneo.",
-      "payload": { "pairs": ["sun", "star", "rainbow"] },
-      "answer": { "pairs": 3 },
-      "feedback": { "correct": "Entraste al torneo.", "incorrect": "Concéntrate en el lugar de cada símbolo." },
-      "reward": { "xp": 22, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria de torneo con tres parejas" }
+      "type": "multiple_choice",
+      "instruction": "Lee las pistas y decide.",
+      "payload": {
+        "scene": "El mapa no esta en roja ni azul. La amarilla esta vacia.",
+        "question": "Donde esta el mapa?",
+        "hint": "Descarta opciones una por una.",
+        "options": [
+          "verde",
+          "amarilla",
+          "roja",
+          "azul"
+        ]
+      },
+      "answer": {
+        "value": "verde"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Donde esta el mapa?"
+      }
     },
     {
       "id": "logic-l06-a02",
-      "type": "memory_pairs",
-      "instruction": "Ronda dos: encuentra las 4 parejas antes de que se cierre el portal.",
-      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Portal abierto.", "incorrect": "No adivines rápido; observa primero." },
-      "reward": { "xp": 25, "stars": 18 },
-      "accessibility": { "spokenInstruction": true, "altText": "Memoria con cuatro parejas del portal" }
+      "type": "pattern_completion",
+      "instruction": "Completa las senales del mapa.",
+      "payload": {
+        "scene": "La ruta alterna norte, este, norte, este.",
+        "sequence": [
+          "north",
+          "east",
+          "north",
+          "east",
+          "?"
+        ],
+        "options": [
+          "north",
+          "south",
+          "east",
+          "west"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??",
+          "south": "??",
+          "west": "??"
+        },
+        "hint": "Busca la repeticion de dos pasos."
+      },
+      "answer": {
+        "value": "north"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "logic-l06-a03",
       "type": "memory_pairs",
-      "instruction": "Final del torneo: demuestra tu memoria con 4 parejas mezcladas.",
-      "payload": { "pairs": ["star", "rainbow", "moon", "sun"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Campeón de memoria.", "incorrect": "Recuerda por columnas: arriba, abajo, izquierda, derecha." },
-      "reward": { "xp": 30, "stars": 20 },
-      "accessibility": { "spokenInstruction": true, "altText": "Final de memoria con cuatro parejas" }
+      "instruction": "Resuelve la memoria final de Tiko.",
+      "payload": {
+        "scene": "Ultimo reto: mas pares y menos pistas.",
+        "pairs": [
+          "fox",
+          "map",
+          "key",
+          "star",
+          "moon"
+        ],
+        "symbols": {
+          "fox": "??",
+          "map": "???",
+          "key": "??",
+          "star": "?",
+          "moon": "??"
+        }
+      },
+      "answer": {
+        "pairs": 5
+      },
+      "feedback": {
+        "correct": "Encontraste todos los pares.",
+        "incorrect": "Memoriza posicion y simbolo antes de tocar otra carta."
+      },
+      "reward": {
+        "xp": 20,
+        "stars": 17
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Memoria de pares"
+      }
+    },
+    {
+      "id": "logic-l06-a04",
+      "type": "multiple_choice",
+      "instruction": "Elige la accion mas logica.",
+      "payload": {
+        "scene": "Si llueve, Tiko usa paraguas. Esta lloviendo.",
+        "question": "Que debe usar Tiko?",
+        "hint": "Conecta condicion y accion.",
+        "options": [
+          "paraguas",
+          "gafas de sol",
+          "patines",
+          "flor"
+        ]
+      },
+      "answer": {
+        "value": "paraguas"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que debe usar Tiko?"
+      }
+    },
+    {
+      "id": "logic-l06-a05",
+      "type": "pattern_completion",
+      "instruction": "Completa el codigo espejo.",
+      "payload": {
+        "scene": "El codigo vuelve al inicio.",
+        "sequence": [
+          "A",
+          "B",
+          "C",
+          "B",
+          "?"
+        ],
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Lee hacia adelante y hacia atras."
+      },
+      "answer": {
+        "value": "A"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "logic-l06-a06",
+      "type": "multiple_choice",
+      "instruction": "Cierra el caso con la mejor explicacion.",
+      "payload": {
+        "scene": "Tiko vio barro en una pata y lluvia afuera.",
+        "question": "Que explicacion tiene mas sentido?",
+        "hint": "Usa las pistas reales.",
+        "options": [
+          "alguien camino afuera",
+          "el sol pinto barro",
+          "el libro salto",
+          "la silla corrio"
+        ]
+      },
+      "answer": {
+        "value": "alguien camino afuera"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que explicacion tiene mas sentido?"
+      }
     }
   ]
 }

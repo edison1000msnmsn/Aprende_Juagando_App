@@ -3,38 +3,258 @@
   "id": "math-l05",
   "module": "MATHEMATICS",
   "levelNumber": 5,
-  "title": "Fiesta de números gigantes",
+  "title": "Laboratorio de pistas numericas",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "math-l05-a01",
-      "type": "visual_count",
-      "instruction": "En la fiesta hay 12 manzanas para decorar la mesa.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 12 }], "options": [10, 11, 12, 13] },
-      "answer": { "value": 12 },
-      "feedback": { "correct": "Exacto, la mesa tiene 12 decoraciones.", "incorrect": "Cuenta por filas para no perderte." },
-      "reward": { "xp": 22, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Doce manzanas decorativas" }
+      "type": "multiple_choice",
+      "instruction": "Resuelve la pista del candado.",
+      "payload": {
+        "scene": "Soy mayor que 4 y menor que 6.",
+        "question": "Que numero soy?",
+        "hint": "Busca el numero del medio.",
+        "options": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "answer": {
+        "value": 5
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Que numero soy?"
+      }
     },
     {
       "id": "math-l05-a02",
-      "type": "visual_count",
-      "instruction": "El tren de la fiesta trae 13 manzanas. Elige el número 13.",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 13 }], "options": [11, 12, 13, 14] },
-      "answer": { "value": 13 },
-      "feedback": { "correct": "Muy bien, llegaron 13.", "incorrect": "Separa mentalmente 10 y cuenta las que faltan." },
-      "reward": { "xp": 22, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Trece manzanas en un tren imaginario" }
+      "type": "pattern_completion",
+      "instruction": "Completa el tren de vagones.",
+      "payload": {
+        "scene": "El tren alterna cantidad de ventanas.",
+        "sequence": [
+          "1",
+          "3",
+          "1",
+          "3",
+          "?"
+        ],
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Se repite 1, 3."
+      },
+      "answer": {
+        "value": "1"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "math-l05-a03",
       "type": "visual_count",
-      "instruction": "El dragón amable cuida 14 manzanas brillantes. ¿Cuántas cuida?",
-      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 14 }], "options": [12, 13, 14, 15] },
-      "answer": { "value": 14 },
-      "feedback": { "correct": "El dragón cuida 14 manzanas.", "incorrect": "Cuenta 10 primero y después 4 más." },
-      "reward": { "xp": 24, "stars": 18 },
-      "accessibility": { "spokenInstruction": true, "altText": "Catorce manzanas brillantes" }
+      "instruction": "Cuenta los cristales del laboratorio.",
+      "payload": {
+        "scene": "Los cristales estan en una mesa curva.",
+        "question": "Cuantos elementos hay?",
+        "items": [
+          {
+            "kind": "emoji",
+            "value": "gem",
+            "emoji": "??",
+            "count": 9
+          }
+        ],
+        "options": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "answer": {
+        "value": 9
+      },
+      "feedback": {
+        "correct": "Correcto: hay 9.",
+        "incorrect": "Cuenta tocando cada elemento con calma."
+      },
+      "reward": {
+        "xp": 19,
+        "stars": 17
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "9 elementos"
+      }
+    },
+    {
+      "id": "math-l05-a04",
+      "type": "multiple_choice",
+      "instruction": "Reparte galletas entre dos amigos.",
+      "payload": {
+        "scene": "Hay 6 galletas y 2 amigos. Cada uno recibe igual.",
+        "question": "Cuantas recibe cada amigo?",
+        "hint": "Divide 6 en dos grupos iguales.",
+        "options": [
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      "answer": {
+        "value": 3
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cuantas recibe cada amigo?"
+      }
+    },
+    {
+      "id": "math-l05-a05",
+      "type": "pattern_completion",
+      "instruction": "Descubre el codigo secreto final.",
+      "payload": {
+        "scene": "El codigo sube uno y baja uno.",
+        "sequence": [
+          "4",
+          "5",
+          "4",
+          "5",
+          "?"
+        ],
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Mira el vaiven 4-5."
+      },
+      "answer": {
+        "value": "4"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     }
   ]
 }

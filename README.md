@@ -54,12 +54,9 @@ flutter run --dart-define=API_BASE_URL=http://192.168.1.50:3000/api/v1
 
 Reemplaza `192.168.1.50` por la IP real de la computadora y permite el puerto 3000 en el firewall.
 
-## Cuenta demo
+## Cuenta local opcional
 
-```text
-Correo: familia@demo.local
-Contraseña: DemoAprende123!
-```
+La app de producción no muestra credenciales precargadas. Para crear una cuenta demo solo en desarrollo local, ejecuta el seed con `SEED_DEMO_ACCOUNT=true`.
 
 Swagger está disponible en `http://127.0.0.1:3000/docs` y el health check en `http://127.0.0.1:3000/api/v1/health`.
 
@@ -69,7 +66,7 @@ Swagger está disponible en `http://127.0.0.1:3000/docs` y el health check en `h
 - Creación, edición y selección de varios perfiles infantiles por familia.
 - Cuatro mundos servidos desde PostgreSQL.
 - Mapa de niveles con desbloqueo progresivo y múltiples actividades por nivel.
-- Actividades nativas de conteo, palabras, memoria y pintura.
+- Actividades nativas de conteo, palabras, memoria, pintura, opción múltiple y patrones.
 - Respuestas y recompensas validadas exclusivamente por el backend.
 - Intentos idempotentes, estrellas y progreso por perfil.
 - Interfaz adaptable con objetivos táctiles grandes y feedback positivo.

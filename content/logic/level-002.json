@@ -3,38 +3,177 @@
   "id": "logic-l02",
   "module": "LOGIC",
   "levelNumber": 2,
-  "title": "Memoria del astronauta",
+  "title": "Bosque de huellas",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "logic-l02-a01",
       "type": "memory_pairs",
-      "instruction": "El astronauta perdió dos parejas en el espacio. Encuentra luna y sol.",
-      "payload": { "pairs": ["moon", "sun"] },
-      "answer": { "pairs": 2 },
-      "feedback": { "correct": "Encontraste las 2 parejas espaciales.", "incorrect": "Recuerda dónde apareció cada tarjeta." },
-      "reward": { "xp": 14, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con luna y sol" }
+      "instruction": "Une las huellas iguales del bosque.",
+      "payload": {
+        "scene": "Cada animal dejo dos huellas.",
+        "pairs": [
+          "fox",
+          "rabbit",
+          "bird"
+        ],
+        "symbols": {
+          "fox": "??",
+          "rabbit": "??",
+          "bird": "??"
+        }
+      },
+      "answer": {
+        "pairs": 3
+      },
+      "feedback": {
+        "correct": "Encontraste todos los pares.",
+        "incorrect": "Memoriza posicion y simbolo antes de tocar otra carta."
+      },
+      "reward": {
+        "xp": 18,
+        "stars": 15
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Memoria de pares"
+      }
     },
     {
       "id": "logic-l02-a02",
-      "type": "memory_pairs",
-      "instruction": "Ahora suma el arcoíris al viaje y encuentra 3 parejas.",
-      "payload": { "pairs": ["moon", "sun", "rainbow"] },
-      "answer": { "pairs": 3 },
-      "feedback": { "correct": "Tres parejas listas para despegar.", "incorrect": "Abre dos cartas y memoriza su lugar." },
-      "reward": { "xp": 16, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con tres símbolos del cielo" }
+      "type": "pattern_completion",
+      "instruction": "Completa el camino de piedras.",
+      "payload": {
+        "scene": "Las piedras alternan claro y oscuro.",
+        "sequence": [
+          "light",
+          "dark",
+          "light",
+          "dark",
+          "?"
+        ],
+        "options": [
+          "light",
+          "dark",
+          "green",
+          "blue"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "El camino repite claro-oscuro."
+      },
+      "answer": {
+        "value": "light"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
     },
     {
       "id": "logic-l02-a03",
-      "type": "memory_pairs",
-      "instruction": "Misión completa: encuentra luna, sol, arcoíris y estrella.",
-      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
-      "answer": { "pairs": 4 },
-      "feedback": { "correct": "Memoria de astronauta completada.", "incorrect": "Observa y recuerda la posición de cada figura." },
-      "reward": { "xp": 18, "stars": 15 },
-      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con cuatro parejas" }
+      "type": "multiple_choice",
+      "instruction": "Resuelve la pista de orden.",
+      "payload": {
+        "scene": "Tiko llego antes que Rana. Rana llego antes que Buho.",
+        "question": "Quien llego primero?",
+        "hint": "Lee la primera pista.",
+        "options": [
+          "Tiko",
+          "Rana",
+          "Buho"
+        ]
+      },
+      "answer": {
+        "value": "Tiko"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Quien llego primero?"
+      }
+    },
+    {
+      "id": "logic-l02-a04",
+      "type": "multiple_choice",
+      "instruction": "Encuentra la regla del cofre.",
+      "payload": {
+        "scene": "El cofre acepta objetos que sirven para abrir.",
+        "question": "Cual sirve para abrir?",
+        "hint": "Piensa en la funcion del objeto.",
+        "options": [
+          "llave",
+          "flor",
+          "pez",
+          "nube"
+        ]
+      },
+      "answer": {
+        "value": "llave"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Cual sirve para abrir?"
+      }
     }
   ]
 }

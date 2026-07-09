@@ -3,38 +3,176 @@
   "id": "letters-l02",
   "module": "LETTERS",
   "levelNumber": 2,
-  "title": "Safari de vocales",
+  "title": "Vocales que encienden cuentos",
   "status": "PUBLISHED",
   "activities": [
     {
       "id": "letters-l02-a01",
       "type": "image_word_match",
-      "instruction": "La exploradora busca una palabra que empiece con A.",
-      "payload": { "letter": "A", "options": ["oso", "abeja", "luna", "mesa"] },
-      "answer": { "value": "abeja" },
-      "feedback": { "correct": "Abeja empieza con A.", "incorrect": "Di cada palabra escuchando el primer sonido." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra A mayúscula" }
+      "instruction": "Busca una palabra que empiece con E.",
+      "payload": {
+        "scene": "Una estrella ilumina el cuento.",
+        "letter": "E",
+        "question": "Que palabra empieza con E?",
+        "options": [
+          "estrella",
+          "gato",
+          "rana",
+          "pez"
+        ]
+      },
+      "answer": {
+        "value": "estrella"
+      },
+      "feedback": {
+        "correct": "estrella empieza con E.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra E"
+      }
     },
     {
       "id": "letters-l02-a02",
       "type": "image_word_match",
-      "instruction": "El elefante quiere una palabra que empiece con E.",
-      "payload": { "letter": "E", "options": ["estrella", "casa", "sol", "pera"] },
-      "answer": { "value": "estrella" },
-      "feedback": { "correct": "Estrella empieza con E.", "incorrect": "Escucha: eee-strella." },
-      "reward": { "xp": 12, "stars": 10 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra E mayúscula" }
+      "instruction": "Encuentra la palabra que inicia con I.",
+      "payload": {
+        "scene": "La isla flota en un mapa.",
+        "letter": "I",
+        "question": "Que palabra empieza con I?",
+        "options": [
+          "isla",
+          "casa",
+          "tren",
+          "luna"
+        ]
+      },
+      "answer": {
+        "value": "isla"
+      },
+      "feedback": {
+        "correct": "isla empieza con I.",
+        "incorrect": "Pronuncia la primera silaba de cada opcion."
+      },
+      "reward": {
+        "xp": 12,
+        "stars": 10
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Letra I"
+      }
     },
     {
       "id": "letters-l02-a03",
-      "type": "image_word_match",
-      "instruction": "La iguana escondió una palabra que empieza con I.",
-      "payload": { "letter": "I", "options": ["isla", "gato", "nube", "flor"] },
-      "answer": { "value": "isla" },
-      "feedback": { "correct": "Isla empieza con I.", "incorrect": "Busca la palabra que empieza con el sonido iii." },
-      "reward": { "xp": 14, "stars": 12 },
-      "accessibility": { "spokenInstruction": true, "altText": "Letra I mayúscula" }
+      "type": "pattern_completion",
+      "instruction": "Completa la cancion de vocales.",
+      "payload": {
+        "scene": "Lila canta una secuencia.",
+        "sequence": [
+          "A",
+          "E",
+          "I",
+          "?",
+          "U"
+        ],
+        "options": [
+          "A",
+          "E",
+          "O",
+          "U"
+        ],
+        "display": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "red": "??",
+          "yellow": "??",
+          "blue": "??",
+          "green": "??",
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "E": "E",
+          "I": "I",
+          "O": "O",
+          "U": "U",
+          "ma": "ma",
+          "pa": "pa",
+          "la": "la",
+          "sa": "sa",
+          "small": "S",
+          "medium": "M",
+          "large": "L",
+          "north": "??",
+          "east": "??",
+          "light": "?",
+          "dark": "?",
+          "fire": "??",
+          "water": "??",
+          "soft": "?",
+          "strong": "??"
+        },
+        "hint": "Recuerda A, E, I, O, U."
+      },
+      "answer": {
+        "value": "O"
+      },
+      "feedback": {
+        "correct": "Patron completado.",
+        "incorrect": "Mira el orden desde el inicio y busca repeticion."
+      },
+      "reward": {
+        "xp": 14,
+        "stars": 12
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Patron interactivo"
+      }
+    },
+    {
+      "id": "letters-l02-a04",
+      "type": "multiple_choice",
+      "instruction": "Clasifica el primer sonido.",
+      "payload": {
+        "scene": "Oso inicia con un sonido redondo.",
+        "question": "Con que letra empieza oso?",
+        "hint": "Di o-so lentamente.",
+        "options": [
+          "A",
+          "E",
+          "I",
+          "O"
+        ]
+      },
+      "answer": {
+        "value": "O"
+      },
+      "feedback": {
+        "correct": "Respuesta correcta. Usaste la pista, no solo memoria.",
+        "incorrect": "Relee la pista y descarta opciones imposibles."
+      },
+      "reward": {
+        "xp": 13,
+        "stars": 11
+      },
+      "accessibility": {
+        "spokenInstruction": true,
+        "altText": "Con que letra empieza oso?"
+      }
     }
   ]
 }
