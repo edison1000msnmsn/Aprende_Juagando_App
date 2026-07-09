@@ -1,0 +1,104 @@
+APRENDEJUGANDO - INSTRUCCIONES DE EJECUCION
+===========================================
+
+1. INSTALAR LA APLICACION EN ANDROID
+------------------------------------
+
+Abrir la carpeta:
+
+entrega_cd/01_APK/
+
+Instalar el archivo:
+
+AprendeJugando.apk
+
+La aplicacion ya esta configurada para conectarse al backend publicado:
+
+https://aprendejugando-production.up.railway.app/api/v1
+
+
+2. CUENTA DEMO
+--------------
+
+Correo:
+familia@demo.local
+
+Contrasena:
+DemoAprende123!
+
+
+3. VERIFICAR BACKEND PUBLICADO
+------------------------------
+
+Abrir en el navegador:
+
+https://aprendejugando-production.up.railway.app/api/v1/health
+
+Debe responder algo parecido a:
+
+{
+  "status": "ok",
+  "database": "connected"
+}
+
+
+4. EJECUTAR CODIGO FUENTE LOCALMENTE
+------------------------------------
+
+Requisitos:
+
+- Flutter 3.41 o superior.
+- Android Studio.
+- Android SDK.
+- Node.js 20 o superior.
+- Docker Desktop.
+
+Pasos desde la raiz del proyecto:
+
+npm install
+docker compose up -d --build
+
+Luego abrir otra terminal:
+
+cd frontend/mobile
+flutter pub get
+flutter run
+
+
+5. ABRIR EN ANDROID STUDIO
+--------------------------
+
+Abrir esta carpeta:
+
+frontend/mobile/
+
+Luego seleccionar un emulador o dispositivo Android y ejecutar la app.
+
+
+6. DOCUMENTACION
+----------------
+
+La guia interactiva esta en:
+
+entrega_cd/03_DOCUMENTACION/guia-interactiva-arquitectura.html
+
+Tambien se encuentra en:
+
+docs/guia-interactiva-arquitectura.html
+
+
+7. DESCARGA DESDE GITHUB SIN CUENTA
+-----------------------------------
+
+Repositorio publico:
+
+https://github.com/edison1000msnmsn/Aprende_Juagando_App
+
+Pasos:
+
+1. Entrar al enlace.
+2. Presionar Code.
+3. Presionar Download ZIP.
+4. Descomprimir.
+5. Copiar la carpeta al CD.
+

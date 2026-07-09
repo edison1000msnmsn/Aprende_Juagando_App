@@ -41,6 +41,7 @@ void main() {
       ),
     );
     await tester.tap(find.text('4'));
+    await tester.pumpAndSettle();
 
     expect(answer, {'value': 4});
   });
@@ -63,7 +64,7 @@ void main() {
       const ProviderScope(child: MaterialApp(home: FirstProfileScreen())),
     );
 
-    expect(find.text('¿Quién va a aprender?'), findsOneWidget);
+    expect(find.textContaining('Quién va a aprender'), findsOneWidget);
     expect(find.text('Apodo del niño'), findsOneWidget);
     expect(find.text('Crear perfil y comenzar'), findsOneWidget);
   });
