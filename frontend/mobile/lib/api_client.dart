@@ -4,7 +4,7 @@ import 'models.dart';
 
 const apiBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue: 'https://comedoruncp-production.up.railway.app/api/v1',
+  defaultValue: 'https://aprendejugando-production.up.railway.app/api/v1',
 );
 
 class ApiClient {
