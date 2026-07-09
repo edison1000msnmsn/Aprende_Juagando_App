@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l04",
+  "module": "ART",
+  "levelNumber": 4,
+  "title": "Carnaval de pintura",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l04-a01",
+      "type": "paint_shape",
+      "instruction": "Para iniciar el carnaval, pinta la estrella de rojo.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "red" },
+      "feedback": { "correct": "El carnaval empieza con rojo.", "incorrect": "Busca el color más parecido al corazón." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella roja de carnaval" }
+    },
+    {
+      "id": "art-l04-a02",
+      "type": "paint_shape",
+      "instruction": "Ahora pinta la estrella de amarillo para encender las luces.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "yellow" },
+      "feedback": { "correct": "Luces amarillas encendidas.", "incorrect": "Elige el color del sol." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella amarilla de luces" }
+    },
+    {
+      "id": "art-l04-a03",
+      "type": "paint_shape",
+      "instruction": "Cierra el desfile con una estrella azul.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "blue" },
+      "feedback": { "correct": "Azul perfecto para cerrar el desfile.", "incorrect": "Busca el color del cielo." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella azul de desfile" }
+    }
+  ]
+}

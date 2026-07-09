@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l03",
+  "module": "LETTERS",
+  "levelNumber": 3,
+  "title": "Tren de sonidos",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l03-a01",
+      "type": "image_word_match",
+      "instruction": "Sube al tren la palabra que empieza con S.",
+      "payload": { "letter": "S", "options": ["sapo", "taza", "mono", "avión"] },
+      "answer": { "value": "sapo" },
+      "feedback": { "correct": "Sapo sube al vagón de la S.", "incorrect": "Haz el sonido sss y vuelve a elegir." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra S mayúscula" }
+    },
+    {
+      "id": "letters-l03-a02",
+      "type": "image_word_match",
+      "instruction": "El tren necesita una palabra que empiece con T.",
+      "payload": { "letter": "T", "options": ["lago", "tigre", "uva", "rey"] },
+      "answer": { "value": "tigre" },
+      "feedback": { "correct": "Tigre empieza con T.", "incorrect": "Toca tu lengua y di: t, t, tigre." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra T mayúscula" }
+    },
+    {
+      "id": "letters-l03-a03",
+      "type": "image_word_match",
+      "instruction": "Encuentra la palabra que empieza con P para el vagón rosa.",
+      "payload": { "letter": "P", "options": ["pato", "silla", "nido", "foca"] },
+      "answer": { "value": "pato" },
+      "feedback": { "correct": "Pato empieza con P.", "incorrect": "Escucha el inicio: p, p, pato." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra P mayúscula" }
+    }
+  ]
+}

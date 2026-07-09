@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l04",
+  "module": "LETTERS",
+  "levelNumber": 4,
+  "title": "Castillo de palabras",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l04-a01",
+      "type": "image_word_match",
+      "instruction": "La puerta del castillo se abre con una palabra que empieza con C.",
+      "payload": { "letter": "C", "options": ["casa", "mesa", "oso", "rana"] },
+      "answer": { "value": "casa" },
+      "feedback": { "correct": "Casa abrió la puerta de la C.", "incorrect": "Busca una palabra que empiece como castillo." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra C mayúscula" }
+    },
+    {
+      "id": "letters-l04-a02",
+      "type": "image_word_match",
+      "instruction": "El dragón pide una palabra que empiece con D.",
+      "payload": { "letter": "D", "options": ["barco", "dado", "sol", "lápiz"] },
+      "answer": { "value": "dado" },
+      "feedback": { "correct": "Dado empieza con D.", "incorrect": "Di: d, d, dado." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra D mayúscula" }
+    },
+    {
+      "id": "letters-l04-a03",
+      "type": "image_word_match",
+      "instruction": "La reina guarda una palabra que empieza con R.",
+      "payload": { "letter": "R", "options": ["reina", "gato", "flor", "taza"] },
+      "answer": { "value": "reina" },
+      "feedback": { "correct": "Reina empieza con R.", "incorrect": "Busca la palabra que suena como rrr al inicio." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra R mayúscula" }
+    }
+  ]
+}

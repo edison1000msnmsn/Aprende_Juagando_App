@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l02",
+  "module": "ART",
+  "levelNumber": 2,
+  "title": "Taller de estrellas viajeras",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l02-a01",
+      "type": "paint_shape",
+      "instruction": "Pinta la estrella viajera de azul para que cruce el cielo.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "blue" },
+      "feedback": { "correct": "La estrella azul viaja por el cielo.", "incorrect": "Busca el color del cielo despejado." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de azul" }
+    },
+    {
+      "id": "art-l02-a02",
+      "type": "paint_shape",
+      "instruction": "Pinta la estrella del jardín de verde.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "green" },
+      "feedback": { "correct": "Verde como las hojas del jardín.", "incorrect": "Busca el color de las plantas." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de verde" }
+    },
+    {
+      "id": "art-l02-a03",
+      "type": "paint_shape",
+      "instruction": "Pinta la estrella del atardecer de rojo.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "red" },
+      "feedback": { "correct": "Rojo intenso de atardecer.", "incorrect": "Busca el color parecido a una manzana roja." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de rojo" }
+    }
+  ]
+}

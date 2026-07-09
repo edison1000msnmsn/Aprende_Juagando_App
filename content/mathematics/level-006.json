@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "math-l06",
+  "module": "MATHEMATICS",
+  "levelNumber": 6,
+  "title": "Tesoro del contador experto",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "math-l06-a01",
+      "type": "visual_count",
+      "instruction": "El mapa del tesoro muestra 15 manzanas doradas.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 15 }], "options": [13, 14, 15, 16] },
+      "answer": { "value": 15 },
+      "feedback": { "correct": "Tesoro encontrado: 15.", "incorrect": "Cuenta 5, 10 y luego las últimas." },
+      "reward": { "xp": 25, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Quince manzanas doradas" }
+    },
+    {
+      "id": "math-l06-a02",
+      "type": "visual_count",
+      "instruction": "La puerta secreta se abre con 16 manzanas contadas.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 16 }], "options": [14, 15, 16, 17] },
+      "answer": { "value": 16 },
+      "feedback": { "correct": "La puerta se abrió con 16.", "incorrect": "Divide en grupos de cuatro y suma." },
+      "reward": { "xp": 26, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Dieciséis manzanas para una puerta secreta" }
+    },
+    {
+      "id": "math-l06-a03",
+      "type": "visual_count",
+      "instruction": "El contador experto encontró 18 manzanas en la cueva. Marca 18.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 18 }], "options": [16, 17, 18, 19] },
+      "answer": { "value": 18 },
+      "feedback": { "correct": "Excelente, contaste 18 como experto.", "incorrect": "Cuenta por grupos para llegar sin apuro." },
+      "reward": { "xp": 30, "stars": 20 },
+      "accessibility": { "spokenInstruction": true, "altText": "Dieciocho manzanas dentro de una cueva" }
+    }
+  ]
+}

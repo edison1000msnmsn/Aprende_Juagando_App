@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "math-l04",
+  "module": "MATHEMATICS",
+  "levelNumber": 4,
+  "title": "Detectives del número escondido",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "math-l04-a01",
+      "type": "visual_count",
+      "instruction": "El detective ve 3 manzanas pequeñas. Encuentra la pista correcta.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 3 }], "options": [2, 3, 4, 5] },
+      "answer": { "value": 3 },
+      "feedback": { "correct": "Pista resuelta: eran 3.", "incorrect": "Mira con calma y cuenta cada pista." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Tres manzanas como pistas" }
+    },
+    {
+      "id": "math-l04-a02",
+      "type": "visual_count",
+      "instruction": "Hay 8 huellas de manzana en el camino. ¿Cuántas son?",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 8 }], "options": [6, 8, 9, 10] },
+      "answer": { "value": 8 },
+      "feedback": { "correct": "Sí, seguiste 8 huellas.", "incorrect": "Vuelve al inicio del camino y cuenta otra vez." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Ocho huellas de manzana" }
+    },
+    {
+      "id": "math-l04-a03",
+      "type": "visual_count",
+      "instruction": "El cofre del detective guarda 11 manzanas. Marca 11.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 11 }], "options": [9, 10, 11, 12] },
+      "answer": { "value": 11 },
+      "feedback": { "correct": "Caso cerrado: son 11.", "incorrect": "Cuenta en dos partes: primero 5, luego las demás." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Once manzanas dentro de un cofre" }
+    }
+  ]
+}

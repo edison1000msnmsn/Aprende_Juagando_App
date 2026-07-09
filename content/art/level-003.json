@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l03",
+  "module": "ART",
+  "levelNumber": 3,
+  "title": "Museo de colores secretos",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l03-a01",
+      "type": "paint_shape",
+      "instruction": "El museo pide una estrella amarilla como el sol.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "yellow" },
+      "feedback": { "correct": "Amarillo brillante como el sol.", "incorrect": "Busca el color más luminoso." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella para pintar de amarillo" }
+    },
+    {
+      "id": "art-l03-a02",
+      "type": "paint_shape",
+      "instruction": "El cuadro del océano necesita una estrella azul.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "blue" },
+      "feedback": { "correct": "Azul como el océano.", "incorrect": "Busca el color del agua profunda." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella azul para cuadro de océano" }
+    },
+    {
+      "id": "art-l03-a03",
+      "type": "paint_shape",
+      "instruction": "El cuadro del bosque necesita una estrella verde.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "green" },
+      "feedback": { "correct": "Verde como un bosque vivo.", "incorrect": "Elige el color de las hojas." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella verde para cuadro de bosque" }
+    }
+  ]
+}

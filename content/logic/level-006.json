@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l06",
+  "module": "LOGIC",
+  "levelNumber": 6,
+  "title": "Gran torneo de memoria",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l06-a01",
+      "type": "memory_pairs",
+      "instruction": "Ronda uno: encuentra 3 parejas para entrar al torneo.",
+      "payload": { "pairs": ["sun", "star", "rainbow"] },
+      "answer": { "pairs": 3 },
+      "feedback": { "correct": "Entraste al torneo.", "incorrect": "Concéntrate en el lugar de cada símbolo." },
+      "reward": { "xp": 22, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria de torneo con tres parejas" }
+    },
+    {
+      "id": "logic-l06-a02",
+      "type": "memory_pairs",
+      "instruction": "Ronda dos: encuentra las 4 parejas antes de que se cierre el portal.",
+      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Portal abierto.", "incorrect": "No adivines rápido; observa primero." },
+      "reward": { "xp": 25, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con cuatro parejas del portal" }
+    },
+    {
+      "id": "logic-l06-a03",
+      "type": "memory_pairs",
+      "instruction": "Final del torneo: demuestra tu memoria con 4 parejas mezcladas.",
+      "payload": { "pairs": ["star", "rainbow", "moon", "sun"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Campeón de memoria.", "incorrect": "Recuerda por columnas: arriba, abajo, izquierda, derecha." },
+      "reward": { "xp": 30, "stars": 20 },
+      "accessibility": { "spokenInstruction": true, "altText": "Final de memoria con cuatro parejas" }
+    }
+  ]
+}

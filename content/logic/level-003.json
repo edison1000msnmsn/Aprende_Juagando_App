@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l03",
+  "module": "LOGIC",
+  "levelNumber": 3,
+  "title": "Bosque de pistas brillantes",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l03-a01",
+      "type": "memory_pairs",
+      "instruction": "El búho escondió 3 parejas. Encuentra sus pistas brillantes.",
+      "payload": { "pairs": ["star", "moon", "sun"] },
+      "answer": { "pairs": 3 },
+      "feedback": { "correct": "El búho celebra tu memoria.", "incorrect": "Mira una carta y di su nombre antes de tocar otra." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con estrella, luna y sol" }
+    },
+    {
+      "id": "logic-l03-a02",
+      "type": "memory_pairs",
+      "instruction": "La ardilla mezcló las cartas. Encuentra las 4 parejas del bosque.",
+      "payload": { "pairs": ["rainbow", "star", "moon", "sun"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Ordenaste el bosque con memoria.", "incorrect": "Recuerda qué carta apareció en cada esquina." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con cuatro símbolos" }
+    },
+    {
+      "id": "logic-l03-a03",
+      "type": "memory_pairs",
+      "instruction": "Reto relámpago: encuentra solo las parejas de sol y estrella.",
+      "payload": { "pairs": ["sun", "star"] },
+      "answer": { "pairs": 2 },
+      "feedback": { "correct": "Reto relámpago superado.", "incorrect": "Concéntrate en dos figuras: sol y estrella." },
+      "reward": { "xp": 14, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con sol y estrella" }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l05",
+  "module": "LOGIC",
+  "levelNumber": 5,
+  "title": "Templo de la concentración",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l05-a01",
+      "type": "memory_pairs",
+      "instruction": "El templo abre si encuentras 4 parejas sagradas.",
+      "payload": { "pairs": ["moon", "rainbow", "sun", "star"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "El templo se iluminó.", "incorrect": "Respira, observa y recuerda." },
+      "reward": { "xp": 22, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria de cuatro parejas sagradas" }
+    },
+    {
+      "id": "logic-l05-a02",
+      "type": "memory_pairs",
+      "instruction": "Camino corto: encuentra luna, arcoíris y estrella.",
+      "payload": { "pairs": ["moon", "rainbow", "star"] },
+      "answer": { "pairs": 3 },
+      "feedback": { "correct": "Caminaste con concentración.", "incorrect": "Recuerda una carta antes de tocar la siguiente." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con luna, arcoíris y estrella" }
+    },
+    {
+      "id": "logic-l05-a03",
+      "type": "memory_pairs",
+      "instruction": "Duelo de memoria: encuentra sol, luna, estrella y arcoíris.",
+      "payload": { "pairs": ["sun", "moon", "star", "rainbow"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Duelo ganado con memoria fuerte.", "incorrect": "Usa una estrategia: recuerda por filas." },
+      "reward": { "xp": 24, "stars": 20 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria avanzada con cuatro parejas" }
+    }
+  ]
+}

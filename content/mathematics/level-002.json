@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "math-l02",
+  "module": "MATHEMATICS",
+  "levelNumber": 2,
+  "title": "Mercado de manzanas mágicas",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "math-l02-a01",
+      "type": "visual_count",
+      "instruction": "El duende vendedor puso 5 manzanas en la canasta. Cuenta y elige 5.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 5 }], "options": [4, 5, 6, 7] },
+      "answer": { "value": 5 },
+      "feedback": { "correct": "Exacto, hay 5 manzanas mágicas.", "incorrect": "Toca cada manzana con tu dedo y cuenta despacio." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Cinco manzanas en una canasta imaginaria" }
+    },
+    {
+      "id": "math-l02-a02",
+      "type": "visual_count",
+      "instruction": "El conejo saltarín dejó 6 manzanas para compartir. ¿Cuántas ves?",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 6 }], "options": [3, 5, 6, 8] },
+      "answer": { "value": 6 },
+      "feedback": { "correct": "Muy bien, el conejo dejó 6.", "incorrect": "Cuenta una por una: 1, 2, 3..." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Seis manzanas rojas" }
+    },
+    {
+      "id": "math-l02-a03",
+      "type": "visual_count",
+      "instruction": "La caja sorpresa se abrió y aparecieron 7 manzanas. Marca el número correcto.",
+      "payload": { "items": [{ "kind": "emoji", "value": "apple", "count": 7 }], "options": [5, 6, 7, 9] },
+      "answer": { "value": 7 },
+      "feedback": { "correct": "Sí, la caja tenía 7 manzanas.", "incorrect": "Vuelve a contar sin saltarte ninguna." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Siete manzanas en una caja sorpresa" }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l06",
+  "module": "LETTERS",
+  "levelNumber": 6,
+  "title": "Biblioteca encantada",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l06-a01",
+      "type": "image_word_match",
+      "instruction": "El libro azul quiere una palabra que empiece con N.",
+      "payload": { "letter": "N", "options": ["nube", "pato", "casa", "sol"] },
+      "answer": { "value": "nube" },
+      "feedback": { "correct": "Nube empieza con N.", "incorrect": "Escucha el primer sonido de nube." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra N mayúscula" }
+    },
+    {
+      "id": "letters-l06-a02",
+      "type": "image_word_match",
+      "instruction": "El libro verde pide una palabra que empiece con G.",
+      "payload": { "letter": "G", "options": ["mesa", "gato", "isla", "flor"] },
+      "answer": { "value": "gato" },
+      "feedback": { "correct": "Gato empieza con G.", "incorrect": "Di g, g, gato y compara." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra G mayúscula" }
+    },
+    {
+      "id": "letters-l06-a03",
+      "type": "image_word_match",
+      "instruction": "El libro dorado necesita una palabra que empiece con V.",
+      "payload": { "letter": "V", "options": ["vaca", "tren", "oso", "dado"] },
+      "answer": { "value": "vaca" },
+      "feedback": { "correct": "Vaca empieza con V.", "incorrect": "Busca la palabra que inicia como viento." },
+      "reward": { "xp": 22, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra V mayúscula" }
+    }
+  ]
+}

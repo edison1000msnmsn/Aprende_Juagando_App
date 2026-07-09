@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l04",
+  "module": "LOGIC",
+  "levelNumber": 4,
+  "title": "Laboratorio de robots gemelos",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l04-a01",
+      "type": "memory_pairs",
+      "instruction": "Los robots gemelos buscan 4 parejas para activar el laboratorio.",
+      "payload": { "pairs": ["sun", "moon", "star", "rainbow"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Laboratorio activado.", "incorrect": "Abre pocas cartas y memoriza su posición." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria de cuatro parejas para robots" }
+    },
+    {
+      "id": "logic-l04-a02",
+      "type": "memory_pairs",
+      "instruction": "Modo entrenamiento: encuentra 3 parejas sin perder la pista.",
+      "payload": { "pairs": ["rainbow", "moon", "star"] },
+      "answer": { "pairs": 3 },
+      "feedback": { "correct": "Entrenamiento lógico completo.", "incorrect": "Piensa: ¿en qué lugar viste esa figura?" },
+      "reward": { "xp": 18, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con tres parejas" }
+    },
+    {
+      "id": "logic-l04-a03",
+      "type": "memory_pairs",
+      "instruction": "Último circuito: sol y luna deben encontrar a sus gemelos.",
+      "payload": { "pairs": ["sun", "moon"] },
+      "answer": { "pairs": 2 },
+      "feedback": { "correct": "Circuito completado.", "incorrect": "Recuerda dónde estaba cada gemelo." },
+      "reward": { "xp": 16, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Memoria con sol y luna" }
+    }
+  ]
+}

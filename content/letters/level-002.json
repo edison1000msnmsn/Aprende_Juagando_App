@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l02",
+  "module": "LETTERS",
+  "levelNumber": 2,
+  "title": "Safari de vocales",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l02-a01",
+      "type": "image_word_match",
+      "instruction": "La exploradora busca una palabra que empiece con A.",
+      "payload": { "letter": "A", "options": ["oso", "abeja", "luna", "mesa"] },
+      "answer": { "value": "abeja" },
+      "feedback": { "correct": "Abeja empieza con A.", "incorrect": "Di cada palabra escuchando el primer sonido." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra A mayúscula" }
+    },
+    {
+      "id": "letters-l02-a02",
+      "type": "image_word_match",
+      "instruction": "El elefante quiere una palabra que empiece con E.",
+      "payload": { "letter": "E", "options": ["estrella", "casa", "sol", "pera"] },
+      "answer": { "value": "estrella" },
+      "feedback": { "correct": "Estrella empieza con E.", "incorrect": "Escucha: eee-strella." },
+      "reward": { "xp": 12, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra E mayúscula" }
+    },
+    {
+      "id": "letters-l02-a03",
+      "type": "image_word_match",
+      "instruction": "La iguana escondió una palabra que empieza con I.",
+      "payload": { "letter": "I", "options": ["isla", "gato", "nube", "flor"] },
+      "answer": { "value": "isla" },
+      "feedback": { "correct": "Isla empieza con I.", "incorrect": "Busca la palabra que empieza con el sonido iii." },
+      "reward": { "xp": 14, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra I mayúscula" }
+    }
+  ]
+}

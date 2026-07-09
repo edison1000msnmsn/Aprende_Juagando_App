@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "logic-l02",
+  "module": "LOGIC",
+  "levelNumber": 2,
+  "title": "Memoria del astronauta",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "logic-l02-a01",
+      "type": "memory_pairs",
+      "instruction": "El astronauta perdió dos parejas en el espacio. Encuentra luna y sol.",
+      "payload": { "pairs": ["moon", "sun"] },
+      "answer": { "pairs": 2 },
+      "feedback": { "correct": "Encontraste las 2 parejas espaciales.", "incorrect": "Recuerda dónde apareció cada tarjeta." },
+      "reward": { "xp": 14, "stars": 10 },
+      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con luna y sol" }
+    },
+    {
+      "id": "logic-l02-a02",
+      "type": "memory_pairs",
+      "instruction": "Ahora suma el arcoíris al viaje y encuentra 3 parejas.",
+      "payload": { "pairs": ["moon", "sun", "rainbow"] },
+      "answer": { "pairs": 3 },
+      "feedback": { "correct": "Tres parejas listas para despegar.", "incorrect": "Abre dos cartas y memoriza su lugar." },
+      "reward": { "xp": 16, "stars": 12 },
+      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con tres símbolos del cielo" }
+    },
+    {
+      "id": "logic-l02-a03",
+      "type": "memory_pairs",
+      "instruction": "Misión completa: encuentra luna, sol, arcoíris y estrella.",
+      "payload": { "pairs": ["moon", "sun", "rainbow", "star"] },
+      "answer": { "pairs": 4 },
+      "feedback": { "correct": "Memoria de astronauta completada.", "incorrect": "Observa y recuerda la posición de cada figura." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Juego de memoria con cuatro parejas" }
+    }
+  ]
+}

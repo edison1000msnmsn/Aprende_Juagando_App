@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l06",
+  "module": "ART",
+  "levelNumber": 6,
+  "title": "Gran misión del artista",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l06-a01",
+      "type": "paint_shape",
+      "instruction": "Misión uno: pinta la estrella de azul para guardar la calma.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "blue" },
+      "feedback": { "correct": "Azul tranquilo, misión uno completa.", "incorrect": "Busca el color del cielo." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella azul de misión" }
+    },
+    {
+      "id": "art-l06-a02",
+      "type": "paint_shape",
+      "instruction": "Misión dos: pinta la estrella de verde para dar vida.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "green" },
+      "feedback": { "correct": "Verde vivo, misión dos completa.", "incorrect": "Elige el color de las hojas." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella verde de misión" }
+    },
+    {
+      "id": "art-l06-a03",
+      "type": "paint_shape",
+      "instruction": "Misión final: pinta la estrella de amarillo para celebrar.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "yellow" },
+      "feedback": { "correct": "Celebración amarilla lograda.", "incorrect": "Busca el color más brillante." },
+      "reward": { "xp": 24, "stars": 20 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella amarilla de celebración" }
+    }
+  ]
+}

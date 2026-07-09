@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "art-l05",
+  "module": "ART",
+  "levelNumber": 5,
+  "title": "Galería del arcoíris",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "art-l05-a01",
+      "type": "paint_shape",
+      "instruction": "La primera sala necesita una estrella verde.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "green" },
+      "feedback": { "correct": "Sala verde completada.", "incorrect": "Busca el color de la naturaleza." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella verde de galería" }
+    },
+    {
+      "id": "art-l05-a02",
+      "type": "paint_shape",
+      "instruction": "La segunda sala necesita una estrella roja.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "red" },
+      "feedback": { "correct": "Sala roja completada.", "incorrect": "Elige el color de una fresa." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella roja de galería" }
+    },
+    {
+      "id": "art-l05-a03",
+      "type": "paint_shape",
+      "instruction": "La sala final necesita una estrella amarilla.",
+      "payload": { "shape": "star", "colors": ["red", "yellow", "blue", "green"] },
+      "answer": { "color": "yellow" },
+      "feedback": { "correct": "Galería iluminada con amarillo.", "incorrect": "Busca el color del sol." },
+      "reward": { "xp": 20, "stars": 18 },
+      "accessibility": { "spokenInstruction": true, "altText": "Estrella amarilla de galería" }
+    }
+  ]
+}

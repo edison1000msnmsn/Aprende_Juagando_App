@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "letters-l05",
+  "module": "LETTERS",
+  "levelNumber": 5,
+  "title": "Laboratorio de sílabas",
+  "status": "PUBLISHED",
+  "activities": [
+    {
+      "id": "letters-l05-a01",
+      "type": "image_word_match",
+      "instruction": "El robot dice LA. Elige una palabra que empiece con L.",
+      "payload": { "letter": "L", "options": ["luna", "perro", "cama", "sapo"] },
+      "answer": { "value": "luna" },
+      "feedback": { "correct": "Luna empieza con L.", "incorrect": "Escucha: llluna." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra L mayúscula" }
+    },
+    {
+      "id": "letters-l05-a02",
+      "type": "image_word_match",
+      "instruction": "El robot dice FO. Encuentra una palabra que empiece con F.",
+      "payload": { "letter": "F", "options": ["foca", "nube", "dado", "tren"] },
+      "answer": { "value": "foca" },
+      "feedback": { "correct": "Foca empieza con F.", "incorrect": "Haz aire suave: fffoca." },
+      "reward": { "xp": 18, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra F mayúscula" }
+    },
+    {
+      "id": "letters-l05-a03",
+      "type": "image_word_match",
+      "instruction": "El robot dice BA. Busca una palabra que empiece con B.",
+      "payload": { "letter": "B", "options": ["sol", "barco", "uva", "rana"] },
+      "answer": { "value": "barco" },
+      "feedback": { "correct": "Barco empieza con B.", "incorrect": "Junta los labios y di b, b, barco." },
+      "reward": { "xp": 20, "stars": 15 },
+      "accessibility": { "spokenInstruction": true, "altText": "Letra B mayúscula" }
+    }
+  ]
+}
